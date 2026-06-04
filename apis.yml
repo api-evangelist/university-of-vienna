@@ -1,0 +1,94 @@
+---
+aid: university-of-vienna
+name: University of Vienna
+description: >-
+  The University of Vienna (Universität Wien), founded in 1365, is Austria's
+  largest university and ranks #78 in the QS World University Rankings 2025.
+  Its public, programmatically accessible footprint centers on research and
+  scholarly infrastructure rather than a unified developer portal: PHAIDRA, the
+  university's institutional repository, exposes a documented REST(ish) API and
+  an OAI-PMH metadata harvesting endpoint, and the institution's structured data
+  is also published through the pan-European HEI API. Course, library discovery
+  (u:find / u:search) and student-information systems are public web services
+  but do not publish open developer documentation. No central, branded API
+  developer portal or official GitHub organization was confirmed.
+type: Index
+position: Consumer
+access: 3rd-Party
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/university-of-vienna/refs/heads/main/apis.yml
+tags:
+  - Education
+  - Higher Education
+  - University
+  - Research
+  - Repository
+  - Open Data
+  - Austria
+  - Europe
+created: '2026-06-03'
+modified: '2026-06-03'
+specificationVersion: '0.19'
+apis:
+  - aid: university-of-vienna:phaidra-api
+    name: PHAIDRA REST API
+    description: >-
+      PHAIDRA (Permanent Hosting, Archiving and Indexing of Digital Resources and
+      Assets) is the University of Vienna's institutional repository for research
+      data and digital collections. Its REST(ish) API implements core PHAIDRA
+      logic, including object ingest, metadata retrieval (/object/{pid}/info),
+      Solr-based search (/search/select), and object thumbnails/previews. An
+      OpenAPI specification is published at the /api/openapi endpoint.
+    humanURL: https://phaidra.org/docs/api/
+    baseURL: https://services.phaidra.univie.ac.at/api
+    tags: [ Repository, Research Data, REST, OpenAPI, Digital Preservation ]
+    properties:
+      - type: Documentation
+        url: https://phaidra.org/docs/api/
+      - type: OpenAPI
+        url: https://services.phaidra.univie.ac.at/api/openapi
+      - type: GitHub
+        url: https://github.com/phaidra/phaidra-api/wiki/Documentation
+  - aid: university-of-vienna:phaidra-oai-pmh
+    name: PHAIDRA OAI-PMH Endpoint
+    description: >-
+      OAI-PMH metadata harvesting interface for the PHAIDRA repository, used by
+      aggregators such as OpenAIRE, Europeana, BASE, OAPEN, EBSCO and Primo.
+      Supports the oai_dc (Dublin Core) and oai_openaire metadata formats. Verified
+      live returning a valid Identify response.
+    humanURL: https://phaidra.org/docs/api/
+    baseURL: https://services.phaidra.univie.ac.at/api/oai/
+    tags: [ OAI-PMH, Metadata, Harvesting, Repository, Dublin Core ]
+    properties:
+      - type: Documentation
+        url: https://phaidra.org/docs/api/
+  - aid: university-of-vienna:hei-api
+    name: HEI API (University of Vienna record)
+    description: >-
+      The pan-European Higher Education Institutions (HEI) API, operated by the
+      European University Foundation, publishes structured institutional data for
+      the University of Vienna in JSON:API format, including Erasmus codes, PIC,
+      Erasmus Charter (ECHE) status and address. This is a third-party API exposing
+      University of Vienna data, not operated by the university itself.
+    humanURL: https://hei.api.uni-foundation.eu/about
+    baseURL: https://hei.api.uni-foundation.eu/api/public/schac/univie.ac.at/hei
+    tags: [ JSON:API, Institutional Data, Erasmus, Third-Party ]
+    properties:
+      - type: Documentation
+        url: https://hei.api.uni-foundation.eu/about
+common:
+  - type: Website
+    url: https://www.univie.ac.at/en/
+  - type: LinkedIn
+    url: https://www.linkedin.com/school/univienna/
+  - type: Plans
+    url: plans/university-of-vienna-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/university-of-vienna-rate-limits.yml
+  - type: FinOps
+    url: finops/university-of-vienna-finops.yml
+  - type: Review
+    url: review.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

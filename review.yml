@@ -1,0 +1,44 @@
+---
+name: University of Vienna
+description: University of Vienna public developer/API footprint review for APIs.json cataloging.
+url: https://raw.githubusercontent.com/api-evangelist/university-of-vienna/refs/heads/main/review.yml
+created: '2026-06-03'
+modified: '2026-06-03'
+reviews:
+  - date: '2026-06-03'
+    rating: 3
+    summary: >-
+      The University of Vienna has no central branded API developer portal and no
+      confirmed official GitHub organization (github.com/univie resolves but is a
+      personal account). Its strongest verified public API surface is scholarly
+      infrastructure: the PHAIDRA institutional repository, which publishes a
+      documented REST API, an OpenAPI spec, and a live OAI-PMH endpoint (Identify
+      verified). University of Vienna institutional data is also confirmed live via
+      the third-party European HEI API in JSON:API format. Course (u:find) and
+      library (u:search) systems are public web services but expose no open developer
+      docs. All URLs below were probed live; no endpoints were fabricated.
+    endpoints:
+      - url: https://services.phaidra.univie.ac.at/api/oai/?verb=Identify
+        status: 200
+        note: PHAIDRA OAI-PMH endpoint, valid Identify response.
+      - url: https://services.phaidra.univie.ac.at/api/openapi
+        status: 200
+        note: PHAIDRA OpenAPI specification, live.
+      - url: https://phaidra.org/docs/api/
+        status: 200
+        note: PHAIDRA API documentation (shared PHAIDRA docs site).
+      - url: https://hei.api.uni-foundation.eu/api/public/schac/univie.ac.at/hei
+        status: 200
+        note: Third-party HEI API returns valid JSON:API data for University of Vienna.
+      - url: https://ufind.univie.ac.at/en/vvz.html
+        status: 200
+        note: u:find course directory, public web UI; no open API docs found.
+      - url: https://bibliothek.univie.ac.at/en/
+        status: 200
+        note: University Library; uses Alma/Primo but no public API docs confirmed.
+      - url: https://www.univie.ac.at/en/
+        status: 200
+        note: Official institutional website.
+      - url: https://github.com/univie
+        status: 200
+        note: Resolves but is a personal account, not a confirmed official org.
