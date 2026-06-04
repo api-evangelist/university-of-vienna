@@ -1,0 +1,45 @@
+{
+  "@context": {
+    "schema": "https://schema.org/",
+    "dc": "http://purl.org/dc/elements/1.1/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "univie": "https://services.phaidra.univie.ac.at/api/vocab#",
+    "@vocab": "https://services.phaidra.univie.ac.at/api/vocab#",
+
+    "University": "schema:CollegeOrUniversity",
+    "name": "schema:name",
+    "url": "schema:url",
+    "foundingDate": "schema:foundingDate",
+
+    "DigitalObject": "schema:CreativeWork",
+    "pid": "schema:identifier",
+    "cmodel": "univie:contentModel",
+    "owner": "schema:creator",
+    "datastreams": "univie:datastream",
+    "resourcetype": "schema:additionalType",
+    "size": "schema:contentSize",
+    "created": "schema:dateCreated",
+    "modified": "schema:dateModified",
+    "ispartof": "dcterms:isPartOf",
+
+    "dc_title": "dc:title",
+    "dc_creator": "dc:creator",
+    "dc_date": "dc:date",
+    "dc_description": "dc:description",
+    "dc_subject": "dc:subject",
+    "dc_publisher": "dc:publisher",
+    "dc_language": "dc:language",
+    "dc_identifier": "dc:identifier",
+    "dc_rights": "dc:rights",
+    "dc_license": "dcterms:license",
+    "dc_relation": "dc:relation",
+
+    "Repository": "schema:DigitalDocument",
+    "search": "schema:SearchAction",
+    "numFound": "univie:numFound"
+  },
+  "@type": "University",
+  "name": "University of Vienna",
+  "url": "https://www.univie.ac.at/en/",
+  "foundingDate": "1365"
+}

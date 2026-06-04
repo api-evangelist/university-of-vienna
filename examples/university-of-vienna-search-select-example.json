@@ -1,0 +1,70 @@
+{
+  "responseHeader": {
+    "status": 0,
+    "QTime": 7,
+    "params": {
+      "q": "dc_title:vienna",
+      "rows": "2",
+      "wt": "json"
+    }
+  },
+  "response": {
+    "numFound": 2,
+    "start": 0,
+    "numFoundExact": true,
+    "docs": [
+      {
+        "pid": "o:1",
+        "cmodel": "Picture",
+        "owner": "exampleuser",
+        "resourcetype": "image",
+        "size": 482113,
+        "dc_title": [
+          "Example PHAIDRA Object"
+        ],
+        "dc_creator": [
+          "Mustermann, Maria"
+        ],
+        "dc_date": [
+          "2019"
+        ],
+        "dc_language": [
+          "eng"
+        ],
+        "dc_rights": [
+          "https://creativecommons.org/licenses/by/4.0/"
+        ],
+        "created": "2020-03-12T09:41:22.000Z",
+        "modified": "2021-06-01T00:00:00.000Z"
+      },
+      {
+        "pid": "o:2",
+        "cmodel": "Document",
+        "owner": "exampleuser",
+        "resourcetype": "text",
+        "size": 102400,
+        "dc_title": [
+          "Second Example Object"
+        ],
+        "dc_creator": [
+          "Beispiel, Hans"
+        ],
+        "dc_date": [
+          "2020"
+        ],
+        "dc_language": [
+          "deu"
+        ],
+        "created": "2020-08-01T12:00:00.000Z",
+        "modified": "2021-09-01T00:00:00.000Z"
+      }
+    ]
+  },
+  "facet_counts": {
+    "facet_queries": {},
+    "facet_fields": {},
+    "facet_ranges": {},
+    "facet_intervals": {},
+    "facet_heatmaps": {}
+  }
+}

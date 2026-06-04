@@ -1,0 +1,61 @@
+---
+# Spectral ruleset encoding patterns observed in the University of Vienna
+# PHAIDRA API (OpenAPI 3.0.2). Formats restricted to OpenAPI 3.x.
+extends: [[spectral:oas, off]]
+formats:
+  - oas3
+rules:
+  phaidra-info-title:
+    description: API document must declare an info.title.
+    given: $.info
+    severity: error
+    then:
+      field: title
+      function: truthy
+
+  phaidra-info-version:
+    description: API document must declare an info.version.
+    given: $.info
+    severity: error
+    then:
+      field: version
+      function: truthy
+
+  phaidra-server-https:
+    description: Production servers should use HTTPS (PHAIDRA is served over TLS).
+    given: $.servers[*].url
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://"
+
+  phaidra-operation-tags:
+    description: Every operation should carry at least one tag (object-basics, search, directory, etc.).
+    given: $.paths[*][get,post,put,delete,patch]
+    severity: warn
+    then:
+      field: tags
+      function: truthy
+
+  phaidra-operation-summary:
+    description: Every operation should have a human-readable summary.
+    given: $.paths[*][get,post,put,delete,patch]
+    severity: warn
+    then:
+      field: summary
+      function: truthy
+
+  phaidra-pid-path-param:
+    description: Object paths use a {pid} path parameter for the persistent identifier.
+    given: $.paths[?(@property.match(/object\/\{pid\}/))]
+    severity: info
+    then:
+      function: defined
+
+  phaidra-security-defined:
+    description: Components should define the basicAuth / tokenAuth security schemes used by PHAIDRA.
+    given: $.components.securitySchemes
+    severity: warn
+    then:
+      function: truthy

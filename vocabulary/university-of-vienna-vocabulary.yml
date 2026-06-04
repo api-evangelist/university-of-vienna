@@ -1,0 +1,94 @@
+---
+vocabulary:
+  name: University of Vienna PHAIDRA API Vocabulary
+  description: >-
+    Controlled vocabulary of the core terms used across the University of Vienna
+    PHAIDRA repository API (OpenAPI 3.0.2), covering digital objects, their
+    Dublin Core metadata, content models, and the Solr-based search interface.
+  version: "3.0"
+  terms:
+    - term: PHAIDRA
+      definition: >-
+        Permanent Hosting, Archiving and Indexing of Digital Resources and
+        Assets; the University of Vienna's institutional repository platform.
+      tags: [repository, platform]
+    - term: pid
+      definition: >-
+        Persistent identifier of a digital object (e.g. o:1), used as the path
+        parameter for /object/{pid}/* operations.
+      tags: [identifier, object]
+    - term: object
+      definition: >-
+        A digital resource managed in PHAIDRA (picture, audio, video, document,
+        collection or container), each with metadata and datastreams.
+      tags: [object, core]
+    - term: cmodel
+      definition: >-
+        Content model describing the type of a PHAIDRA object (Picture, Audio,
+        Video, Document, Collection, Container, Unknown).
+      tags: [object, content-model]
+    - term: datastream
+      definition: >-
+        A named data component attached to an object (e.g. OCTETS, MODS,
+        JSON-LD, RIGHTS, UWMETADATA).
+      tags: [object, datastream]
+    - term: object_info
+      definition: >-
+        Aggregate metadata and indexed data about an object returned by
+        GET /object/{pid}/info.
+      tags: [metadata, response]
+    - term: UWMETADATA
+      definition: >-
+        The University of Vienna's native XML metadata schema for PHAIDRA
+        objects, with tree, validate and json2xml conversion endpoints.
+      tags: [metadata, schema]
+    - term: MODS
+      definition: >-
+        Metadata Object Description Schema; an XML bibliographic metadata format
+        supported by PHAIDRA with conversion and validation endpoints.
+      tags: [metadata, schema]
+    - term: JSON-LD
+      definition: >-
+        Linked Data metadata representation of an object available via
+        /object/{pid}/jsonld and /object/{pid}/json-ld.
+      tags: [metadata, linked-data]
+    - term: dc
+      definition: >-
+        Dublin Core metadata elements (dc_title, dc_creator, dc_date,
+        dc_subject, dc_rights, etc.) indexed for each object.
+      tags: [metadata, dublin-core]
+    - term: search/select
+      definition: >-
+        Solr query endpoint accepting common Solr query parameters and returning
+        responseHeader, response (docs) and facet_counts.
+      tags: [search, solr]
+    - term: facet_counts
+      definition: >-
+        Solr faceting results (facet_fields, facet_queries, facet_ranges,
+        facet_intervals, facet_heatmaps) returned by the search endpoint.
+      tags: [search, solr, facets]
+    - term: vocabulary
+      definition: >-
+        Controlled-vocabulary and taxonomy term services (/vocabulary,
+        /terms/label, /terms/children, /terms/taxonpath, /terms/parent).
+      tags: [vocabulary, terms]
+    - term: directory
+      definition: >-
+        Endpoints exposing users, user groups and organisational unit structure
+        (/directory/org_get_units, /directory/user/search).
+      tags: [directory, organisation]
+    - term: iiifmanifest
+      definition: >-
+        IIIF Presentation manifest generated for an object via
+        /object/{pid}/iiifmanifest.
+      tags: [iiif, presentation]
+    - term: basicAuth
+      definition: >-
+        HTTP Basic authentication scheme protecting object management and
+        privileged endpoints.
+      tags: [security, auth]
+    - term: tokenAuth
+      definition: >-
+        API key authentication via the X-XSRF-TOKEN header used by the PHAIDRA
+        web client session.
+      tags: [security, auth]

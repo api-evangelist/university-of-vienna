@@ -47,6 +47,26 @@ apis:
         url: https://phaidra.org/docs/api/
       - type: OpenAPI
         url: https://services.phaidra.univie.ac.at/api/openapi
+      - type: OpenAPI
+        url: openapi/university-of-vienna-phaidra-api.yaml
+      - type: JSONSchema
+        url: json-schema/university-of-vienna-object-info-schema.json
+      - type: JSONSchema
+        url: json-schema/university-of-vienna-index-schema.json
+      - type: x-json-structure
+        url: json-structure/university-of-vienna-object-info-structure.json
+      - type: x-json-structure
+        url: json-structure/university-of-vienna-index-structure.json
+      - type: x-example
+        url: examples/university-of-vienna-object-info-example.json
+      - type: x-example
+        url: examples/university-of-vienna-search-select-example.json
+      - type: x-spectral-ruleset
+        url: rules/university-of-vienna-rules.yml
+      - type: x-vocabulary
+        url: vocabulary/university-of-vienna-vocabulary.yml
+      - type: x-json-ld-context
+        url: json-ld/university-of-vienna-context.jsonld
       - type: GitHub
         url: https://github.com/phaidra/phaidra-api/wiki/Documentation
   - aid: university-of-vienna:phaidra-oai-pmh

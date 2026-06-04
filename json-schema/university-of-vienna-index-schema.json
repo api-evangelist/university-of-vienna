@@ -1,0 +1,159 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/university-of-vienna/main/json-schema/university-of-vienna-index-schema.json",
+  "title": "PHAIDRA Solr Index Document",
+  "description": "A Solr index document for a PHAIDRA object, as returned in search/select response docs and GET /object/{pid}/index/dc. Derived from the PHAIDRA API OpenAPI index schema.",
+  "type": "object",
+  "properties": {
+    "datastreams": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dc_description_": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dc_publisher": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dc_description_eng": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dc_creator": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dc_identifier": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "size": {
+      "type": "number"
+    },
+    "pid": {
+      "type": "string"
+    },
+    "_updated": {
+      "type": "number"
+    },
+    "cmodel": {
+      "type": "string"
+    },
+    "bbox": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "bib_roles_pers_aut": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dc_relation": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "bib_publisherlocation": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "owner": {
+      "type": "string"
+    },
+    "dc_rights": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dc_title": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "resourcetype": {
+      "type": "string"
+    },
+    "dc_date": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "latlon": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dc_language": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "modified": {
+      "type": "string"
+    },
+    "dc_subject": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "bib_published": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "created": {
+      "type": "string"
+    },
+    "ispartof": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "bib_publisher": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dc_description": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dc_description_deu": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

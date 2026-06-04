@@ -1,0 +1,57 @@
+{
+  "alerts": [],
+  "status": 200,
+  "info": {
+    "cmodel": "Picture",
+    "created": "2020-03-12T09:41:22.000Z",
+    "datastreams": [
+      "OCTETS",
+      "JSON-LD",
+      "MODS",
+      "RIGHTS"
+    ],
+    "dc_creator": [
+      "Mustermann, Maria"
+    ],
+    "dc_date": [
+      "2019"
+    ],
+    "dc_description": [
+      "Representative digital object record in the University of Vienna PHAIDRA repository."
+    ],
+    "dc_identifier": [
+      "hdl:11353/10.000000",
+      "o:1"
+    ],
+    "dc_language": [
+      "eng"
+    ],
+    "dc_license": [
+      "https://creativecommons.org/licenses/by/4.0/"
+    ],
+    "dc_publisher": [
+      "University of Vienna"
+    ],
+    "dc_rights": [
+      "https://creativecommons.org/licenses/by/4.0/"
+    ],
+    "dc_subject": [
+      "Research data"
+    ],
+    "dc_title": [
+      "Example PHAIDRA Object"
+    ],
+    "ispartof": [
+      "o:0"
+    ],
+    "metadata": {
+      "metadata": {
+        "json-ld": {}
+      }
+    },
+    "_updated": [
+      "2021-06-01T00:00:00.000Z"
+    ],
+    "_version_": 1700000000000000000
+  }
+}

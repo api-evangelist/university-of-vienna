@@ -1,0 +1,187 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/university-of-vienna/main/json-schema/university-of-vienna-object-info-schema.json",
+  "title": "PHAIDRA Object Info",
+  "description": "Metadata and indexed data about a PHAIDRA digital object, as returned by GET /object/{pid}/info (info property). Derived from the PHAIDRA API OpenAPI object_info schema.",
+  "type": "object",
+  "properties": {
+    "_updated": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "_version_": {
+      "type": "number"
+    },
+    "alternativeformats": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "alternativeversions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "bbox": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "bib_published": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "bib_publisher": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "bib_publisherlocation": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "bib_roles_pers_aut": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "cmodel": {
+      "type": "string"
+    },
+    "created": {
+      "type": "string"
+    },
+    "datastreams": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dc_creator": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dc_date": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dc_description": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dc_description_": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dc_identifier": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dc_language": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dc_license": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dc_publisher": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dc_relation": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dc_rights": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dc_subject": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dc_subject_": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dc_title": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "ispartof": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dshash": {
+      "type": "object"
+    },
+    "latlon": {
+      "type": "string"
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "geo": {
+          "$ref": "#/components/schemas/geo"
+        },
+        "mods": {
+          "$ref": "#/components/schemas/mods"
+        }
+      }
+    },
+    "metatags": {
+      "type": "object",
+      "properties": {
+        "DC.identifier": {
+          "type": "string"
+        },
+        "DC.rights": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
