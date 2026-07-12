@@ -97,6 +97,10 @@ apis:
       - type: Documentation
         url: https://hei.api.uni-foundation.eu/about
 common:
+  - type: DomainSecurity
+    url: security/university-of-vienna-domain-security.yml
+  - type: Authentication
+    url: authentication/university-of-vienna-authentication.yml
   - type: Website
     url: https://www.univie.ac.at/en/
   - type: LinkedIn
