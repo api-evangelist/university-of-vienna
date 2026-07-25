@@ -1,0 +1,399 @@
+openapi: 3.0.2
+info:
+  title: PHAIDRA datastream templates API
+  version: '3.0'
+  description: Documentation of the PHAIDRA API.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- description: University of Vienna PHAIDRA
+  url: https://services.phaidra.univie.ac.at/api/
+- description: PHAIDRA Sandbox
+  url: https://sandbox.phaidra.org/api/
+tags:
+- name: templates
+  description: Requests for managing metadata templates
+paths:
+  /jsonld/templates:
+    get:
+      summary: Get user's JSON-LD templates
+      description: Retrieves the user's saved JSON-LD templates
+      tags:
+      - templates
+      security:
+      - basicAuth: []
+      responses:
+        '200':
+          description: lists JSON-LD templates
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  status:
+                    type: string
+                  templates:
+                    $ref: '#/components/schemas/templates'
+  /jsonld/template/add:
+    post:
+      summary: Adds JSON-LD templates
+      description: Adds JSON-LD templates
+      tags:
+      - templates
+      security:
+      - basicAuth: []
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: New template name
+                form:
+                  $ref: '#/components/schemas/json-ld'
+                tag:
+                  type: string
+      responses:
+        '200':
+          description: Template created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  status:
+                    type: string
+                  tid:
+                    type: string
+  /jsonld/template/{tid}:
+    get:
+      summary: Get template detail
+      tags:
+      - templates
+      security:
+      - basicAuth: []
+      parameters:
+      - in: path
+        name: tid
+        schema:
+          type: string
+          required: false
+        description: template id
+      responses:
+        '200':
+          description: template detail
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  template:
+                    $ref: '#/components/schemas/template'
+  /jsonld/template/{tid}/remove:
+    post:
+      summary: Remove template
+      tags:
+      - templates
+      security:
+      - basicAuth: []
+      parameters:
+      - in: path
+        name: tid
+        schema:
+          type: string
+          required: false
+        description: template id
+      responses:
+        '200':
+          description: template removed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  status:
+                    type: number
+components:
+  schemas:
+    template:
+      type: object
+      properties:
+        owner:
+          type: string
+        form:
+          type: object
+          properties:
+            sections:
+              type: array
+              items:
+                type: object
+                properties:
+                  fields:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        component:
+                          type: string
+                        definition:
+                          type: string
+                        fieldname:
+                          type: string
+                        id:
+                          type: string
+                        label:
+                          type: string
+                        predicate:
+                          type: string
+                        value:
+                          type: string
+                        vocabulary:
+                          type: string
+                        disabled:
+                          type: boolean
+                        multiplicable:
+                          type: boolean
+                        required:
+                          type: boolean
+                        skos:prefLabel:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              '@language':
+                                type: string
+                              '@value':
+                                type: string
+        created:
+          type: number
+        name:
+          type: string
+        updated:
+          type: number
+        tid:
+          type: string
+        tag:
+          type: string
+        _id:
+          type: object
+          properties:
+            $oid:
+              type: string
+    templates:
+      type: array
+      items:
+        type: object
+        properties:
+          created:
+            type: number
+          name:
+            type: string
+          updated:
+            type: number
+          tid:
+            type: string
+    json-ld:
+      type: object
+      properties:
+        dcterms:type:
+          type: array
+          items:
+            type: object
+            properties:
+              '@type':
+                type: string
+              skos:exactMatch:
+                type: array
+                items:
+                  type: string
+              skos:prefLabel:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@language':
+                      type: string
+                    '@value':
+                      type: string
+        edm:hasType:
+          type: array
+          items:
+            type: object
+            properties:
+              '@type':
+                type: string
+              skos:exactMatch:
+                type: array
+                items:
+                  type: string
+              skos:prefLabel:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@language':
+                      type: string
+                    '@value':
+                      type: string
+        dce:title:
+          type: array
+          items:
+            type: object
+            properties:
+              '@type':
+                type: string
+              bf:mainTitle:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@value':
+                      type: string
+                    '@language':
+                      type: string
+        role:aut:
+          type: array
+          items:
+            type: object
+            properties:
+              '@type':
+                type: string
+              schema:familyName:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@value':
+                      type: string
+              schema:givenName:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@value':
+                      type: string
+        dce:subject:
+          type: array
+          items:
+            type: object
+            properties:
+              '@type':
+                type: string
+              skos:prefLabel:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@value':
+                      type: string
+                    '@language':
+                      type: string
+        bf:note:
+          type: array
+          items:
+            type: object
+            properties:
+              skos:prefLabel:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@value':
+                      type: string
+                    '@language':
+                      type: string
+              '@type':
+                type: string
+        vra:hasInscription:
+          type: array
+          items:
+            type: object
+            properties:
+              '@type':
+                type: string
+              skos:prefLabel:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@value':
+                      type: string
+                    '@language':
+                      type: string
+        dcterms:language:
+          type: array
+          items:
+            type: string
+        ebucore:filename:
+          type: array
+          items:
+            type: string
+        ebucore:hasMimeType:
+          type: array
+          items:
+            type: string
+        edm:rights:
+          type: array
+          items:
+            type: string
+      example:
+        dce:title:
+        - '@type': bf:Title
+          bf:mainTitle:
+          - '@value': Title
+            '@language': deu
+        role:aut:
+        - '@type': schema:Person
+          schema:givenName:
+          - '@value': First name
+          schema:familyName:
+          - '@value': Last Name
+        edm:rights:
+        - https://rightsstatements.org/page/InC/1.0/
+  securitySchemes:
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: X-XSRF-TOKEN
+    basicAuth:
+      type: http
+      scheme: basic

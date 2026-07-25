@@ -1,0 +1,590 @@
+openapi: 3.0.2
+info:
+  title: PHAIDRA datastream directory API
+  version: '3.0'
+  description: Documentation of the PHAIDRA API.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- description: University of Vienna PHAIDRA
+  url: https://services.phaidra.univie.ac.at/api/
+- description: PHAIDRA Sandbox
+  url: https://sandbox.phaidra.org/api/
+tags:
+- name: directory
+  description: Requests related to users, user groups and organisation structure
+paths:
+  /directory/org_get_subunits:
+    get:
+      summary: Get subunits.
+      description: Retrieves the subunits of an organization.
+      tags:
+      - directory
+      parameters:
+      - in: query
+        name: id
+        schema:
+          type: string
+          required: false
+        description: unit id
+      responses:
+        '200':
+          description: subunits
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  status:
+                    type: number
+                  subunits:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/units'
+  /directory/org_get_superunits:
+    get:
+      summary: Get superunits.
+      description: Retrieves the superunits of an organization.
+      tags:
+      - directory
+      parameters:
+      - in: query
+        name: id
+        schema:
+          type: string
+          required: false
+        description: unit id
+      responses:
+        '200':
+          description: Units which are parent of the org unit.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                  parent_id:
+                    type: string
+  /directory/org_get_parentpath:
+    get:
+      summary: Get the parent path.
+      description: Retrieves the parent path of an organisation unit
+      tags:
+      - directory
+      parameters:
+      - in: query
+        name: id
+        schema:
+          type: string
+          required: false
+        description: Parent id
+      responses:
+        '200':
+          description: parent path
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  parentpath:
+                    type: array
+  /directory/org_get_units:
+    get:
+      summary: Get organisation units
+      description: Get the list of the organisation units. They can then be used for example to find objects explicitly associated to, or to restrict rights for, a particular organisation unit.
+      tags:
+      - directory
+      parameters:
+      - in: query
+        name: parent_id
+        schema:
+          type: string
+          required: false
+        description: Id of the parent unit. If not set, returns the top-level units.
+      - in: query
+        name: values_namespace
+        schema:
+          type: string
+          required: false
+        description: If provided, the values returned (in the 'uri' field) will be prefixed with the value of this parameter.
+      responses:
+        '200':
+          description: units
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  status:
+                    type: number
+                  terms:
+                    type: array
+  /directory/user/{username}/data:
+    get:
+      summary: Get user's basic data.
+      description: Returns basic data about the specified user (such as name, affiliation and organization unit).
+      tags:
+      - directory
+      parameters:
+      - in: path
+        name: username
+        schema:
+          type: string
+          required: true
+        description: the user username
+      responses:
+        '200':
+          description: user's details (name, affiliation, etc.)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                  user_data:
+                    $ref: '#/components/schemas/user_data'
+  /directory/user/{username}/name:
+    get:
+      summary: Get user's full name.
+      description: Returns the name of a user.
+      tags:
+      - directory
+      parameters:
+      - in: path
+        name: username
+        schema:
+          type: string
+          required: true
+        description: the user's username
+      responses:
+        '200':
+          description: user's name
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: object
+                  status:
+                    type: number
+  /directory/user/{username}/email:
+    get:
+      summary: Get user's email
+      description: Returns the user's email
+      tags:
+      - directory
+      parameters:
+      - in: path
+        name: username
+        schema:
+          type: string
+          required: true
+        description: the user username
+      responses:
+        '200':
+          description: user's email
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  email:
+                    type: string
+                  status:
+                    type: number
+  /directory/user/search:
+    get:
+      summary: Searches the user database.
+      tags:
+      - directory
+      security:
+      - basicAuth: []
+      parameters:
+      - in: query
+        name: q
+        schema:
+          type: string
+          required: true
+        description: query (it will be automatically suffixed with *)
+      responses:
+        '200':
+          description: returns accounts details. Only the first 50 results are returned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hits:
+                    type: number
+                  accounts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        uid:
+                          type: string
+                        value:
+                          type: string
+                        type:
+                          type: string
+                  status:
+                    type: number
+  /directory/user/data:
+    get:
+      summary: Returns current user's data.
+      tags:
+      - directory
+      security:
+      - basicAuth: []
+      responses:
+        '200':
+          description: returns account details of user (from credentials)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user_data:
+                    $ref: '#/components/schemas/user_data'
+                  status:
+                    type: number
+  /groups:
+    get:
+      summary: Get user's groups.
+      description: Retrieves all user's groups.
+      tags:
+      - directory
+      security:
+      - basicAuth: []
+      responses:
+        '200':
+          description: returns the user's groups (user credentials needed)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  groups:
+                    $ref: '#/components/schemas/groups'
+  /group/{gid}:
+    get:
+      summary: Get group detail
+      tags:
+      - directory
+      security:
+      - basicAuth: []
+      parameters:
+      - in: path
+        name: gid
+        schema:
+          type: string
+        description: gid - group id
+      responses:
+        '200':
+          description: group detail
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  groups:
+                    $ref: '#/components/schemas/group'
+  /group/add:
+    post:
+      summary: Create new group
+      tags:
+      - directory
+      security:
+      - basicAuth: []
+      parameters:
+      - in: query
+        name: name
+        schema:
+          type: string
+          required: true
+        description: name of the group
+      responses:
+        '200':
+          description: group detail
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  groups:
+                    $ref: '#/components/schemas/group'
+  /group/{gid}/remove:
+    post:
+      summary: Delete specified group
+      tags:
+      - directory
+      security:
+      - basicAuth: []
+      parameters:
+      - in: path
+        name: gid
+        schema:
+          type: string
+          required: false
+        description: gid - group id
+      responses:
+        '200':
+          description: group removed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  groups:
+                    $ref: '#/components/schemas/group'
+  /group/{gid}/members/add:
+    post:
+      summary: Add group members
+      tags:
+      - directory
+      security:
+      - basicAuth: []
+      parameters:
+      - in: path
+        name: gid
+        schema:
+          type: string
+          required: false
+        description: gid - group id
+      requestBody:
+        description: JSON containing usernames to add, {"members":["username"]}
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                members:
+                  type: object
+                  properties:
+                    members:
+                      type: array
+                      items:
+                        type: string
+                        example: username1
+              description: members JSON
+      responses:
+        '200':
+          description: group detail
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  groups:
+                    $ref: '#/components/schemas/group'
+  /group/{gid}/members/remove:
+    post:
+      summary: Remove group members
+      tags:
+      - directory
+      security:
+      - basicAuth: []
+      parameters:
+      - in: path
+        name: gid
+        schema:
+          type: string
+          required: false
+        description: gid - group id
+      requestBody:
+        description: JSON containing usernames to remove, {"members":["username"]}
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                members:
+                  type: object
+                  properties:
+                    members:
+                      type: array
+                      items:
+                        type: string
+                        example: username1
+      responses:
+        '200':
+          description: group detail
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  groups:
+                    $ref: '#/components/schemas/group'
+components:
+  schemas:
+    units:
+      type: object
+      properties:
+        '@id':
+          type: string
+        '@type':
+          type: string
+        skos:notation:
+          type: string
+        skos:prefLabel:
+          type: object
+          properties:
+            deu:
+              type: string
+            eng:
+              type: string
+    groups:
+      type: array
+      items:
+        type: object
+        properties:
+          created:
+            type: number
+          name:
+            type: string
+          updated:
+            type: number
+          groupid:
+            type: string
+    group:
+      type: object
+      properties:
+        owner:
+          type: string
+        members:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              username:
+                type: string
+        created:
+          type: number
+        name:
+          type: string
+        updated:
+          type: number
+        groupid:
+          type: string
+        _id:
+          type: object
+          properties:
+            $oid:
+              type: string
+    user_data:
+      type: object
+      properties:
+        org_units_l1:
+          type: array
+          items:
+            type: string
+        firstname:
+          type: string
+        lastname:
+          type: string
+        username:
+          type: string
+        email:
+          type: string
+        org_units_l2:
+          type: array
+          items:
+            type: string
+  securitySchemes:
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: X-XSRF-TOKEN
+    basicAuth:
+      type: http
+      scheme: basic

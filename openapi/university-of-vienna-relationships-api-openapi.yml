@@ -1,0 +1,739 @@
+openapi: 3.0.2
+info:
+  title: PHAIDRA datastream relationships API
+  version: '3.0'
+  description: Documentation of the PHAIDRA API.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- description: University of Vienna PHAIDRA
+  url: https://services.phaidra.univie.ac.at/api/
+- description: PHAIDRA Sandbox
+  url: https://sandbox.phaidra.org/api/
+tags:
+- name: relationships
+  description: Requests for adding and removing object relationships
+paths:
+  /collection/{pid}/members:
+    get:
+      summary: Get pids of collection members.
+      description: 'Returns the pids of the members of a collection. '
+      tags:
+      - relationships
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: false
+        description: pid
+      responses:
+        '200':
+          description: members (ordered if the COLLECTIONORDER datastream is available).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  metadata:
+                    type: object
+                    properties:
+                      members:
+                        type: object
+                        properties:
+                          pid:
+                            type: string
+                          pos:
+                            type: string
+  /collection/{pid}/descendants:
+    get:
+      description: Get descendants.
+      summary: Returns descendants of collection.
+      tags:
+      - relationships
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: false
+        description: collection pid
+      responses:
+        '200':
+          description: descendants
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  descendants:
+                    $ref: '#/components/schemas/collection'
+  /collection/{pid}/members/remove:
+    post:
+      summary: Remove collection members.
+      tags:
+      - relationships
+      security:
+      - basicAuth: []
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: false
+        description: pid
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                metadata:
+                  type: object
+                  properties:
+                    members:
+                      $ref: '#/components/schemas/members'
+                  description: Should contain 'members' with an array of members to remove (see [collection members example](https://github.com/phaidra/phaidra-api/wiki/Collection-members-json-structure)).
+      responses:
+        '200':
+          description: collection members removed.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  metadata:
+                    type: object
+                    properties:
+                      members:
+                        type: object
+                        properties:
+                          pid:
+                            type: string
+                          pos:
+                            type: string
+  /collection/{pid}/members/add:
+    post:
+      summary: Add collection members.
+      tags:
+      - relationships
+      security:
+      - basicAuth: []
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: true
+        description: collection pid
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                metadata:
+                  type: object
+                  properties:
+                    members:
+                      $ref: '#/components/schemas/members'
+                  description: Should contain 'members' with an array of members to add (see [collection members example](https://github.com/phaidra/phaidra-api/wiki/Collection-members-json-structure)).
+      responses:
+        '200':
+          description: collection members added.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  metadata:
+                    type: object
+                    properties:
+                      members:
+                        type: object
+                        properties:
+                          pid:
+                            type: string
+                          pos:
+                            type: string
+  /collection/{pid}/members/order:
+    post:
+      summary: Orders collection members
+      tags:
+      - relationships
+      security:
+      - basicAuth: []
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: true
+        description: collection pid
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                metadata:
+                  type: object
+                  properties:
+                    members:
+                      $ref: '#/components/schemas/members'
+                  description: Should contain 'members' with an array of members to order, with positions defined (see [collection members example](https://github.com/phaidra/phaidra-api/wiki/Collection-members-json-structure)).
+      responses:
+        '200':
+          description: collection members ordered.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  metadata:
+                    type: object
+                    properties:
+                      members:
+                        type: object
+                        properties:
+                          pid:
+                            type: string
+                          pos:
+                            type: string
+  /collection/{pid}/members/{itempid}/order/{position}:
+    post:
+      summary: Changes order of single member.
+      description: Changes order of a single collection member.
+      tags:
+      - relationships
+      security:
+      - basicAuth: []
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: true
+        description: collection pid
+      - in: path
+        name: itempid
+        schema:
+          type: string
+          required: true
+        description: member pid
+      - in: path
+        name: position
+        schema:
+          type: string
+          required: true
+        description: position
+      responses:
+        '200':
+          description: order changed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                  status:
+                    type: string
+  /container/{pid}/members/order:
+    post:
+      summary: Orders members of a container.
+      tags:
+      - relationships
+      security:
+      - basicAuth: []
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: true
+        description: container pid
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                metadata:
+                  type: object
+                  properties:
+                    members:
+                      $ref: '#/components/schemas/members'
+                  description: Should contain 'members' with an array of members to order (similar to collections, see [collection members example](https://github.com/phaidra/phaidra-api/wiki/Collection-members-json-structure) with positions defined
+      responses:
+        '200':
+          description: container members ordered
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  metadata:
+                    type: object
+                    properties:
+                      members:
+                        type: object
+                        properties:
+                          pid:
+                            type: string
+                          pos:
+                            type: string
+  /container/{pid}/members/{itempid}/order/{position}:
+    post:
+      summary: Changes order of single member.
+      description: Changes order of a single container member.
+      tags:
+      - relationships
+      security:
+      - basicAuth: []
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: true
+        description: container pid
+      - in: path
+        name: itempid
+        schema:
+          type: string
+          required: true
+        description: member pid
+      - in: path
+        name: position
+        schema:
+          type: string
+          required: true
+        description: position
+      responses:
+        '200':
+          description: order changed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                  status:
+                    type: string
+  /object/{pid}/related:
+    get:
+      summary: Get related objects.
+      description: This method returns all objects which are in some relation to the object specified in URL.
+      tags:
+      - relationships
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: true
+        description: the requested object id
+      - in: query
+        name: relation
+        schema:
+          type: string
+          enum:
+          - http://pcdm.org/models#hasMember
+          - http://purl.org/dc/terms/references
+          - http://phaidra.org/ontology/isInAdminSet
+          - http://phaidra.org/XML/V1.0/relations#isBackSideOf
+          - http://phaidra.univie.ac.at/XML/V1.0/relations#hasSuccessor
+          - http://phaidra.org/XML/V1.0/relations#isAlternativeFormatOf
+          - http://phaidra.org/XML/V1.0/relations#isAlternativeVersionOf
+          - http://phaidra.org/XML/V1.0/relations#isThumbnailFor
+          required: false
+        description: Specifies the relation which should be returned, see [relations](https://github.com/phaidra/phaidra-api/wiki/Relations)
+      - in: query
+        name: from
+        schema:
+          type: number
+          required: false
+        description: nr of entries to skip (paging)
+      - in: query
+        name: limit
+        schema:
+          type: number
+          required: false
+        description: nr of entries to return (paging)
+      - in: query
+        name: right
+        schema:
+          type: number
+          required: false
+          enum:
+          - 0
+          - 1
+        description: 'searches for the relation in opposite direction (e.g. for `hasCollectionMember`: 0 will return a list of objects which are members of this object/collection, 1 will return a list of objects/collections where the object is a member)'
+      - in: query
+        name: fields
+        schema:
+          type: string
+          required: false
+        description: fields from the index which should be returned. Only works for `fields=dc.description`. The title field is returned by default. Preferred title and description fields are the English ones.
+      responses:
+        '200':
+          description: The requested objects Dublin Core datastream.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  hits:
+                    type: number
+                  objects:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        cmodel:
+                          type: string
+                        pid:
+                          type: string
+                        title:
+                          type: string
+                        titles:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              lang:
+                                type: string
+                              text:
+                                type: string
+                  status:
+                    type: string
+        '404':
+          description: object has not been found
+          content:
+            application/json:
+              schema:
+                type: object
+  /object/{pid}/relationship/add:
+    post:
+      summary: Add a relationship.
+      description: Add a triple. It is then available in the triplestore and indexed automatically. Adding some system relationships (like hasModel) might be restricted. See the [list of supported relationships](https://github.com/phaidra/phaidra-api/wiki/Relations).
+      tags:
+      - relationships
+      security:
+      - basicAuth: []
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: true
+        description: object id
+      - in: query
+        name: predicate
+        schema:
+          type: string
+          required: true
+        description: the relationship [list of supported relationships](https://github.com/phaidra/phaidra-api/wiki/Relations)
+        examples:
+          hasModel:
+            value: info:fedora/fedora-system:def/model#hasModel
+            summary: hasModel relationship
+          hasCollectionMember:
+            value: info:fedora/fedora-system:def/relations-external#hasCollectionMember
+            summary: hasCollectionMember
+          isThumbnailFor:
+            value: http://phaidra.org/XML/V1.0/relations#isThumbnailFor
+            summary: isThumbnailFor
+      - in: query
+        name: object
+        schema:
+          type: string
+          required: false
+        examples:
+          Page:
+            value: info:fedora/cmodel:Page
+            summary: Page model
+          Picture:
+            value: info:fedora/cmodel:Picture
+            summary: Picture Model
+        description: the model of the related object in the repository. A list of possible content models is found [here](https://github.com/phaidra/phaidra-api/wiki/Creating-a-simple-object)
+      responses:
+        '200':
+          description: relationship added
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  status:
+                    type: string
+        '404':
+          description: Failed to fetch data
+          content:
+            application/json:
+              schema:
+                type: object
+  /object/{pid}/relationship/remove:
+    post:
+      summary: Remove a relationship from RELS-EXT.
+      description: Remove a relationship from the RELS-EXT datastream. Removing some [system relationships](https://github.com/phaidra/phaidra-api/wiki/Relations) (like hasModel) might be restricted.
+      tags:
+      - relationships
+      security:
+      - basicAuth: []
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: true
+        description: the requested object id
+      - in: query
+        name: predicate
+        schema:
+          type: string
+          required: true
+        description: the relationship [list of supported relationships](https://github.com/phaidra/phaidra-api/wiki/Relations)
+        examples:
+          hasModel:
+            value: info:fedora/fedora-system:def/model#hasModel
+            summary: hasModel relationship
+          hasCollectionMember:
+            value: info:fedora/fedora-system:def/relations-external#hasCollectionMember
+            summary: hasCollectionMember
+          isThumbnailFor:
+            value: http://phaidra.org/XML/V1.0/relations#isThumbnailFor
+            summary: isThumbnailFor
+      - in: query
+        name: object
+        schema:
+          type: string
+          required: false
+        examples:
+          Page:
+            value: info:fedora/cmodel:Page
+            summary: Page model
+          Picture:
+            value: info:fedora/cmodel:Picture
+            summary: Picture Model
+        description: the model of the related object in the repository. A list of possible content models is found [here](https://github.com/phaidra/phaidra-api/wiki/Creating-a-simple-object)
+      responses:
+        '200':
+          description: removed relationship
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  status:
+                    type: string
+        '404':
+          description: Failed to fetch data
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  schemas:
+    members:
+      type: array
+      items:
+        type: object
+        properties:
+          pid:
+            type: string
+          pos:
+            type: string
+      example:
+      - pid: o:1
+        pos: 1
+      - pid: o:2
+        pos: 2
+    collection:
+      type: object
+      properties:
+        root:
+          type: object
+          properties:
+            _updated:
+              type: array
+              items:
+                type: number
+            _version_:
+              type: number
+            bib_ir:
+              type: array
+              items:
+                type: string
+            bib_roles_pers_aut:
+              type: array
+              items:
+                type: string
+            children:
+              type: array
+              items:
+                type: string
+            cmodel:
+              type: string
+            created:
+              type: string
+            datastreams:
+              type: array
+              items:
+                type: string
+            dc_creator:
+              type: array
+              items:
+                type: string
+            dc_description:
+              type: array
+              items:
+                type: string
+            dc_description_eng:
+              type: array
+              items:
+                type: string
+            dc_identifier:
+              type: array
+              items:
+                type: string
+            dc_language:
+              type: array
+              items:
+                type: string
+            dc_title:
+              type: array
+              items:
+                type: string
+            dc_title_eng:
+              type: array
+              items:
+                type: string
+            dc_type:
+              type: array
+              items:
+                type: string
+            dc_type_eng:
+              type: array
+              items:
+                type: string
+            ispartof:
+              type: array
+              items:
+                type: string
+            owner:
+              type: string
+            pid:
+              type: string
+            resourcetype:
+              type: string
+            size:
+              type: number
+            sort_dc_title:
+              type: string
+            sort_eng_dc_title:
+              type: string
+            tcreated:
+              type: array
+              items:
+                type: string
+            tsize:
+              type: array
+              items:
+                type: string
+            uwm_roles_json:
+              type: array
+              items:
+                type: string
+  securitySchemes:
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: X-XSRF-TOKEN
+    basicAuth:
+      type: http
+      scheme: basic

@@ -1,0 +1,88 @@
+openapi: 3.0.2
+info:
+  title: PHAIDRA datastream search API
+  version: '3.0'
+  description: Documentation of the PHAIDRA API.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- description: University of Vienna PHAIDRA
+  url: https://services.phaidra.univie.ac.at/api/
+- description: PHAIDRA Sandbox
+  url: https://sandbox.phaidra.org/api/
+tags:
+- name: search
+  description: ''
+paths:
+  /search/select:
+    post:
+      summary: Search query
+      description: Solr query, for the query parameters see [Solr common query parameters](https://solr.apache.org/guide/solr/latest/query-guide/common-query-parameters.html)
+      tags:
+      - search
+      parameters:
+      - in: query
+        name: q
+        schema:
+          type: string
+          required: true
+        description: query string
+      responses:
+        '200':
+          description: search response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  responseHeader:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        status:
+                          type: number
+                        QTime:
+                          type: number
+                        params:
+                          type: object
+                  response:
+                    type: object
+                    properties:
+                      numFound:
+                        type: number
+                      start:
+                        type: number
+                      numFoundExact:
+                        type: boolean
+                      docs:
+                        type: array
+                  facet_counts:
+                    type: object
+                    properties:
+                      facet_querie:
+                        type: object
+                      facet_fields:
+                        type: object
+                      facet_ranges:
+                        type: object
+                      facet_intervals:
+                        type: object
+                      facet_heatmaps:
+                        type: object
+        '404':
+          description: object has not been found
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  securitySchemes:
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: X-XSRF-TOKEN
+    basicAuth:
+      type: http
+      scheme: basic

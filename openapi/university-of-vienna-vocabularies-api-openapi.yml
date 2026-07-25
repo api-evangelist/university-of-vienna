@@ -1,0 +1,290 @@
+openapi: 3.0.2
+info:
+  title: PHAIDRA datastream vocabularies API
+  version: '3.0'
+  description: Documentation of the PHAIDRA API.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- description: University of Vienna PHAIDRA
+  url: https://services.phaidra.univie.ac.at/api/
+- description: PHAIDRA Sandbox
+  url: https://sandbox.phaidra.org/api/
+tags:
+- name: vocabularies
+  description: Requests for controlled vocabularies
+paths:
+  /vocabulary:
+    get:
+      summary: Get controlled vocabulary
+      description: Get vocabulary which was saved in API in vocabulary folder.
+      tags:
+      - vocabularies
+      parameters:
+      - in: query
+        name: uri
+        schema:
+          type: string
+        description: vocabulary ID
+        examples:
+          http://id.loc.gov/vocabulary/iso639-2:
+            value: http://id.loc.gov/vocabulary/iso639-2
+            summary: Vocabulary of languages
+          oefos2012:
+            value: oefos2012
+            summary: OEFOS 2012 classification
+      - in: query
+        name: nocache
+        schema:
+          type: boolean
+          required: false
+        description: cache
+      responses:
+        '200':
+          description: JSON representation of the controlled vocabulary
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  status:
+                    type: number
+  /terms/label:
+    get:
+      summary: Get term labels.
+      description: Retrieves the labels for a particular term using its URI as a parameter. It could be a term of a classification or a vocabulary (any type, even licenses and organisational units).
+      tags:
+      - vocabularies
+      parameters:
+      - in: query
+        name: uri
+        schema:
+          type: string
+          required: false
+        examples:
+          voc_faculty:
+            value: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/organization/voc_faculty/A150
+            summary: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/organization/voc_faculty/A150
+          voc_department:
+            value: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/organization/voc_department/A767
+            summary: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/organization/voc_department/A767
+          voc_17:
+            value: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/organization/voc_17/1552253
+            summary: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/organization/voc_17/1552253
+          cls_1:
+            value: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/classification/cls_1/347
+            summary: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/classification/cls_1/347
+        description: URI of term
+      responses:
+        '200':
+          description: labels
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  nonpreferred:
+                    type: array
+                    items: {}
+                  upstream_identifier:
+                    type: number
+                  term_id:
+                    type: string
+                  labels:
+                    type: object
+                    properties:
+                      labels:
+                        type: object
+                        properties:
+                          en:
+                            type: string
+                          de:
+                            type: string
+                  status:
+                    type: number
+  /terms/children:
+    get:
+      summary: Get children.
+      description: Retrieve the children for a term URI.
+      tags:
+      - vocabularies
+      parameters:
+      - in: query
+        name: uri
+        schema:
+          type: string
+          required: false
+        examples:
+          Bibliotheks- und Archivwesen:
+            value: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/classification/cls_1/347
+            summary: URI for the Vienna University Library and Archive Services
+        description: URI of term
+      responses:
+        '200':
+          description: terms
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  terms:
+                    type: object
+                    properties:
+                      nonpreferred:
+                        type: array
+                        items:
+                          type: string
+                      upstream_identifier:
+                        type: string
+                      term_id:
+                        type: string
+                      labels:
+                        type: object
+                        properties:
+                          en:
+                            type: string
+                          de:
+                            type: string
+                  status:
+                    type: number
+  /terms/taxonpath:
+    get:
+      summary: Get the taxon path.
+      tags:
+      - vocabularies
+      parameters:
+      - in: query
+        name: uri
+        schema:
+          type: string
+          required: false
+        examples:
+          BibliotheksundArchivwesen:
+            value: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/classification/cls_1/347
+            summary: URI for the Vienna University Library and Archive Services
+        description: URI of term
+      responses:
+        '200':
+          description: taxonpath
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  taxonpath:
+                    type: object
+                    properties:
+                      uri:
+                        type: string
+                      nonpreferred:
+                        type: array
+                      upstream_identifier:
+                        type: string
+                      term_id:
+                        type: string
+                      labels:
+                        type: object
+                        properties:
+                          en:
+                            type: string
+                          de:
+                            type: string
+                  status:
+                    type: number
+  /terms/parent:
+    get:
+      summary: Get parent.
+      description: Retrieve the parent of a term, using its URI.
+      tags:
+      - vocabularies
+      parameters:
+      - in: query
+        name: uri
+        schema:
+          type: string
+          required: false
+        examples:
+          Tieranatomie:
+            value: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/classification/cls_1/540
+            summary: URI for the term "Animal anatomy"
+        description: URI of term
+      responses:
+        '200':
+          description: parents
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  parent:
+                    type: string
+  /resolve:
+    get:
+      summary: Resolve an URI
+      description: The resolver must be known/configured.
+      tags:
+      - vocabularies
+      parameters:
+      - in: query
+        name: uri
+        schema:
+          type: string
+          required: false
+        example: http://d-nb.info/gnd/4000044-8
+        description: URI of term
+      responses:
+        '200':
+          description: Depends on the vocabulary
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  status:
+                    type: number
+components:
+  securitySchemes:
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: X-XSRF-TOKEN
+    basicAuth:
+      type: http
+      scheme: basic

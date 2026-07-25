@@ -1,0 +1,135 @@
+openapi: 3.0.2
+info:
+  title: PHAIDRA datastream stats API
+  version: '3.0'
+  description: Documentation of the PHAIDRA API.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- description: University of Vienna PHAIDRA
+  url: https://services.phaidra.univie.ac.at/api/
+- description: PHAIDRA Sandbox
+  url: https://sandbox.phaidra.org/api/
+tags:
+- name: stats
+  description: ''
+paths:
+  /stats/{pid}:
+    get:
+      summary: Get usage statistics
+      description: Returns object's usage statistics
+      tags:
+      - stats
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: true
+        description: object id
+      responses:
+        '200':
+          description: Usage statistics
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  stats:
+                    type: object
+                    properties:
+                      downloads:
+                        type: string
+                      detail_page:
+                        type: string
+  /stats/{pid}/downloads:
+    get:
+      summary: Get downloads count.
+      tags:
+      - stats
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: true
+        description: object id
+      responses:
+        '200':
+          description: Download count (integer). Useful e.g. for ajax content update without any response parsing necessary.
+          content:
+            text/plain:
+              schema:
+                type: number
+  /stats/{pid}/detail_page:
+    get:
+      summary: Get number of /info calls.
+      description: Returns the number of /info calls, which are typically used when accessing the detail page.
+      tags:
+      - stats
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: true
+        description: object id
+      responses:
+        '200':
+          description: /info calls count (integer)
+          content:
+            text/plain:
+              schema:
+                type: number
+  /stats/{pid}/chart:
+    get:
+      summary: Get timestamped /info and download count.
+      description: Get /info and download count, with detailed timestamps.
+      tags:
+      - stats
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: true
+        description: object id
+      responses:
+        '200':
+          description: details on object (download, detail_page, etc.)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  stats:
+                    type: object
+                    properties:
+                      detail_page:
+                        type: object
+                        properties:
+                          at:
+                            type: object
+                      downloads:
+                        type: number
+                  status:
+                    type: number
+components:
+  securitySchemes:
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: X-XSRF-TOKEN
+    basicAuth:
+      type: http
+      scheme: basic

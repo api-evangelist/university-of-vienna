@@ -1,0 +1,2517 @@
+openapi: 3.0.2
+info:
+  title: PHAIDRA datastream object-advanced API
+  version: '3.0'
+  description: Documentation of the PHAIDRA API.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- description: University of Vienna PHAIDRA
+  url: https://services.phaidra.univie.ac.at/api/
+- description: PHAIDRA Sandbox
+  url: https://sandbox.phaidra.org/api/
+tags:
+- name: object-advanced
+  description: Additional requests for the manipulation of digital objects
+paths:
+  /object/{pid}/uwmetadata:
+    get:
+      summary: Get uwmetadata.
+      description: Retrieves the object uwmetadata datastream.
+      tags:
+      - object-advanced
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: true
+        description: the requested object id
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - xml
+          required: false
+        description: Specifies the format to be returned. If the format param is set to 'xml', the datastream would be returned as it is saved in Fedora.
+      - in: query
+        name: mode
+        schema:
+          type: string
+          enum:
+          - full
+          - basic
+          - resoved
+          required: false
+        description: If the mode is 'full', the whole tree with filled-in values will be returned. If the mode is 'basic' (default), only the filled-in nodes are returned. If the mode is 'resolved', the same JSON as in 'basic' mode will be returned, but all IDs will be resolved to labels. If format param and mode param are both used, only format param will be considered.
+      responses:
+        '200':
+          description: JSON of uwmetadata datastream
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  metadata:
+                    type: object
+                    properties:
+                      uwmetadata:
+                        $ref: '#/components/schemas/uwmetadata_min'
+                  status:
+                    type: string
+        '404':
+          description: Failed to fetch data
+          content:
+            application/json:
+              schema:
+                type: object
+    post:
+      summary: Saves uwmetadata.
+      description: This method saves the object's metadata if you are using the uwmetadata as a metadata structure.
+      tags:
+      - object-advanced
+      security:
+      - basicAuth: []
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: true
+        description: object pid
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                metadata:
+                  type: object
+                  properties:
+                    metadata:
+                      type: object
+                      properties:
+                        uwmetadata:
+                          $ref: '#/components/schemas/uwmetadata_min'
+                      description: See [datastream examples](https://github.com/phaidra/phaidra-api/wiki/Datastream-examples) for the the metadata.json.
+      responses:
+        '200':
+          description: uwmetadata saved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  status:
+                    type: string
+  /object/{pid}/mods:
+    get:
+      summary: Get mods.
+      description: Retrieves object mods datastream.
+      tags:
+      - object-advanced
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: true
+        description: the requested object id
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - xml
+          required: false
+        description: Specifies the format to be returned. If the format param is set to 'xml', the datastream would be returned as it is saved in Fedora.
+      - in: query
+        name: mode
+        schema:
+          type: string
+          enum:
+          - full
+          - basic
+          required: false
+        description: If the mode is 'full', the whole tree with filled-in values will be returned. If the mode is 'basic' (default), only the filled-in nodes are returned. If the mode is 'resolved', the same JSON as in 'basic' mode will be returned, but all IDs will be resolved to labels. If format param and mode param are both used, only format param will be considered.
+      responses:
+        '200':
+          description: mods JSON
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  mods:
+                    $ref: '#/components/schemas/mods'
+                  status:
+                    type: string
+        '404':
+          description: failed to fetch data
+          content:
+            application/json:
+              schema:
+                type: object
+    post:
+      summary: Saves mods.
+      description: 'This method saves the object''s metadata if you are using the mods as a metadata structure. '
+      tags:
+      - object-advanced
+      security:
+      - basicAuth: []
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: true
+        description: object pid
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                metadata:
+                  $ref: '#/components/schemas/mods'
+                  description: example of mods JSON
+      responses:
+        '200':
+          description: mods metadata saved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  status:
+                    type: string
+  /object/{pid}/jsonld:
+    get:
+      description: Retrieve object JSON-LD metadata.
+      summary: Get JSON-LD.
+      tags:
+      - object-advanced
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: true
+        description: the requested object id
+      responses:
+        '200':
+          description: JSON-LD metadata
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  jsonld:
+                    $ref: '#/components/schemas/jsonld'
+                  status:
+                    type: string
+        '404':
+          description: failed to fetch data
+          content:
+            application/json:
+              schema:
+                type: object
+    post:
+      summary: Saves JSON-LD.
+      description: This method saves the metadata if you are using JSON-LD as a metadata structure.
+      tags:
+      - object-advanced
+      security:
+      - basicAuth: []
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: true
+        description: object pid
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                metadata:
+                  type: object
+                  properties:
+                    metadata:
+                      type: object
+                      properties:
+                        json-ld:
+                          $ref: '#/components/schemas/json-ld'
+      responses:
+        '200':
+          description: JSON-LD metadata saved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  status:
+                    type: string
+  /object/{pid}/json-ld:
+    get:
+      summary: Get full JSON-LD.
+      description: Retrieve full object JSON-LD, with `@context` header, etc.
+      tags:
+      - object-advanced
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: true
+        description: the requested object id
+      responses:
+        '200':
+          description: JSON-LD metadata
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  jsonld:
+                    $ref: '#/components/schemas/json-ld'
+                  status:
+                    type: string
+        '404':
+          description: failed to fetch data
+          content:
+            application/json:
+              schema:
+                type: object
+  /object/{pid}/geo:
+    get:
+      summary: Get geo.
+      description: Retrieves geo datastream of object.
+      tags:
+      - object-advanced
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: true
+        description: the requested object id
+      responses:
+        '200':
+          description: JSON of geo metadata. The datastream is saved as OGC-KML XML but currently only returned as JSON.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  geo:
+                    $ref: '#/components/schemas/geo'
+                  status:
+                    type: string
+        '404':
+          description: Failed to fetch data
+          content:
+            application/json:
+              schema:
+                type: object
+    post:
+      summary: Saves geo.
+      description: This method saves information about the object's geolocation.
+      tags:
+      - object-advanced
+      security:
+      - basicAuth: []
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: true
+        description: object pid
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                metadata:
+                  $ref: '#/components/schemas/geo'
+      responses:
+        '200':
+          description: geolocation data saved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  status:
+                    type: string
+  /object/{pid}/members/order:
+    get:
+      summary: Retrieve members
+      tags:
+      - object-advanced
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: true
+        description: the requested object id
+      responses:
+        '200':
+          description: '...'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  status:
+                    type: string
+        '404':
+          description: Failed to fetch data
+          content:
+            application/json:
+              schema:
+                type: object
+  /object/{pid}/annotations:
+    get:
+      summary: Get annotations.
+      description: Retrieve annotations datastream.
+      tags:
+      - object-advanced
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: true
+        description: the requested object id
+      responses:
+        '200':
+          description: JSON with annotations (saved as XML but currently only returned as JSON)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  annotations:
+                    $ref: '#/components/schemas/annotations'
+                  status:
+                    type: string
+        '404':
+          description: Failed to fetch data
+          content:
+            application/json:
+              schema:
+                type: object
+    post:
+      summary: Saves annotations.
+      description: This method can save annotations to an object. The format chosen is taken from IIPMooViewer.
+      tags:
+      - object-advanced
+      security:
+      - basicAuth: []
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: true
+        description: object pid
+      requestBody:
+        description: Adds annotation JSON. See datastream examples for the [annotations.json](https://github.com/phaidra/phaidra-api/wiki/Annotations).
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                metadata:
+                  $ref: '#/components/schemas/annotations'
+      responses:
+        '200':
+          description: Annotation saved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  status:
+                    type: string
+  /object/{pid}/index/dc:
+    get:
+      summary: Get DC
+      description: Get metadata exported (and significantly reduced) in Dublin Core standard
+      tags:
+      - object-advanced
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: true
+        description: object id
+      responses:
+        '200':
+          description: dc - in XML
+          content:
+            text/xml:
+              schema:
+                type: string
+              example: <oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd"></oai_dc:dc>
+        '404':
+          description: Failed to fetch data
+          content:
+            application/json:
+              schema:
+                type: object
+  /object/{pid}/index/relationships:
+    get:
+      description: Retrieves the object's relationships using indexed data.
+      summary: Get relationships, from index.
+      tags:
+      - object-advanced
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: true
+        description: object id
+      responses:
+        '200':
+          description: relationships, from index
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  relationships:
+                    $ref: '#/components/schemas/index_relationship'
+                  alternativeformats:
+                    type: array
+                    items:
+                      type: string
+                  alternativeversions:
+                    type: array
+                    items:
+                      type: string
+                  versions:
+                    type: array
+                    items:
+                      type: string
+                  status:
+                    type: string
+        '404':
+          description: Failed to fetch data
+          content:
+            application/json:
+              schema:
+                type: object
+  /object/{pid}/index/members:
+    get:
+      summary: Get object's members.
+      description: Get object's members using indexed data.
+      tags:
+      - object-advanced
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: true
+        description: object id
+      responses:
+        '200':
+          description: members
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  status:
+                    type: string
+                  members:
+                    type: array
+        '404':
+          description: Failed to fetch data
+          content:
+            application/json:
+              schema:
+                type: object
+  /object/{pid}/datacite:
+    get:
+      summary: Transforms metadata to DataCite.
+      tags:
+      - object-advanced
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: true
+        description: object id
+      responses:
+        '200':
+          description: DataCite metadata
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  datacite:
+                    $ref: '#/components/schemas/datacite'
+                  status:
+                    type: string
+        '404':
+          description: Failed to fetch data
+          content:
+            application/json:
+              schema:
+                type: object
+  /object/{pid}/state:
+    get:
+      summary: Get state
+      description: Returns the state of the object.
+      tags:
+      - object-advanced
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: true
+        description: object id
+      responses:
+        '200':
+          description: state of object, Active/Inactive/Deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  state:
+                    type: string
+                  status:
+                    type: number
+  /object/{pid}/cmodel:
+    get:
+      summary: Get cmodel
+      description: Returns the object cmodel
+      tags:
+      - object-advanced
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: true
+        description: object id
+      responses:
+        '200':
+          description: cmodel (e.g. collection)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  cmodel:
+                    type: string
+                  status:
+                    type: number
+  /object/{pid}/relationships:
+    get:
+      summary: Get relationships.
+      description: Returns the object relationships (triplestore).
+      tags:
+      - object-advanced
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: true
+        description: object id
+      responses:
+        '200':
+          description: Relationships
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  relationships:
+                    type: object
+                    properties:
+                      haspart:
+                        type: array
+                        items:
+                          type: string
+                  status:
+                    type: string
+  /object/{pid}/iiifmanifest:
+    get:
+      summary: Get iiifmanifest.
+      description: Retrieves the iiifmanifest datastream.
+      tags:
+      - object-advanced
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: true
+        description: requested pid
+      responses:
+        '200':
+          description: iiifmanifest data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/iiifmanifest'
+    post:
+      summary: Saves the iiifmanifest.
+      tags:
+      - object-advanced
+      security:
+      - basicAuth: []
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: true
+        description: object pid
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                metadata:
+                  type: object
+                  properties:
+                    metadata:
+                      type: object
+                      properties:
+                        IIIF-MANIFEST:
+                          $ref: '#/components/schemas/iiifmanifest'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  status:
+                    type: string
+  /object/{pid}/id:
+    get:
+      summary: Get Dublin Core identifiers.
+      description: Get a list of identifiers that are saved in Dublin Core as [http://purl.org/dc/terms/identifier](http://purl.org/dc/terms/identifier).
+      tags:
+      - object-advanced
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: true
+        description: object id
+      responses:
+        '200':
+          description: ids
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  ids:
+                    type: array
+                    items:
+                      type: string
+                  status:
+                    type: string
+  /authz/check/{pid}/{op}:
+    get:
+      summary: Checks rights
+      description: Checks if the authenticated user has appropriate rights for an operation on the object (readable/writable). Can also be checked for unauthenticated user.
+      tags:
+      - object-advanced
+      security:
+      - basicAuth: []
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: false
+        description: pid - object id
+      - in: path
+        name: op
+        schema:
+          type: string
+          enum:
+          - ro
+          - rw
+          required: true
+        description: rights for operation
+      responses:
+        '200':
+          description: readable/writable, depending on parameter 'op'. This method can be used to check if an object is readable/writable. The authentication is optional, as you might want to know if an object is readable for an unauthenticated user. An object is never writable for an unauthenticated user, so checking 'rw' only makes sense with authentication. Typically, an object is only writable for its owner.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  status:
+                    type: string
+        '403':
+          description: not op
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  status:
+                    type: string
+  /object/{pid}/metadata:
+    get:
+      summary: Get object's metadata
+      description: Retrieve the object metadata (UWMETADATA, MODS, JSON-LD, etc., depending on the metadata datastream).
+      tags:
+      - object-advanced
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: true
+        description: object pid
+      responses:
+        '200':
+          description: object metadata
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  metadata:
+                    type: object
+        '404':
+          description: object has not been found
+          content:
+            application/json:
+              schema:
+                type: object
+  /object/{pid}/fulltext:
+    get:
+      summary: 'Retrieves the FULLTEXT datastream of a specified object. It returns this datastream as it was saved: this is not a method which extracts fulltext from object''s data.'
+      tags:
+      - object-advanced
+      security:
+      - basicAuth: []
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: true
+        description: requested pid - object id
+      - in: query
+        name: format
+        schema:
+          type: string
+          required: false
+          default: txt
+        description: specifies the  desired format for the return
+      responses:
+        '200':
+          description: requested objects fulltext data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  streaming:
+                    type: object
+                  status:
+                    type: number
+        '404':
+          description: object has not been found
+          content:
+            application/json:
+              schema:
+                type: object
+  /object/{pid}/jsonldprivate:
+    get:
+      summary: Get the non-public JSON-LD-PRIVATE datastream.
+      tags:
+      - object-advanced
+      security:
+      - basicAuth: []
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: true
+        description: object pid
+      responses:
+        '200':
+          description: JSON-LD-PRIVATE datastream
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  status:
+                    type: number
+        '404':
+          description: object has not been found
+          content:
+            application/json:
+              schema:
+                type: object
+    post:
+      summary: Save JSON-LD-PRIVATE datastream
+      description: This method saves the object's metadata if you are using jsonld as a metadata structure. Unlike JSON-LD which is always visible, JSON-LD-PRIVATE is only available to the owner/admin.
+      tags:
+      - object-advanced
+      security:
+      - basicAuth: []
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                metadata:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: jsonld metadata saved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  status:
+                    type: string
+  '/index ':
+    post:
+      summary: Re-index multiple objects at once
+      description: Post a list of objects which should be re-indexed - needs admin credentials
+      tags:
+      - object-advanced
+      security:
+      - basicAuth: []
+      responses:
+        '200':
+          description: object info
+          content:
+            application/json:
+              schema: {}
+  /object/{pid}/modify:
+    post:
+      summary: Modify object properties
+      description: Modify the basic properties of an object (the parameters are all optional). Admin credentials are needed.
+      tags:
+      - object-advanced
+      security:
+      - basicAuth: []
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: true
+        description: object pid
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                state:
+                  type: string
+                  enum:
+                  - A
+                  - I
+                  - D
+                  required: false
+                  default: A
+                  description: The state of the object can be changed toA (= Active), I (= Inactive), D (= Deleted)
+                label:
+                  type: string
+                  required: false
+                  description: some string (currently not used in PHAIDRA)
+                ownerid:
+                  type: string
+                  required: false
+                  description: owner's username
+                logmessage:
+                  type: string
+                  required: false
+                  description: log message, string
+                lastmodifieddate:
+                  type: string
+                  required: false
+                  description: a date in ISO format
+      responses:
+        '200':
+          description: object modified
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  pid:
+                    type: string
+                  status:
+                    type: number
+        '404':
+          description: object has not been found
+          content:
+            application/json:
+              schema:
+                type: object
+  /object/{pid}/id/add:
+    post:
+      summary: Add an identifier triple
+      description: Add an identifier to the triples (as a relationship with the predicate 'http://purl.org/dc/terms/identifier'). It is then available in the triplestore, Dublin Core and index automatically, but will not be added to metadata. IDs added this way are usually added by PHAIDRA (for Handles), while the IDs in metadata are added and controlled by the user.
+      tags:
+      - object-advanced
+      security:
+      - basicAuth: []
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: true
+        description: the requested object id
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                hdl:
+                  type: string
+                  required: false
+                  example: 11353/10.448537
+                  description: 'the handle identifier '
+                doi:
+                  type: string
+                  required: false
+                  example: 10.5194/bg-11-1491-2014
+                  description: the DOI identifier
+                urn:
+                  type: string
+                  required: false
+                  example: urn:nbn:at:at-ubw-30020.78240.320264-3
+                  description: the URN identifier
+      responses:
+        '200':
+          description: Identifyer added
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  status:
+                    type: string
+        '404':
+          description: Failed to fetch data
+          content:
+            application/json:
+              schema:
+                type: object
+  /object/{pid}/id/remove:
+    post:
+      summary: Remove identifier from triples
+      tags:
+      - object-advanced
+      security:
+      - basicAuth: []
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: true
+        description: the requested object id
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                hdl:
+                  type: string
+                  required: false
+                  example: 11353/10.448537
+                  description: 'the handle identifier '
+                doi:
+                  type: string
+                  required: false
+                  example: 10.5194/bg-11-1491-2014
+                  description: the DOI identifier
+                urn:
+                  type: string
+                  required: false
+                  example: urn:nbn:at:at-ubw-30020.78240.320264-3
+                  description: the URN identifier
+      responses:
+        '200':
+          description: Identifyer removed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  status:
+                    type: string
+        '404':
+          description: Failed to fetch data
+          content:
+            application/json:
+              schema:
+                type: object
+  /object/{pid}/datastream/{dsid}:
+    post:
+      summary: Add or modify datastream
+      tags:
+      - object-advanced
+      security:
+      - basicAuth: []
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: true
+        description: the requested object id
+      - in: path
+        name: dsid
+        schema:
+          type: string
+          required: true
+        example: IIIF-MANIFEST
+        description: datastream id
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                dscontent:
+                  type: string
+                  format: binary
+                mimetype:
+                  type: string
+                  example: application/json
+                  required: false
+                location:
+                  type: string
+                  description: location of managed or external datastream content
+                  required: false
+                dslabel:
+                  type: string
+                  required: false
+                  description: For OCTETS datastream it should be the original filename (e.g. my_test.pdf). For other datastreams any string, it's not used by PHAIDRA.
+                controlgroup:
+                  type: string
+                  required: true
+                  enum:
+                  - X
+                  - M
+                  - R
+                  - E
+                  description: One of X, M, R, or E (Inline XML, Managed Content, Redirect, or External Referenced)
+      responses:
+        '200':
+          description: Datastream added or modified
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  status:
+                    type: string
+        '404':
+          description: Failed to fetch data
+          content:
+            application/json:
+              schema:
+                type: object
+  /object/{pid}/data:
+    post:
+      summary: Replace data (add a new version of OCTETS datastream)
+      tags:
+      - object-advanced
+      security:
+      - basicAuth: []
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: true
+        description: object pid
+      - in: query
+        name: mimetype
+        schema:
+          type: string
+          required: false
+        description: object mimetype
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: data added to object
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  pid:
+                    type: string
+                  status:
+                    type: number
+        '404':
+          description: error
+          content:
+            application/json:
+              schema:
+                type: object
+  /resource/create:
+    post:
+      summary: Creates a resource(-link) object
+      tags:
+      - object-advanced
+      security:
+      - basicAuth: []
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  required: true
+                mimetype:
+                  type: string
+                  example: application/json
+                  description: 'mimetype is optional: if not provided, heuristics is used on server side'
+                  required: false
+                metadata:
+                  type: object
+                  description: a structure containing metadata; refer to the wiki (see above) for further details
+                  required: true
+                  example:
+                    json-ld:
+                      dce:title:
+                      - '@type': bf:Title
+                        bf:mainTitle:
+                        - '@value': Title
+                          '@language': deu
+                      role:aut:
+                      - '@type': schema:Person
+                        schema:givenName:
+                        - '@value': First name
+                        schema:familyName:
+                        - '@value': Last Name
+                      edm:rights:
+                      - https://rightsstatements.org/page/InC/1.0/
+      responses:
+        '200':
+          description: Resource object created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  pid:
+                    type: string
+                  status:
+                    type: number
+        '404':
+          description: error creating object
+          content:
+            application/json:
+              schema:
+                type: object
+  /page/create:
+    post:
+      summary: Creates a page object
+      tags:
+      - object-advanced
+      security:
+      - basicAuth: []
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  required: true
+                mimetype:
+                  type: string
+                  example: application/json
+                  description: 'mimetype is optional: if not provided, heuristics is used on server side'
+                  required: false
+                metadata:
+                  type: object
+                  description: a structure containing metadata; refer to the wiki (see above) for further details
+                  required: true
+                  example:
+                    json-ld:
+                      dce:title:
+                      - '@type': bf:Title
+                        bf:mainTitle:
+                        - '@value': Title
+                          '@language': deu
+                      role:aut:
+                      - '@type': schema:Person
+                        schema:givenName:
+                        - '@value': First name
+                        schema:familyName:
+                        - '@value': Last Name
+                      edm:rights:
+                      - https://rightsstatements.org/page/InC/1.0/
+      responses:
+        '200':
+          description: Page object created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  pid:
+                    type: string
+                  status:
+                    type: number
+        '404':
+          description: error creating object
+          content:
+            application/json:
+              schema:
+                type: object
+  /object/create:
+    post:
+      summary: Create empty object, without a specified cmodel
+      tags:
+      - object-advanced
+      security:
+      - basicAuth: []
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  required: true
+                mimetype:
+                  type: string
+                  example: application/json
+                  description: 'mimetype is optional: if not provided, heuristics is used on server side'
+                  required: false
+                metadata:
+                  type: object
+                  description: a structure containing metadata; refer to the wiki (see above) for further details
+                  required: true
+                  example:
+                    json-ld:
+                      dce:title:
+                      - '@type': bf:Title
+                        bf:mainTitle:
+                        - '@value': Title
+                          '@language': deu
+                      role:aut:
+                      - '@type': schema:Person
+                        schema:givenName:
+                        - '@value': First name
+                        schema:familyName:
+                        - '@value': Last Name
+                      edm:rights:
+                      - https://rightsstatements.org/page/InC/1.0/
+      responses:
+        '200':
+          description: empty object created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  pid:
+                    type: string
+                  status:
+                    type: number
+        '404':
+          description: error creating object
+          content:
+            application/json:
+              schema:
+                type: object
+  /object/create/{cmodel}:
+    post:
+      summary: Create empty object, with cmodel
+      tags:
+      - object-advanced
+      security:
+      - basicAuth: []
+      parameters:
+      - in: path
+        name: cmodel
+        schema:
+          type: string
+          required: true
+          enum:
+          - cmodel:Picture
+          - cmodel:PDFDocument
+          - cmodel:Video
+          - cmodel:Audio
+          - cmodel:Collection
+          - cmodel:Asset
+          - cmodel:Container
+          - cmodel:Paper
+          - cmodel:Collection
+          - cmodel:LaTeXDocument
+          - cmodel:Resource
+          - cmodel:Book
+          - cmodel:Page
+        description: object cmodel
+      responses:
+        '200':
+          description: empty object created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  pid:
+                    type: string
+                  status:
+                    type: number
+        '404':
+          description: error creating object
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  schemas:
+    index_relationship:
+      type: object
+      properties:
+        hasalternativeformat:
+          type: array
+          items:
+            type: string
+        hasalternativeversion:
+          type: array
+          items:
+            type: string
+        hasbackside:
+          type: array
+          items:
+            type: string
+        hassuccessor:
+          type: array
+          items:
+            type: string
+        hasthumbnail:
+          type: array
+          items:
+            type: string
+        isalternativeformatof:
+          type: array
+          items:
+            type: string
+        isalternativeversionof:
+          type: array
+          items:
+            type: string
+        isbacksideof:
+          type: array
+          items:
+            type: string
+        ismemberof:
+          type: array
+          items:
+            type: string
+        ispartof:
+          type: array
+          items:
+            type: object
+        isreferencedby:
+          type: array
+          items:
+            type: string
+        issuccessorof:
+          type: array
+          items:
+            type: string
+        isthumbnailfor:
+          type: array
+          items:
+            type: string
+        references:
+          type: array
+          items:
+            type: string
+    jsonld:
+      type: object
+    datacite:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            contributors:
+              type: array
+              items:
+                type: string
+            creators:
+              type: array
+              items:
+                type: object
+                properties:
+                  firstname:
+                    type: string
+                  institution:
+                    type: string
+                  lastname:
+                    type: string
+                  value:
+                    type: string
+            descriptions:
+              type: array
+              items:
+                type: object
+                properties:
+                  lang:
+                    type: string
+                  ns:
+                    type: string
+                  value:
+                    type: string
+            embargodates:
+              type: array
+              items:
+                type: string
+            filesizes:
+              type: array
+              items:
+                type: object
+                properties:
+                  value:
+                    type: string
+            formats:
+              type: array
+              items:
+                type: string
+            identifiers:
+              type: array
+              items:
+                type: object
+                properties:
+                  type:
+                    type: string
+                  value:
+                    type: string
+            langs:
+              type: array
+              items:
+                type: object
+                properties:
+                  value:
+                    type: string
+            licenses:
+              type: array
+              items:
+                type: object
+                properties:
+                  value:
+                    type: string
+            publicationYear:
+              type: array
+              items:
+                type: string
+            publishers:
+              type: array
+              items:
+                type: string
+            pubyears:
+              type: array
+              items:
+                type: string
+            titles:
+              type: array
+              items:
+                type: object
+                properties:
+                  lang:
+                    type: string
+                  title:
+                    type: string
+                  value:
+                    type: string
+            upload_date:
+              type: array
+              items:
+                type: string
+            uploaddates:
+              type: array
+              items:
+                type: object
+                properties:
+                  ns:
+                    type: string
+                  value:
+                    type: string
+        datacite_elements:
+          type: array
+          items:
+            type: object
+            properties:
+              children:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    value:
+                      type: string
+                    xmlname:
+                      type: string
+              xmlname:
+                type: string
+        errors:
+          type: array
+          items:
+            type: string
+        status:
+          type: string
+    uwmetadata_min:
+      type: array
+      items:
+        type: object
+        properties:
+          xmlns:
+            type: string
+          xmlname:
+            type: string
+          datatype:
+            type: string
+          input_type:
+            type: string
+          children:
+            type: array
+            items:
+              type: object
+              properties:
+                ui_value:
+                  type: string
+                input_type:
+                  type: string
+                value_lang:
+                  type: string
+                datatype:
+                  type: string
+                xmlns:
+                  type: string
+                xmlname:
+                  type: string
+      example:
+      - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
+        xmlname: general
+        children:
+        - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
+          xmlname: title
+          ui_value: Title
+          value_lang: de
+        - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
+          xmlname: language
+          ui_value: de
+          datatype: Language
+      - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
+        xmlname: lifecycle
+        children:
+        - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
+          xmlname: contribute
+          data_order: '0'
+          ordered: 1
+          children:
+          - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
+            xmlname: role
+            ui_value: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/voc_3/46
+            datatype: Vocabulary
+          - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
+            xmlname: entity
+            data_order: '0'
+            ordered: 1
+            children:
+            - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/entity
+              xmlname: firstname
+              ui_value: Brenda
+              datatype: CharacterString
+            - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/entity
+              xmlname: lastname
+              ui_value: Walsh
+              datatype: CharacterString
+      - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
+        xmlname: rights
+        children:
+        - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
+          xmlname: license
+          ui_value: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/voc_21/1
+          datatype: License
+    json-ld:
+      type: object
+      properties:
+        dcterms:type:
+          type: array
+          items:
+            type: object
+            properties:
+              '@type':
+                type: string
+              skos:exactMatch:
+                type: array
+                items:
+                  type: string
+              skos:prefLabel:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@language':
+                      type: string
+                    '@value':
+                      type: string
+        edm:hasType:
+          type: array
+          items:
+            type: object
+            properties:
+              '@type':
+                type: string
+              skos:exactMatch:
+                type: array
+                items:
+                  type: string
+              skos:prefLabel:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@language':
+                      type: string
+                    '@value':
+                      type: string
+        dce:title:
+          type: array
+          items:
+            type: object
+            properties:
+              '@type':
+                type: string
+              bf:mainTitle:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@value':
+                      type: string
+                    '@language':
+                      type: string
+        role:aut:
+          type: array
+          items:
+            type: object
+            properties:
+              '@type':
+                type: string
+              schema:familyName:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@value':
+                      type: string
+              schema:givenName:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@value':
+                      type: string
+        dce:subject:
+          type: array
+          items:
+            type: object
+            properties:
+              '@type':
+                type: string
+              skos:prefLabel:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@value':
+                      type: string
+                    '@language':
+                      type: string
+        bf:note:
+          type: array
+          items:
+            type: object
+            properties:
+              skos:prefLabel:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@value':
+                      type: string
+                    '@language':
+                      type: string
+              '@type':
+                type: string
+        vra:hasInscription:
+          type: array
+          items:
+            type: object
+            properties:
+              '@type':
+                type: string
+              skos:prefLabel:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@value':
+                      type: string
+                    '@language':
+                      type: string
+        dcterms:language:
+          type: array
+          items:
+            type: string
+        ebucore:filename:
+          type: array
+          items:
+            type: string
+        ebucore:hasMimeType:
+          type: array
+          items:
+            type: string
+        edm:rights:
+          type: array
+          items:
+            type: string
+      example:
+        dce:title:
+        - '@type': bf:Title
+          bf:mainTitle:
+          - '@value': Title
+            '@language': deu
+        role:aut:
+        - '@type': schema:Person
+          schema:givenName:
+          - '@value': First name
+          schema:familyName:
+          - '@value': Last Name
+        edm:rights:
+        - https://rightsstatements.org/page/InC/1.0/
+    iiifmanifest:
+      type: object
+      properties:
+        behavior:
+          type: array
+          items:
+            type: string
+        viewingDirection:
+          type: string
+        '@context':
+          type: string
+        label:
+          type: object
+          properties:
+            en:
+              type: array
+              items:
+                type: string
+        type:
+          type: string
+        id:
+          type: string
+        requiredStatement:
+          type: object
+          properties:
+            value:
+              type: object
+              properties:
+                none:
+                  type: array
+                  items:
+                    type: string
+            label:
+              type: object
+              properties:
+                en:
+                  type: array
+                  items:
+                    type: string
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              width:
+                type: number
+              id:
+                type: string
+              type:
+                type: string
+              label:
+                type: object
+                properties:
+                  none:
+                    type: array
+                    items:
+                      type: string
+              height:
+                type: number
+              items:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    type:
+                      type: string
+                    items:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          body:
+                            type: object
+                            properties:
+                              width:
+                                type: number
+                              format:
+                                type: string
+                              type:
+                                type: string
+                              id:
+                                type: string
+                              height:
+                                type: number
+                              service:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    profile:
+                                      type: string
+                                    id:
+                                      type: string
+                                    type:
+                                      type: string
+                          target:
+                            type: string
+                          id:
+                            type: string
+                          type:
+                            type: string
+                          motivation:
+                            type: string
+        start:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+      example:
+        behavior:
+        - facing-pages
+        viewingDirection: left-to-right
+        '@context': http://iiif.io/api/presentation/3/context.json
+        label:
+          en:
+          - Book
+        type: Manifest
+        id: https://sandbox.phaidra.org/api/object/o:***/iiifmanifest
+        requiredStatement:
+          value:
+            none:
+            - http://creativecommons.org/licenses/by-nc-sa/4.0/
+          label:
+            en:
+            - Rights
+        items:
+        - width: 2100
+          id: https://sandbox.phaidra.org/api/iiif/o:***/canvas/1
+          type: Canvas
+          label:
+            none:
+            - 0r
+          height: 2500
+          items:
+          - id: https://sandbox.phaidra.org/api/iiif/o:***/page/p1/1
+            type: AnnotationPage
+            items:
+            - body:
+                width: 2500
+                format: image/jpeg
+                type: Image
+                id: https://sandbox.phaidra.org/api/imageserver?IIIF=o:1069684.tif/full/full/0/default.jpg
+                height: 2000
+                service:
+                - profile: level2
+                  id: https://sandbox.phaidra.org/api/imageserver?IIIF=o:1069684.tif
+                  type: ImageService3
+              target: https://sandbox.phaidra.org/api/iiif/o:***/canvas/1
+              id: https://sandbox.phaidra.org/api/iiif/o:***/annotation/p1-image
+              type: Annotation
+              motivation: painting
+        - width: 2100
+          id: https://sandbox.phaidra.org/api/iiif/o:***/canvas/2
+          type: Canvas
+          label:
+            none:
+            - fol. 1r-v (r)
+          height: 2500
+          items:
+          - id: https://sandbox.phaidra.org/api/iiif/o:***/page/p2/1
+            type: AnnotationPage
+            items:
+            - body:
+                width: 2500
+                format: image/jpeg
+                type: Image
+                id: https://sandbox.phaidra.org/api/imageserver?IIIF=o:1069685.tif/full/full/0/default.jpg
+                height: 2000
+                service:
+                - profile: level2
+                  id: https://sandbox.phaidra.org/api/imageserver?IIIF=o:1069685.tif
+                  type: ImageService3
+              target: https://sandbox.phaidra.org/api/iiif/o:***/canvas/2
+              id: https://sandbox.phaidra.org/api/iiif/o:***/annotation/p2-image
+              type: Annotation
+              motivation: painting
+        start:
+          id: https://sandbox.phaidra.org/api/iiif/o:***/canvas/1
+          type: Canvas
+    annotations:
+      type: object
+      properties:
+        metadata:
+          type: object
+          properties:
+            annotations:
+              type: object
+              example:
+                '1':
+                  x: 0.7
+                  y: 0.6
+                  w: 0.2
+                  h: 0.18
+                  category: place
+                  text: First example of annotation
+                '2':
+                  x: 0.1
+                  y: 0.8
+                  w: 0.15
+                  h: 0.1
+                  category: place
+                  text: Second example of annotation
+                '3':
+                  x: 0.7
+                  y: 0.4
+                  w: 0.1
+                  h: 0.1
+                  category: people
+                  text: Third example of annotation
+    geo:
+      type: object
+      properties:
+        metadata:
+          type: object
+          properties:
+            geo:
+              type: object
+              example:
+                kml:
+                  document:
+                    placemark:
+                    - point:
+                        coordinates:
+                          longitude: '44.8112504748688'
+                          latitude: '41.6902784095934'
+                      name: Name of geo datastream
+                      description: Json example of a point geo datastream
+    mods:
+      type: object
+      properties:
+        metadata:
+          type: object
+          properties:
+            mods:
+              type: array
+              items:
+                type: object
+                properties:
+                  attributes:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        input_type:
+                          type: string
+                        label:
+                          type: string
+                        xmlname:
+                          type: string
+                        ui_value:
+                          type: string
+                  children:
+                    type: array
+                    items:
+                      type: object
+                  label:
+                    type: string
+                  ui_value:
+                    type: string
+                  xmlname:
+                    type: string
+                  input_type:
+                    type: string
+                  extensible:
+                    type: number
+              example:
+              - ui_value: AC04090285
+                xmlname: identifier
+                input_type: input_text
+                label: Identifier
+                attributes:
+                - ui_value: ac-number
+                  xmlname: type
+                  input_type: select
+                  label: Type
+                - xmlname: lang
+                  input_type: input_text
+                  label: Language
+                - xmlname: script
+                  input_type: input_text
+                  label: Script
+                - xmlname: transliteration
+                  input_type: input_text
+                  label: Transliteration
+                - xmlname: typeURI
+                  input_type: input_text
+                  label: Type URI
+                - xmlname: displayLabel
+                  input_type: input_text
+                  label: Display label
+                - xmlname: invalid
+                  input_type: select
+                  label: Invalid
+                - xmlname: altRepGroup
+                  input_type: input_text
+                  label: Alternative representation group
+              - xmlname: language
+                input_type: node
+                label: Language
+                children:
+                - ui_value: ger
+                  xmlname: languageTerm
+                  input_type: input_text
+                  label: Language term
+                  attributes:
+                  - ui_value: code
+                    xmlname: type
+                    input_type: select
+                    label: Type
+                  - ui_value: iso639-2b
+                    xmlname: authority
+                    input_type: select
+                    label: Authority
+                  - xmlname: authorityURI
+                    input_type: input_text
+                    label: Authority URI
+                  - xmlname: valueURI
+                    input_type: input_text
+                    label: Value URI
+                  - xmlname: lang
+                    input_type: input_text
+                    label: Language
+                  - xmlname: script
+                    input_type: input_text
+                    label: Script
+                  - xmlname: transliteration
+                    input_type: input_text
+                    label: Transliteration
+                attributes:
+                - xmlname: objectPart
+                  input_type: input_text
+                  label: Object part
+                - xmlname: lang
+                  input_type: input_text
+                  label: Language
+                - xmlname: script
+                  input_type: input_text
+                  label: Script
+                - xmlname: transliteration
+                  input_type: input_text
+                  label: Transliteration
+                - xmlname: displayLabel
+                  input_type: input_text
+                  label: Display label
+                - xmlname: usage
+                  input_type: select
+                  label: Usage
+                - xmlname: altRepGroup
+                  input_type: input_text
+                  label: Alternative representation group
+  securitySchemes:
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: X-XSRF-TOKEN
+    basicAuth:
+      type: http
+      scheme: basic

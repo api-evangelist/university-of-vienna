@@ -1,0 +1,68 @@
+openapi: 3.0.2
+info:
+  title: PHAIDRA datastream oai-pmh API
+  version: '3.0'
+  description: Documentation of the PHAIDRA API.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- description: University of Vienna PHAIDRA
+  url: https://services.phaidra.univie.ac.at/api/
+- description: PHAIDRA Sandbox
+  url: https://sandbox.phaidra.org/api/
+tags:
+- name: oai-pmh
+  description: Look at the [OAI-PMH protocol](https://www.openarchives.org/pmh) used in this endpoint
+paths:
+  /oai:
+    get:
+      summary: OAI-PMH endpoint.
+      tags:
+      - oai-pmh
+      parameters:
+      - in: query
+        name: verb
+        schema:
+          type: number
+        description: See [the OAI-PMH protocol](https://www.openarchives.org/pmh/)
+        examples:
+          Identify:
+            value: Identify
+            summary: Identify
+          ListIdentifiers:
+            value: ListIdentifiers
+            summary: ListIdentifiers
+          ListRecords:
+            value: ListRecords
+            summary: ListRecords
+          GetRecord:
+            value: GetRecord
+            summary: GetRecord
+      responses:
+        '200':
+          description: ''
+          content:
+            text/xml:
+              schema:
+                type: string
+    post:
+      summary: Same as GET.
+      tags:
+      - oai-pmh
+      responses:
+        '200':
+          description: See [the OAI-PMH protocol](https://www.openarchives.org/pmh/)
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  securitySchemes:
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: X-XSRF-TOKEN
+    basicAuth:
+      type: http
+      scheme: basic

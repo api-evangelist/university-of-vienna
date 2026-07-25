@@ -1,0 +1,252 @@
+openapi: 3.0.2
+info:
+  title: PHAIDRA datastream misc API
+  version: '3.0'
+  description: Documentation of the PHAIDRA API.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- description: University of Vienna PHAIDRA
+  url: https://services.phaidra.univie.ac.at/api/
+- description: PHAIDRA Sandbox
+  url: https://sandbox.phaidra.org/api/
+tags:
+- name: misc
+  description: ''
+paths:
+  /state:
+    get:
+      description: Returns "remote_address". This method is used for monitoring.
+      summary: Test api state
+      tags:
+      - misc
+      responses:
+        '200':
+          description: The API is running!
+          content:
+            application/json:
+              schema: {}
+  /utils/get_all_pids:
+    get:
+      summary: Get all pids
+      tags:
+      - misc
+      responses:
+        '200':
+          description: pids
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  status:
+                    type: number
+                  pids:
+                    type: array
+                    items:
+                      type: string
+  /termsofuse:
+    get:
+      summary: Get terms of use
+      tags:
+      - misc
+      responses:
+        '200':
+          description: Terms of use
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  status:
+                    type: number
+                  added:
+                    type: string
+                  terms:
+                    type: string
+                  version:
+                    type: string
+  /termsofuse/agree/{version}:
+    post:
+      summary: Agree to terms of use
+      description: Record the user agreement to a particular version of the terms of use.
+      tags:
+      - misc
+      security:
+      - basicAuth: []
+      parameters:
+      - in: path
+        name: version
+        schema:
+          type: number
+          required: true
+        description: version of the terms of use
+      responses:
+        '200':
+          description: Terms of use
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  status:
+                    type: number
+  /settings:
+    post:
+      summary: Save user's settings.
+      description: Currently only used to set default metadata template in some external UIs.
+      tags:
+      - misc
+      security:
+      - basicAuth: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  status:
+                    type: string
+                  settings:
+                    type: object
+    get:
+      summary: Get user's settings
+      description: Currently only used to set default metadata template in some external UIs.
+      tags:
+      - misc
+      security:
+      - basicAuth: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  status:
+                    type: string
+                  settings:
+                    type: object
+  /streaming/{pid}/key:
+    get:
+      summary: Get streaming key
+      description: The streaming key can be used when building your own video player. If you want the full video player, use /object/{pid}/preview instead.
+      tags:
+      - misc
+      security:
+      - basicAuth: []
+      parameters:
+      - in: path
+        name: pid
+        schema:
+          type: string
+          required: false
+        description: pid - object id
+      responses:
+        '200':
+          description: Streaming key.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  status:
+                    type: number
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  status:
+                    type: number
+  /termsofuse/getagreed:
+    get:
+      summary: Checks if the current user agreed to the terms of use.
+      tags:
+      - misc
+      security:
+      - basicAuth: []
+      responses:
+        '200':
+          description: object info
+          content:
+            application/json:
+              schema: {}
+components:
+  securitySchemes:
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: X-XSRF-TOKEN
+    basicAuth:
+      type: http
+      scheme: basic

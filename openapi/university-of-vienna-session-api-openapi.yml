@@ -1,0 +1,120 @@
+openapi: 3.0.2
+info:
+  title: PHAIDRA datastream session API
+  version: '3.0'
+  description: Documentation of the PHAIDRA API.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- description: University of Vienna PHAIDRA
+  url: https://services.phaidra.univie.ac.at/api/
+- description: PHAIDRA Sandbox
+  url: https://sandbox.phaidra.org/api/
+tags:
+- name: session
+  description: Session management
+paths:
+  /signin:
+    get:
+      summary: Sign in
+      description: Authenticate with the api to get an XSFR token back (a cookie with the same name will be set as well). You then have to send this token back in an X-XSRF-TOKEN header for each authenticated call.
+      tags:
+      - session
+      security:
+      - basicAuth: []
+      responses:
+        '200':
+          description: a JSON object with an XSRF-Token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  status:
+                    type: number
+                  XSRF-TOKEN:
+                    type: string
+        '403':
+          description: credentials invalid
+  /signout:
+    get:
+      summary: Sign out
+      tags:
+      - session
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  sid:
+                    type: string
+                  status:
+                    type: number
+        '403':
+          description: credentials invalid
+  /keepalive:
+    get:
+      summary: Extends session expiration time
+      description: Extends the expiration time of the session token (the session is identified by the token).
+      tags:
+      - session
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          description: a JSON object with an XSRF-Token and a new expiration time
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        msg:
+                          type: string
+                        type:
+                          type: string
+                  sid:
+                    type: string
+                  expires:
+                    type: number
+                  status:
+                    type: number
+        '403':
+          description: credentials invalid
+components:
+  securitySchemes:
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: X-XSRF-TOKEN
+    basicAuth:
+      type: http
+      scheme: basic
