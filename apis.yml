@@ -13,9 +13,22 @@ description: >-
   but do not publish open developer documentation. No central, branded API
   developer portal or official GitHub organization was confirmed.
 type: Index
+accessModel:
+  pricing: free
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Free · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/university-of-vienna.png
 url: https://raw.githubusercontent.com/api-evangelist/university-of-vienna/refs/heads/main/apis.yml
 tags:
   - Education
@@ -30,72 +43,488 @@ created: '2026-06-03'
 modified: '2026-06-03'
 specificationVersion: '0.19'
 apis:
-  - aid: university-of-vienna:phaidra-api
-    name: PHAIDRA REST API
-    description: >-
-      PHAIDRA (Permanent Hosting, Archiving and Indexing of Digital Resources and
-      Assets) is the University of Vienna's institutional repository for research
-      data and digital collections. Its REST(ish) API implements core PHAIDRA
-      logic, including object ingest, metadata retrieval (/object/{pid}/info),
-      Solr-based search (/search/select), and object thumbnails/previews. An
-      OpenAPI specification is published at the /api/openapi endpoint.
-    humanURL: https://phaidra.org/docs/api/
-    baseURL: https://services.phaidra.univie.ac.at/api
-    tags: [ Repository, Research Data, REST, OpenAPI, Digital Preservation ]
-    properties:
-      - type: Documentation
-        url: https://phaidra.org/docs/api/
-      - type: OpenAPI
-        url: https://services.phaidra.univie.ac.at/api/openapi
-      - type: OpenAPI
-        url: openapi/university-of-vienna-phaidra-api.yaml
-      - type: JSONSchema
-        url: json-schema/university-of-vienna-object-info-schema.json
-      - type: JSONSchema
-        url: json-schema/university-of-vienna-index-schema.json
-      - type: x-json-structure
-        url: json-structure/university-of-vienna-object-info-structure.json
-      - type: x-json-structure
-        url: json-structure/university-of-vienna-index-structure.json
-      - type: x-example
-        url: examples/university-of-vienna-object-info-example.json
-      - type: x-example
-        url: examples/university-of-vienna-search-select-example.json
-      - type: x-spectral-ruleset
-        url: rules/university-of-vienna-rules.yml
-      - type: x-vocabulary
-        url: vocabulary/university-of-vienna-vocabulary.yml
-      - type: x-json-ld-context
-        url: json-ld/university-of-vienna-context.jsonld
-      - type: GitHub
-        url: https://github.com/phaidra/phaidra-api/wiki/Documentation
-  - aid: university-of-vienna:phaidra-oai-pmh
-    name: PHAIDRA OAI-PMH Endpoint
-    description: >-
-      OAI-PMH metadata harvesting interface for the PHAIDRA repository, used by
-      aggregators such as OpenAIRE, Europeana, BASE, OAPEN, EBSCO and Primo.
-      Supports the oai_dc (Dublin Core) and oai_openaire metadata formats. Verified
-      live returning a valid Identify response.
-    humanURL: https://phaidra.org/docs/api/
-    baseURL: https://services.phaidra.univie.ac.at/api/oai/
-    tags: [ OAI-PMH, Metadata, Harvesting, Repository, Dublin Core ]
-    properties:
-      - type: Documentation
-        url: https://phaidra.org/docs/api/
-  - aid: university-of-vienna:hei-api
-    name: HEI API (University of Vienna record)
-    description: >-
-      The pan-European Higher Education Institutions (HEI) API, operated by the
-      European University Foundation, publishes structured institutional data for
-      the University of Vienna in JSON:API format, including Erasmus codes, PIC,
-      Erasmus Charter (ECHE) status and address. This is a third-party API exposing
-      University of Vienna data, not operated by the university itself.
-    humanURL: https://hei.api.uni-foundation.eu/about
-    baseURL: https://hei.api.uni-foundation.eu/api/public/schac/univie.ac.at/hei
-    tags: [ JSON:API, Institutional Data, Erasmus, Third-Party ]
-    properties:
-      - type: Documentation
-        url: https://hei.api.uni-foundation.eu/about
+- aid: university-of-vienna:phaidra-oai-pmh
+  name: PHAIDRA OAI-PMH Endpoint
+  description: >-
+    OAI-PMH metadata harvesting interface for the PHAIDRA repository, used by aggregators such as OpenAIRE,
+    Europeana, BASE, OAPEN, EBSCO and Primo. Supports the oai_dc (Dublin Core) and oai_openaire metadata
+    formats. Verified live returning a valid Identify response.
+  humanURL: https://phaidra.org/docs/api/
+  baseURL: https://services.phaidra.univie.ac.at/api/oai/
+  tags:
+  - OAI-PMH
+  - Metadata
+  - Harvesting
+  - Repository
+  - Dublin Core
+  properties:
+  - type: Documentation
+    url: https://phaidra.org/docs/api/
+- aid: university-of-vienna:hei-api
+  name: HEI API (University of Vienna record)
+  description: >-
+    The pan-European Higher Education Institutions (HEI) API, operated by the European University Foundation,
+    publishes structured institutional data for the University of Vienna in JSON:API format, including
+    Erasmus codes, PIC, Erasmus Charter (ECHE) status and address. This is a third-party API exposing
+    University of Vienna data, not operated by the university itself.
+  humanURL: https://hei.api.uni-foundation.eu/about
+  baseURL: https://hei.api.uni-foundation.eu/api/public/schac/univie.ac.at/hei
+  tags:
+  - JSON:API
+  - Institutional Data
+  - Erasmus
+  - Third-Party
+  properties:
+  - type: Documentation
+    url: https://hei.api.uni-foundation.eu/about
+- aid: university-of-vienna:university-of-vienna-datastream-api
+  name: University of Vienna datastream API
+  description: Requests for transforming and validating datastreams
+  humanURL: https://phaidra.org/docs/api/
+  baseURL: https://services.phaidra.univie.ac.at/api
+  tags:
+  - datastream
+  properties:
+  - type: OpenAPI
+    url: openapi/university-of-vienna-datastream-api-openapi.yml
+  - type: Documentation
+    url: https://phaidra.org/docs/api/
+  - type: JSONSchema
+    url: json-schema/university-of-vienna-object-info-schema.json
+  - type: JSONSchema
+    url: json-schema/university-of-vienna-index-schema.json
+  - type: x-json-structure
+    url: json-structure/university-of-vienna-object-info-structure.json
+  - type: x-json-structure
+    url: json-structure/university-of-vienna-index-structure.json
+  - type: x-example
+    url: examples/university-of-vienna-object-info-example.json
+  - type: x-example
+    url: examples/university-of-vienna-search-select-example.json
+  - type: x-spectral-ruleset
+    url: rules/university-of-vienna-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/university-of-vienna-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/university-of-vienna-context.jsonld
+  - type: GitHub
+    url: https://github.com/phaidra/phaidra-api/wiki/Documentation
+- aid: university-of-vienna:university-of-vienna-directory-api
+  name: University of Vienna directory API
+  description: Requests related to users, user groups and organisation structure
+  humanURL: https://phaidra.org/docs/api/
+  baseURL: https://services.phaidra.univie.ac.at/api
+  tags:
+  - directory
+  properties:
+  - type: OpenAPI
+    url: openapi/university-of-vienna-directory-api-openapi.yml
+  - type: Documentation
+    url: https://phaidra.org/docs/api/
+  - type: JSONSchema
+    url: json-schema/university-of-vienna-object-info-schema.json
+  - type: JSONSchema
+    url: json-schema/university-of-vienna-index-schema.json
+  - type: x-json-structure
+    url: json-structure/university-of-vienna-object-info-structure.json
+  - type: x-json-structure
+    url: json-structure/university-of-vienna-index-structure.json
+  - type: x-example
+    url: examples/university-of-vienna-object-info-example.json
+  - type: x-example
+    url: examples/university-of-vienna-search-select-example.json
+  - type: x-spectral-ruleset
+    url: rules/university-of-vienna-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/university-of-vienna-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/university-of-vienna-context.jsonld
+  - type: GitHub
+    url: https://github.com/phaidra/phaidra-api/wiki/Documentation
+- aid: university-of-vienna:university-of-vienna-imageserver-api
+  name: University of Vienna imageserver API
+  description: Requests to the imageserver
+  humanURL: https://phaidra.org/docs/api/
+  baseURL: https://services.phaidra.univie.ac.at/api
+  tags:
+  - imageserver
+  properties:
+  - type: OpenAPI
+    url: openapi/university-of-vienna-imageserver-api-openapi.yml
+  - type: Documentation
+    url: https://phaidra.org/docs/api/
+  - type: JSONSchema
+    url: json-schema/university-of-vienna-object-info-schema.json
+  - type: JSONSchema
+    url: json-schema/university-of-vienna-index-schema.json
+  - type: x-json-structure
+    url: json-structure/university-of-vienna-object-info-structure.json
+  - type: x-json-structure
+    url: json-structure/university-of-vienna-index-structure.json
+  - type: x-example
+    url: examples/university-of-vienna-object-info-example.json
+  - type: x-example
+    url: examples/university-of-vienna-search-select-example.json
+  - type: x-spectral-ruleset
+    url: rules/university-of-vienna-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/university-of-vienna-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/university-of-vienna-context.jsonld
+  - type: GitHub
+    url: https://github.com/phaidra/phaidra-api/wiki/Documentation
+- aid: university-of-vienna:university-of-vienna-lists-api
+  name: University of Vienna lists API
+  description: Requests for manipulating object lists
+  humanURL: https://phaidra.org/docs/api/
+  baseURL: https://services.phaidra.univie.ac.at/api
+  tags:
+  - lists
+  properties:
+  - type: OpenAPI
+    url: openapi/university-of-vienna-lists-api-openapi.yml
+  - type: Documentation
+    url: https://phaidra.org/docs/api/
+  - type: JSONSchema
+    url: json-schema/university-of-vienna-object-info-schema.json
+  - type: JSONSchema
+    url: json-schema/university-of-vienna-index-schema.json
+  - type: x-json-structure
+    url: json-structure/university-of-vienna-object-info-structure.json
+  - type: x-json-structure
+    url: json-structure/university-of-vienna-index-structure.json
+  - type: x-example
+    url: examples/university-of-vienna-object-info-example.json
+  - type: x-example
+    url: examples/university-of-vienna-search-select-example.json
+  - type: x-spectral-ruleset
+    url: rules/university-of-vienna-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/university-of-vienna-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/university-of-vienna-context.jsonld
+  - type: GitHub
+    url: https://github.com/phaidra/phaidra-api/wiki/Documentation
+- aid: university-of-vienna:university-of-vienna-misc-api
+  name: University of Vienna misc API
+  description: The misc API from University of Vienna — 7 operation(s) for misc.
+  humanURL: https://phaidra.org/docs/api/
+  baseURL: https://services.phaidra.univie.ac.at/api
+  tags:
+  - misc
+  properties:
+  - type: OpenAPI
+    url: openapi/university-of-vienna-misc-api-openapi.yml
+  - type: Documentation
+    url: https://phaidra.org/docs/api/
+  - type: JSONSchema
+    url: json-schema/university-of-vienna-object-info-schema.json
+  - type: JSONSchema
+    url: json-schema/university-of-vienna-index-schema.json
+  - type: x-json-structure
+    url: json-structure/university-of-vienna-object-info-structure.json
+  - type: x-json-structure
+    url: json-structure/university-of-vienna-index-structure.json
+  - type: x-example
+    url: examples/university-of-vienna-object-info-example.json
+  - type: x-example
+    url: examples/university-of-vienna-search-select-example.json
+  - type: x-spectral-ruleset
+    url: rules/university-of-vienna-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/university-of-vienna-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/university-of-vienna-context.jsonld
+  - type: GitHub
+    url: https://github.com/phaidra/phaidra-api/wiki/Documentation
+- aid: university-of-vienna:university-of-vienna-oai-pmh-api
+  name: University of Vienna oai-pmh API
+  description: Look at the [OAI-PMH protocol](https://www.openarchives.org/pmh) used in this endpoint
+  humanURL: https://phaidra.org/docs/api/
+  baseURL: https://services.phaidra.univie.ac.at/api
+  tags:
+  - oai-pmh
+  properties:
+  - type: OpenAPI
+    url: openapi/university-of-vienna-oai-pmh-api-openapi.yml
+  - type: Documentation
+    url: https://phaidra.org/docs/api/
+  - type: JSONSchema
+    url: json-schema/university-of-vienna-object-info-schema.json
+  - type: JSONSchema
+    url: json-schema/university-of-vienna-index-schema.json
+  - type: x-json-structure
+    url: json-structure/university-of-vienna-object-info-structure.json
+  - type: x-json-structure
+    url: json-structure/university-of-vienna-index-structure.json
+  - type: x-example
+    url: examples/university-of-vienna-object-info-example.json
+  - type: x-example
+    url: examples/university-of-vienna-search-select-example.json
+  - type: x-spectral-ruleset
+    url: rules/university-of-vienna-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/university-of-vienna-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/university-of-vienna-context.jsonld
+  - type: GitHub
+    url: https://github.com/phaidra/phaidra-api/wiki/Documentation
+- aid: university-of-vienna:university-of-vienna-object-advanced-api
+  name: University of Vienna object-advanced API
+  description: Additional requests for the manipulation of digital objects
+  humanURL: https://phaidra.org/docs/api/
+  baseURL: https://services.phaidra.univie.ac.at/api
+  tags:
+  - object-advanced
+  properties:
+  - type: OpenAPI
+    url: openapi/university-of-vienna-object-advanced-api-openapi.yml
+  - type: Documentation
+    url: https://phaidra.org/docs/api/
+  - type: JSONSchema
+    url: json-schema/university-of-vienna-object-info-schema.json
+  - type: JSONSchema
+    url: json-schema/university-of-vienna-index-schema.json
+  - type: x-json-structure
+    url: json-structure/university-of-vienna-object-info-structure.json
+  - type: x-json-structure
+    url: json-structure/university-of-vienna-index-structure.json
+  - type: x-example
+    url: examples/university-of-vienna-object-info-example.json
+  - type: x-example
+    url: examples/university-of-vienna-search-select-example.json
+  - type: x-spectral-ruleset
+    url: rules/university-of-vienna-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/university-of-vienna-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/university-of-vienna-context.jsonld
+  - type: GitHub
+    url: https://github.com/phaidra/phaidra-api/wiki/Documentation
+- aid: university-of-vienna:university-of-vienna-object-basics-api
+  name: University of Vienna object-basics API
+  description: Most important requests you'll need to manage digital objects in PHAIDRA
+  humanURL: https://phaidra.org/docs/api/
+  baseURL: https://services.phaidra.univie.ac.at/api
+  tags:
+  - object-basics
+  properties:
+  - type: OpenAPI
+    url: openapi/university-of-vienna-object-basics-api-openapi.yml
+  - type: Documentation
+    url: https://phaidra.org/docs/api/
+  - type: JSONSchema
+    url: json-schema/university-of-vienna-object-info-schema.json
+  - type: JSONSchema
+    url: json-schema/university-of-vienna-index-schema.json
+  - type: x-json-structure
+    url: json-structure/university-of-vienna-object-info-structure.json
+  - type: x-json-structure
+    url: json-structure/university-of-vienna-index-structure.json
+  - type: x-example
+    url: examples/university-of-vienna-object-info-example.json
+  - type: x-example
+    url: examples/university-of-vienna-search-select-example.json
+  - type: x-spectral-ruleset
+    url: rules/university-of-vienna-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/university-of-vienna-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/university-of-vienna-context.jsonld
+  - type: GitHub
+    url: https://github.com/phaidra/phaidra-api/wiki/Documentation
+- aid: university-of-vienna:university-of-vienna-relationships-api
+  name: University of Vienna relationships API
+  description: Requests for adding and removing object relationships
+  humanURL: https://phaidra.org/docs/api/
+  baseURL: https://services.phaidra.univie.ac.at/api
+  tags:
+  - relationships
+  properties:
+  - type: OpenAPI
+    url: openapi/university-of-vienna-relationships-api-openapi.yml
+  - type: Documentation
+    url: https://phaidra.org/docs/api/
+  - type: JSONSchema
+    url: json-schema/university-of-vienna-object-info-schema.json
+  - type: JSONSchema
+    url: json-schema/university-of-vienna-index-schema.json
+  - type: x-json-structure
+    url: json-structure/university-of-vienna-object-info-structure.json
+  - type: x-json-structure
+    url: json-structure/university-of-vienna-index-structure.json
+  - type: x-example
+    url: examples/university-of-vienna-object-info-example.json
+  - type: x-example
+    url: examples/university-of-vienna-search-select-example.json
+  - type: x-spectral-ruleset
+    url: rules/university-of-vienna-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/university-of-vienna-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/university-of-vienna-context.jsonld
+  - type: GitHub
+    url: https://github.com/phaidra/phaidra-api/wiki/Documentation
+- aid: university-of-vienna:university-of-vienna-search-api
+  name: University of Vienna search API
+  description: The search API from University of Vienna — 1 operation(s) for search.
+  humanURL: https://phaidra.org/docs/api/
+  baseURL: https://services.phaidra.univie.ac.at/api
+  tags:
+  - search
+  properties:
+  - type: OpenAPI
+    url: openapi/university-of-vienna-search-api-openapi.yml
+  - type: Documentation
+    url: https://phaidra.org/docs/api/
+  - type: JSONSchema
+    url: json-schema/university-of-vienna-object-info-schema.json
+  - type: JSONSchema
+    url: json-schema/university-of-vienna-index-schema.json
+  - type: x-json-structure
+    url: json-structure/university-of-vienna-object-info-structure.json
+  - type: x-json-structure
+    url: json-structure/university-of-vienna-index-structure.json
+  - type: x-example
+    url: examples/university-of-vienna-object-info-example.json
+  - type: x-example
+    url: examples/university-of-vienna-search-select-example.json
+  - type: x-spectral-ruleset
+    url: rules/university-of-vienna-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/university-of-vienna-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/university-of-vienna-context.jsonld
+  - type: GitHub
+    url: https://github.com/phaidra/phaidra-api/wiki/Documentation
+- aid: university-of-vienna:university-of-vienna-session-api
+  name: University of Vienna session API
+  description: Session management
+  humanURL: https://phaidra.org/docs/api/
+  baseURL: https://services.phaidra.univie.ac.at/api
+  tags:
+  - session
+  properties:
+  - type: OpenAPI
+    url: openapi/university-of-vienna-session-api-openapi.yml
+  - type: Documentation
+    url: https://phaidra.org/docs/api/
+  - type: JSONSchema
+    url: json-schema/university-of-vienna-object-info-schema.json
+  - type: JSONSchema
+    url: json-schema/university-of-vienna-index-schema.json
+  - type: x-json-structure
+    url: json-structure/university-of-vienna-object-info-structure.json
+  - type: x-json-structure
+    url: json-structure/university-of-vienna-index-structure.json
+  - type: x-example
+    url: examples/university-of-vienna-object-info-example.json
+  - type: x-example
+    url: examples/university-of-vienna-search-select-example.json
+  - type: x-spectral-ruleset
+    url: rules/university-of-vienna-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/university-of-vienna-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/university-of-vienna-context.jsonld
+  - type: GitHub
+    url: https://github.com/phaidra/phaidra-api/wiki/Documentation
+- aid: university-of-vienna:university-of-vienna-stats-api
+  name: University of Vienna stats API
+  description: The stats API from University of Vienna — 4 operation(s) for stats.
+  humanURL: https://phaidra.org/docs/api/
+  baseURL: https://services.phaidra.univie.ac.at/api
+  tags:
+  - stats
+  properties:
+  - type: OpenAPI
+    url: openapi/university-of-vienna-stats-api-openapi.yml
+  - type: Documentation
+    url: https://phaidra.org/docs/api/
+  - type: JSONSchema
+    url: json-schema/university-of-vienna-object-info-schema.json
+  - type: JSONSchema
+    url: json-schema/university-of-vienna-index-schema.json
+  - type: x-json-structure
+    url: json-structure/university-of-vienna-object-info-structure.json
+  - type: x-json-structure
+    url: json-structure/university-of-vienna-index-structure.json
+  - type: x-example
+    url: examples/university-of-vienna-object-info-example.json
+  - type: x-example
+    url: examples/university-of-vienna-search-select-example.json
+  - type: x-spectral-ruleset
+    url: rules/university-of-vienna-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/university-of-vienna-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/university-of-vienna-context.jsonld
+  - type: GitHub
+    url: https://github.com/phaidra/phaidra-api/wiki/Documentation
+- aid: university-of-vienna:university-of-vienna-templates-api
+  name: University of Vienna templates API
+  description: Requests for managing metadata templates
+  humanURL: https://phaidra.org/docs/api/
+  baseURL: https://services.phaidra.univie.ac.at/api
+  tags:
+  - templates
+  properties:
+  - type: OpenAPI
+    url: openapi/university-of-vienna-templates-api-openapi.yml
+  - type: Documentation
+    url: https://phaidra.org/docs/api/
+  - type: JSONSchema
+    url: json-schema/university-of-vienna-object-info-schema.json
+  - type: JSONSchema
+    url: json-schema/university-of-vienna-index-schema.json
+  - type: x-json-structure
+    url: json-structure/university-of-vienna-object-info-structure.json
+  - type: x-json-structure
+    url: json-structure/university-of-vienna-index-structure.json
+  - type: x-example
+    url: examples/university-of-vienna-object-info-example.json
+  - type: x-example
+    url: examples/university-of-vienna-search-select-example.json
+  - type: x-spectral-ruleset
+    url: rules/university-of-vienna-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/university-of-vienna-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/university-of-vienna-context.jsonld
+  - type: GitHub
+    url: https://github.com/phaidra/phaidra-api/wiki/Documentation
+- aid: university-of-vienna:university-of-vienna-vocabularies-api
+  name: University of Vienna vocabularies API
+  description: Requests for controlled vocabularies
+  humanURL: https://phaidra.org/docs/api/
+  baseURL: https://services.phaidra.univie.ac.at/api
+  tags:
+  - vocabularies
+  properties:
+  - type: OpenAPI
+    url: openapi/university-of-vienna-vocabularies-api-openapi.yml
+  - type: Documentation
+    url: https://phaidra.org/docs/api/
+  - type: JSONSchema
+    url: json-schema/university-of-vienna-object-info-schema.json
+  - type: JSONSchema
+    url: json-schema/university-of-vienna-index-schema.json
+  - type: x-json-structure
+    url: json-structure/university-of-vienna-object-info-structure.json
+  - type: x-json-structure
+    url: json-structure/university-of-vienna-index-structure.json
+  - type: x-example
+    url: examples/university-of-vienna-object-info-example.json
+  - type: x-example
+    url: examples/university-of-vienna-search-select-example.json
+  - type: x-spectral-ruleset
+    url: rules/university-of-vienna-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/university-of-vienna-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/university-of-vienna-context.jsonld
+  - type: GitHub
+    url: https://github.com/phaidra/phaidra-api/wiki/Documentation
 common:
   - type: AgenticAccess
     url: agentic-access/university-of-vienna-agentic-access.yml
