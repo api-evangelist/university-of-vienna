@@ -1,0 +1,40 @@
+{
+  "provider": "university-of-vienna",
+  "sources": [
+    "university-of-vienna-datastream-api-openapi.yml",
+    "university-of-vienna-directory-api-openapi.yml",
+    "university-of-vienna-imageserver-api-openapi.yml",
+    "university-of-vienna-lists-api-openapi.yml",
+    "university-of-vienna-misc-api-openapi.yml",
+    "university-of-vienna-oai-pmh-api-openapi.yml",
+    "university-of-vienna-object-advanced-api-openapi.yml",
+    "university-of-vienna-object-basics-api-openapi.yml",
+    "university-of-vienna-relationships-api-openapi.yml",
+    "university-of-vienna-search-api-openapi.yml",
+    "university-of-vienna-session-api-openapi.yml",
+    "university-of-vienna-stats-api-openapi.yml",
+    "university-of-vienna-templates-api-openapi.yml",
+    "university-of-vienna-vocabularies-api-openapi.yml"
+  ],
+  "outputs": [
+    "university-of-vienna-datastream-api-openapi.yml",
+    "university-of-vienna-directory-api-openapi.yml",
+    "university-of-vienna-imageserver-api-openapi.yml",
+    "university-of-vienna-lists-api-openapi.yml",
+    "university-of-vienna-misc-api-openapi.yml",
+    "university-of-vienna-oai-pmh-api-openapi.yml",
+    "university-of-vienna-object-advanced-api-openapi.yml",
+    "university-of-vienna-object-basics-api-openapi.yml",
+    "university-of-vienna-relationships-api-openapi.yml",
+    "university-of-vienna-search-api-openapi.yml",
+    "university-of-vienna-session-api-openapi.yml",
+    "university-of-vienna-stats-api-openapi.yml",
+    "university-of-vienna-templates-api-openapi.yml",
+    "university-of-vienna-vocabularies-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
