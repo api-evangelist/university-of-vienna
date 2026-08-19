@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PHAIDRA datastream oai-pmh API",
+    "version": "3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "oai-pmh",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "OAI-PMH endpoint.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://services.phaidra.univie.ac.at/api/oai",
+            "params": [
+              {
+                "name": "verb",
+                "value": "",
+                "type": "query",
+                "description": "See [the OAI-PMH protocol](https://www.openarchives.org/pmh/)"
+              }
+            ]
+          },
+          "docs": "OAI-PMH endpoint."
+        },
+        {
+          "info": {
+            "name": "Same as GET.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://services.phaidra.univie.ac.at/api/oai"
+          },
+          "docs": "Same as GET."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

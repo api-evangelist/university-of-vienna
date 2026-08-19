@@ -1,0 +1,492 @@
+{
+  "item": [
+    {
+      "id": "1328817e-154a-48d0-9556-134ee1c94ad2",
+      "name": "templates",
+      "description": {
+        "content": "Requests for managing metadata templates",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f60a1e12-7ac7-40f5-b956-d0bddb78008c",
+          "name": "Get user's JSON-LD templates",
+          "request": {
+            "name": "Get user's JSON-LD templates",
+            "description": {
+              "content": "Retrieves the user's saved JSON-LD templates",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jsonld",
+                "templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9ce07806-0c11-4b7f-92db-0ead354297a8",
+              "name": "lists JSON-LD templates",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jsonld",
+                    "templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"alerts\": [\n    {\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"status\": \"string\",\n  \"templates\": [\n    {\n      \"created\": 2550.7573954041086,\n      \"name\": \"string\",\n      \"updated\": 4627.237212119466,\n      \"tid\": \"string\"\n    },\n    {\n      \"created\": 4369.704250095425,\n      \"name\": \"string\",\n      \"updated\": 4440.121867300693,\n      \"tid\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "066aaa03-e28c-475d-b809-a9badf23574b",
+          "name": "Adds JSON-LD templates",
+          "request": {
+            "name": "Adds JSON-LD templates",
+            "description": {
+              "content": "Adds JSON-LD templates",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jsonld",
+                "template",
+                "add"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "New template name"
+                },
+                {
+                  "key": "form",
+                  "value": "{\"dcterms:type\":[{\"@type\":\"<string>\",\"skos:exactMatch\":[\"<string>\",\"<string>\"],\"skos:prefLabel\":[{\"@language\":\"<string>\",\"@value\":\"<string>\"},{\"@language\":\"<string>\",\"@value\":\"<string>\"}]},{\"@type\":\"<string>\",\"skos:exactMatch\":[\"<string>\",\"<string>\"],\"skos:prefLabel\":[{\"@language\":\"<string>\",\"@value\":\"<string>\"},{\"@language\":\"<string>\",\"@value\":\"<string>\"}]}],\"edm:hasType\":[{\"@type\":\"<string>\",\"skos:exactMatch\":[\"<string>\",\"<string>\"],\"skos:prefLabel\":[{\"@language\":\"<string>\",\"@value\":\"<string>\"},{\"@language\":\"<string>\",\"@value\":\"<string>\"}]},{\"@type\":\"<string>\",\"skos:exactMatch\":[\"<string>\",\"<string>\"],\"skos:prefLabel\":[{\"@language\":\"<string>\",\"@value\":\"<string>\"},{\"@language\":\"<string>\",\"@value\":\"<string>\"}]}],\"dce:title\":[{\"@type\":\"<string>\",\"bf:mainTitle\":[{\"@value\":\"<string>\",\"@language\":\"<string>\"},{\"@value\":\"<string>\",\"@language\":\"<string>\"}]},{\"@type\":\"<string>\",\"bf:mainTitle\":[{\"@value\":\"<string>\",\"@language\":\"<string>\"},{\"@value\":\"<string>\",\"@language\":\"<string>\"}]}],\"role:aut\":[{\"@type\":\"<string>\",\"schema:familyName\":[{\"@value\":\"<string>\"},{\"@value\":\"<string>\"}],\"schema:givenName\":[{\"@value\":\"<string>\"},{\"@value\":\"<string>\"}]},{\"@type\":\"<string>\",\"schema:familyName\":[{\"@value\":\"<string>\"},{\"@value\":\"<string>\"}],\"schema:givenName\":[{\"@value\":\"<string>\"},{\"@value\":\"<string>\"}]}],\"dce:subject\":[{\"@type\":\"<string>\",\"skos:prefLabel\":[{\"@value\":\"<string>\",\"@language\":\"<string>\"},{\"@value\":\"<string>\",\"@language\":\"<string>\"}]},{\"@type\":\"<string>\",\"skos:prefLabel\":[{\"@value\":\"<string>\",\"@language\":\"<string>\"},{\"@value\":\"<string>\",\"@language\":\"<string>\"}]}],\"bf:note\":[{\"skos:prefLabel\":[{\"@value\":\"<string>\",\"@language\":\"<string>\"},{\"@value\":\"<string>\",\"@language\":\"<string>\"}],\"@type\":\"<string>\"},{\"skos:prefLabel\":[{\"@value\":\"<string>\",\"@language\":\"<string>\"},{\"@value\":\"<string>\",\"@language\":\"<string>\"}],\"@type\":\"<string>\"}],\"vra:hasInscription\":[{\"@type\":\"<string>\",\"skos:prefLabel\":[{\"@value\":\"<string>\",\"@language\":\"<string>\"},{\"@value\":\"<string>\",\"@language\":\"<string>\"}]},{\"@type\":\"<string>\",\"skos:prefLabel\":[{\"@value\":\"<string>\",\"@language\":\"<string>\"},{\"@value\":\"<string>\",\"@language\":\"<string>\"}]}],\"dcterms:language\":[\"<string>\",\"<string>\"],\"ebucore:filename\":[\"<string>\",\"<string>\"],\"ebucore:hasMimeType\":[\"<string>\",\"<string>\"],\"edm:rights\":[\"<string>\",\"<string>\"]}",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "tag",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6cb1d41e-8f01-4e34-92ef-0aecde8ab602",
+              "name": "Template created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jsonld",
+                    "template",
+                    "add"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "New template name",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "form",
+                      "value": "{\"dcterms:type\":[{\"@type\":\"<string>\",\"skos:exactMatch\":[\"<string>\",\"<string>\"],\"skos:prefLabel\":[{\"@language\":\"<string>\",\"@value\":\"<string>\"},{\"@language\":\"<string>\",\"@value\":\"<string>\"}]},{\"@type\":\"<string>\",\"skos:exactMatch\":[\"<string>\",\"<string>\"],\"skos:prefLabel\":[{\"@language\":\"<string>\",\"@value\":\"<string>\"},{\"@language\":\"<string>\",\"@value\":\"<string>\"}]}],\"edm:hasType\":[{\"@type\":\"<string>\",\"skos:exactMatch\":[\"<string>\",\"<string>\"],\"skos:prefLabel\":[{\"@language\":\"<string>\",\"@value\":\"<string>\"},{\"@language\":\"<string>\",\"@value\":\"<string>\"}]},{\"@type\":\"<string>\",\"skos:exactMatch\":[\"<string>\",\"<string>\"],\"skos:prefLabel\":[{\"@language\":\"<string>\",\"@value\":\"<string>\"},{\"@language\":\"<string>\",\"@value\":\"<string>\"}]}],\"dce:title\":[{\"@type\":\"<string>\",\"bf:mainTitle\":[{\"@value\":\"<string>\",\"@language\":\"<string>\"},{\"@value\":\"<string>\",\"@language\":\"<string>\"}]},{\"@type\":\"<string>\",\"bf:mainTitle\":[{\"@value\":\"<string>\",\"@language\":\"<string>\"},{\"@value\":\"<string>\",\"@language\":\"<string>\"}]}],\"role:aut\":[{\"@type\":\"<string>\",\"schema:familyName\":[{\"@value\":\"<string>\"},{\"@value\":\"<string>\"}],\"schema:givenName\":[{\"@value\":\"<string>\"},{\"@value\":\"<string>\"}]},{\"@type\":\"<string>\",\"schema:familyName\":[{\"@value\":\"<string>\"},{\"@value\":\"<string>\"}],\"schema:givenName\":[{\"@value\":\"<string>\"},{\"@value\":\"<string>\"}]}],\"dce:subject\":[{\"@type\":\"<string>\",\"skos:prefLabel\":[{\"@value\":\"<string>\",\"@language\":\"<string>\"},{\"@value\":\"<string>\",\"@language\":\"<string>\"}]},{\"@type\":\"<string>\",\"skos:prefLabel\":[{\"@value\":\"<string>\",\"@language\":\"<string>\"},{\"@value\":\"<string>\",\"@language\":\"<string>\"}]}],\"bf:note\":[{\"skos:prefLabel\":[{\"@value\":\"<string>\",\"@language\":\"<string>\"},{\"@value\":\"<string>\",\"@language\":\"<string>\"}],\"@type\":\"<string>\"},{\"skos:prefLabel\":[{\"@value\":\"<string>\",\"@language\":\"<string>\"},{\"@value\":\"<string>\",\"@language\":\"<string>\"}],\"@type\":\"<string>\"}],\"vra:hasInscription\":[{\"@type\":\"<string>\",\"skos:prefLabel\":[{\"@value\":\"<string>\",\"@language\":\"<string>\"},{\"@value\":\"<string>\",\"@language\":\"<string>\"}]},{\"@type\":\"<string>\",\"skos:prefLabel\":[{\"@value\":\"<string>\",\"@language\":\"<string>\"},{\"@value\":\"<string>\",\"@language\":\"<string>\"}]}],\"dcterms:language\":[\"<string>\",\"<string>\"],\"ebucore:filename\":[\"<string>\",\"<string>\"],\"ebucore:hasMimeType\":[\"<string>\",\"<string>\"],\"edm:rights\":[\"<string>\",\"<string>\"]}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "tag",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"alerts\": [\n    {\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"status\": \"string\",\n  \"tid\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f3e51113-baca-4a43-a4e2-9679f77c6f4a",
+          "name": "Get template detail",
+          "request": {
+            "name": "Get template detail",
+            "description": {},
+            "url": {
+              "path": [
+                "jsonld",
+                "template",
+                ":tid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tid",
+                  "description": "template id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ea2f75a7-e9f4-46d6-928b-6a9d8713fdc9",
+              "name": "template detail",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jsonld",
+                    "template",
+                    ":tid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tid",
+                      "description": "template id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"alerts\": [\n    {\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"template\": {\n    \"owner\": \"string\",\n    \"form\": {\n      \"sections\": [\n        {\n          \"fields\": [\n            {\n              \"component\": \"string\",\n              \"definition\": \"string\",\n              \"fieldname\": \"string\",\n              \"id\": \"string\",\n              \"label\": \"string\",\n              \"predicate\": \"string\",\n              \"value\": \"string\",\n              \"vocabulary\": \"string\",\n              \"disabled\": false,\n              \"multiplicable\": true,\n              \"required\": false,\n              \"skos:prefLabel\": [\n                {\n                  \"@language\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"@value\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                },\n                {\n                  \"@language\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"@value\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                }\n              ]\n            },\n            {\n              \"component\": \"string\",\n              \"definition\": \"string\",\n              \"fieldname\": \"string\",\n              \"id\": \"string\",\n              \"label\": \"string\",\n              \"predicate\": \"string\",\n              \"value\": \"string\",\n              \"vocabulary\": \"string\",\n              \"disabled\": true,\n              \"multiplicable\": true,\n              \"required\": true,\n              \"skos:prefLabel\": [\n                {\n                  \"@language\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"@value\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                },\n                {\n                  \"@language\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"@value\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                }\n              ]\n            }\n          ]\n        },\n        {\n          \"fields\": [\n            {\n              \"component\": \"string\",\n              \"definition\": \"string\",\n              \"fieldname\": \"string\",\n              \"id\": \"string\",\n              \"label\": \"string\",\n              \"predicate\": \"string\",\n              \"value\": \"string\",\n              \"vocabulary\": \"string\",\n              \"disabled\": false,\n              \"multiplicable\": true,\n              \"required\": true,\n              \"skos:prefLabel\": [\n                {\n                  \"@language\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"@value\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                },\n                {\n                  \"@language\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"@value\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                }\n              ]\n            },\n            {\n              \"component\": \"string\",\n              \"definition\": \"string\",\n              \"fieldname\": \"string\",\n              \"id\": \"string\",\n              \"label\": \"string\",\n              \"predicate\": \"string\",\n              \"value\": \"string\",\n              \"vocabulary\": \"string\",\n              \"disabled\": true,\n              \"multiplicable\": false,\n              \"required\": true,\n              \"skos:prefLabel\": [\n                {\n                  \"@language\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"@value\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                },\n                {\n                  \"@language\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"@value\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    \"created\": 8777.435088024748,\n    \"name\": \"string\",\n    \"updated\": 2385.8179854005843,\n    \"tid\": \"string\",\n    \"tag\": \"string\",\n    \"_id\": {\n      \"$oid\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "76991e47-e180-4d4e-b019-c9d6f6acca72",
+          "name": "Remove template",
+          "request": {
+            "name": "Remove template",
+            "description": {},
+            "url": {
+              "path": [
+                "jsonld",
+                "template",
+                ":tid",
+                "remove"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tid",
+                  "description": "template id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1da70e32-b00c-4a17-ac60-37b404d7250a",
+              "name": "template removed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jsonld",
+                    "template",
+                    ":tid",
+                    "remove"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tid",
+                      "description": "template id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"alerts\": [\n    {\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"status\": 1509.692300830553\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://services.phaidra.univie.ac.at/api/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c8a1ab4f-a23c-461b-a829-888916acb8a4",
+    "name": "PHAIDRA datastream templates API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Documentation of the PHAIDRA API.",
+      "type": "text/plain"
+    }
+  }
+}

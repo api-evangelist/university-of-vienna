@@ -1,0 +1,157 @@
+{
+  "item": [
+    {
+      "id": "e3085ed4-0055-461c-b20b-686161c1cc21",
+      "name": "search",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "197f482c-9dbd-485c-a53d-0dc3b9ca9cd3",
+          "name": "Search query",
+          "request": {
+            "name": "Search query",
+            "description": {
+              "content": "Solr query, for the query parameters see [Solr common query parameters](https://solr.apache.org/guide/solr/latest/query-guide/common-query-parameters.html)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "search",
+                "select"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "query string"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c1bff493-3040-4d42-a5d5-411abe7136be",
+              "name": "search response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "select"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"responseHeader\": [\n    {\n      \"status\": 2392.0564919032195,\n      \"QTime\": 9644.123311032059,\n      \"params\": {}\n    },\n    {\n      \"status\": 5531.840052615161,\n      \"QTime\": 5872.470113148331,\n      \"params\": {}\n    }\n  ],\n  \"response\": {\n    \"numFound\": 555.7725670211078,\n    \"start\": 2527.478524971861,\n    \"numFoundExact\": true\n  },\n  \"facet_counts\": {\n    \"facet_querie\": {},\n    \"facet_fields\": {},\n    \"facet_ranges\": {},\n    \"facet_intervals\": {},\n    \"facet_heatmaps\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "52c738f6-58fa-4c5f-86bf-564196f9e033",
+              "name": "object has not been found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "select"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://services.phaidra.univie.ac.at/api/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "14500de8-f4be-4836-be45-93ac296df06c",
+    "name": "PHAIDRA datastream search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Documentation of the PHAIDRA API.",
+      "type": "text/plain"
+    }
+  }
+}

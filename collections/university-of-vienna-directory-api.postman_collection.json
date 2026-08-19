@@ -1,0 +1,1525 @@
+{
+  "item": [
+    {
+      "id": "5f8abd21-a35f-4e42-9c7b-8e52d112bd9d",
+      "name": "directory",
+      "description": {
+        "content": "Requests related to users, user groups and organisation structure",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e0b69c25-b7ba-462c-9c92-6e5e665b501c",
+          "name": "Get subunits.",
+          "request": {
+            "name": "Get subunits.",
+            "description": {
+              "content": "Retrieves the subunits of an organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "directory",
+                "org_get_subunits"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "unit id"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3d38e8ad-8d08-491c-a57f-556e97bb9105",
+              "name": "subunits",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "directory",
+                    "org_get_subunits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"alerts\": [\n    {\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"status\": 6639.180933952998,\n  \"subunits\": [\n    {\n      \"@id\": \"string\",\n      \"@type\": \"string\",\n      \"skos:notation\": \"string\",\n      \"skos:prefLabel\": {\n        \"deu\": \"string\",\n        \"eng\": \"string\"\n      }\n    },\n    {\n      \"@id\": \"string\",\n      \"@type\": \"string\",\n      \"skos:notation\": \"string\",\n      \"skos:prefLabel\": {\n        \"deu\": \"string\",\n        \"eng\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fdb7a500-0d65-4c2b-995d-19ba67d30735",
+          "name": "Get superunits.",
+          "request": {
+            "name": "Get superunits.",
+            "description": {
+              "content": "Retrieves the superunits of an organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "directory",
+                "org_get_superunits"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "unit id"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9cea291c-c640-480f-bfce-2cd19ebb044c",
+              "name": "Units which are parent of the org unit.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "directory",
+                    "org_get_superunits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 8443.358184717119,\n  \"parent_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6f11c1fa-a261-4fad-ac3d-a64a56757b41",
+          "name": "Get the parent path.",
+          "request": {
+            "name": "Get the parent path.",
+            "description": {
+              "content": "Retrieves the parent path of an organisation unit",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "directory",
+                "org_get_parentpath"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "Parent id"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b9ff1908-c2d0-4c0c-a33a-8b9ea7f1c8f5",
+              "name": "parent path",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "directory",
+                    "org_get_parentpath"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 6943.679803013293,\n  \"alerts\": [\n    {\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "088c6b04-abd6-40ca-86f5-fecf675e5fb5",
+          "name": "Get organisation units",
+          "request": {
+            "name": "Get organisation units",
+            "description": {
+              "content": "Get the list of the organisation units. They can then be used for example to find objects explicitly associated to, or to restrict rights for, a particular organisation unit.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "directory",
+                "org_get_units"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "parent_id",
+                  "value": "<string>",
+                  "description": "Id of the parent unit. If not set, returns the top-level units."
+                },
+                {
+                  "disabled": false,
+                  "key": "values_namespace",
+                  "value": "<string>",
+                  "description": "If provided, the values returned (in the 'uri' field) will be prefixed with the value of this parameter."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "44bae3e7-7df4-43b2-ac34-df6258a7569b",
+              "name": "units",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "directory",
+                    "org_get_units"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "parent_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "values_namespace",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"alerts\": [\n    {\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"status\": 9138.654154507081\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5e637f92-f8e3-4f42-a065-16712dc43ae7",
+          "name": "Get user's basic data.",
+          "request": {
+            "name": "Get user's basic data.",
+            "description": {
+              "content": "Returns basic data about the specified user (such as name, affiliation and organization unit).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "directory",
+                "user",
+                ":username",
+                "data"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "username",
+                  "description": "the user username"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "571e7e04-cdbf-4aeb-a99d-c957d163e443",
+              "name": "user's details (name, affiliation, etc.)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "directory",
+                    "user",
+                    ":username",
+                    "data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "username",
+                      "description": "the user username"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 8413.989559266163,\n  \"user_data\": {\n    \"org_units_l1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"firstname\": \"string\",\n    \"lastname\": \"string\",\n    \"username\": \"string\",\n    \"email\": \"string\",\n    \"org_units_l2\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c3bac503-4d2b-4095-bff4-856c358f25f6",
+          "name": "Get user's full name.",
+          "request": {
+            "name": "Get user's full name.",
+            "description": {
+              "content": "Returns the name of a user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "directory",
+                "user",
+                ":username",
+                "name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "username",
+                  "description": "the user's username"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "88ce1684-c5c1-4edb-9dbd-0fa796237d78",
+              "name": "user's name",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "directory",
+                    "user",
+                    ":username",
+                    "name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "username",
+                      "description": "the user's username"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": {},\n  \"status\": 7377.898761654646\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ba60b3d8-3ce6-4cf1-88ae-7fb4f87c2190",
+          "name": "Get user's email",
+          "request": {
+            "name": "Get user's email",
+            "description": {
+              "content": "Returns the user's email",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "directory",
+                "user",
+                ":username",
+                "email"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "username",
+                  "description": "the user username"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "46e12b9a-e36f-4870-8615-c3c685a4bfa2",
+              "name": "user's email",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "directory",
+                    "user",
+                    ":username",
+                    "email"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "username",
+                      "description": "the user username"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"email\": \"string\",\n  \"status\": 6389.290818742443\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "96c6f665-088d-455b-9764-3c1083d3ecb8",
+          "name": "Searches the user database.",
+          "request": {
+            "name": "Searches the user database.",
+            "description": {},
+            "url": {
+              "path": [
+                "directory",
+                "user",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "query (it will be automatically suffixed with *)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "534e7963-2486-49d3-a1b2-83e8bdf056e2",
+              "name": "returns accounts details. Only the first 50 results are returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "directory",
+                    "user",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"hits\": 9502.476939660362,\n  \"accounts\": [\n    {\n      \"uid\": \"string\",\n      \"value\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"uid\": \"string\",\n      \"value\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"status\": 5105.446784188722\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aa5b0876-67aa-4c6b-8a42-647eeccacf60",
+          "name": "Returns current user's data.",
+          "request": {
+            "name": "Returns current user's data.",
+            "description": {},
+            "url": {
+              "path": [
+                "directory",
+                "user",
+                "data"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "12ac3511-ef17-4ec3-afc4-ee92f1dd193c",
+              "name": "returns account details of user (from credentials)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "directory",
+                    "user",
+                    "data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"user_data\": {\n    \"org_units_l1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"firstname\": \"string\",\n    \"lastname\": \"string\",\n    \"username\": \"string\",\n    \"email\": \"string\",\n    \"org_units_l2\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"status\": 5932.9416459764325\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9b565d9b-8709-426a-98fe-ce2cf896850a",
+          "name": "Get user's groups.",
+          "request": {
+            "name": "Get user's groups.",
+            "description": {
+              "content": "Retrieves all user's groups.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b5980069-6c04-4536-b081-f7d4b42acafb",
+              "name": "returns the user's groups (user credentials needed)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"alerts\": [\n    {\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"groups\": [\n    {\n      \"created\": 6708.310258895862,\n      \"name\": \"string\",\n      \"updated\": 6199.398261523768,\n      \"groupid\": \"string\"\n    },\n    {\n      \"created\": 3478.4904433575325,\n      \"name\": \"string\",\n      \"updated\": 3235.3232137728637,\n      \"groupid\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "92904eee-9fba-4cfd-a2ff-575bc5edf379",
+          "name": "Get group detail",
+          "request": {
+            "name": "Get group detail",
+            "description": {},
+            "url": {
+              "path": [
+                "group",
+                ":gid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "gid",
+                  "description": "gid - group id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "045d69f8-63a8-4506-b270-b8fcd26db8c0",
+              "name": "group detail",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "group",
+                    ":gid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "gid",
+                      "description": "gid - group id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"alerts\": [\n    {\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"groups\": {\n    \"owner\": \"string\",\n    \"members\": [\n      {\n        \"name\": \"string\",\n        \"username\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"username\": \"string\"\n      }\n    ],\n    \"created\": 758.230641816543,\n    \"name\": \"string\",\n    \"updated\": 4923.024352604058,\n    \"groupid\": \"string\",\n    \"_id\": {\n      \"$oid\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7300e370-87e7-4fa9-9566-d96e3797e337",
+          "name": "Create new group",
+          "request": {
+            "name": "Create new group",
+            "description": {},
+            "url": {
+              "path": [
+                "group",
+                "add"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "name of the group"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d09a7f86-eb91-4052-a7c1-6da4ed1aa728",
+              "name": "group detail",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "group",
+                    "add"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"alerts\": [\n    {\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"groups\": {\n    \"owner\": \"string\",\n    \"members\": [\n      {\n        \"name\": \"string\",\n        \"username\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"username\": \"string\"\n      }\n    ],\n    \"created\": 1243.016640673551,\n    \"name\": \"string\",\n    \"updated\": 6151.271248228299,\n    \"groupid\": \"string\",\n    \"_id\": {\n      \"$oid\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3e40e7ff-70aa-44bd-bfc5-98bdca02f406",
+          "name": "Delete specified group",
+          "request": {
+            "name": "Delete specified group",
+            "description": {},
+            "url": {
+              "path": [
+                "group",
+                ":gid",
+                "remove"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "gid",
+                  "description": "gid - group id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fcce4440-d841-4611-993b-acf98021ac31",
+              "name": "group removed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "group",
+                    ":gid",
+                    "remove"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "gid",
+                      "description": "gid - group id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"alerts\": [\n    {\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"groups\": {\n    \"owner\": \"string\",\n    \"members\": [\n      {\n        \"name\": \"string\",\n        \"username\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"username\": \"string\"\n      }\n    ],\n    \"created\": 1243.016640673551,\n    \"name\": \"string\",\n    \"updated\": 6151.271248228299,\n    \"groupid\": \"string\",\n    \"_id\": {\n      \"$oid\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cac1fa05-95ad-4a18-af61-77471de29873",
+          "name": "Add group members",
+          "request": {
+            "name": "Add group members",
+            "description": {},
+            "url": {
+              "path": [
+                "group",
+                ":gid",
+                "members",
+                "add"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "gid",
+                  "description": "gid - group id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "members",
+                  "value": "{\"members\":[\"<string>\",\"<string>\"]}",
+                  "type": "text",
+                  "description": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a4a73268-045c-4f8e-9f32-99f19ab3039d",
+              "name": "group detail",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "group",
+                    ":gid",
+                    "members",
+                    "add"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "gid",
+                      "description": "gid - group id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "members",
+                      "value": "{\"members\":[\"username1\",\"username1\"]}",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"alerts\": [\n    {\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"groups\": {\n    \"owner\": \"string\",\n    \"members\": [\n      {\n        \"name\": \"string\",\n        \"username\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"username\": \"string\"\n      }\n    ],\n    \"created\": 1243.016640673551,\n    \"name\": \"string\",\n    \"updated\": 6151.271248228299,\n    \"groupid\": \"string\",\n    \"_id\": {\n      \"$oid\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "54d78204-48d6-49f3-93db-9e6ab5b7ab38",
+          "name": "Remove group members",
+          "request": {
+            "name": "Remove group members",
+            "description": {},
+            "url": {
+              "path": [
+                "group",
+                ":gid",
+                "members",
+                "remove"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "gid",
+                  "description": "gid - group id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "members",
+                  "value": "{\"members\":[\"<string>\",\"<string>\"]}",
+                  "type": "text",
+                  "description": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "20021bcb-14c2-421f-bc88-14d7a5285586",
+              "name": "group detail",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "group",
+                    ":gid",
+                    "members",
+                    "remove"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "gid",
+                      "description": "gid - group id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "members",
+                      "value": "{\"members\":[\"username1\",\"username1\"]}",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"alerts\": [\n    {\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"groups\": {\n    \"owner\": \"string\",\n    \"members\": [\n      {\n        \"name\": \"string\",\n        \"username\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"username\": \"string\"\n      }\n    ],\n    \"created\": 1243.016640673551,\n    \"name\": \"string\",\n    \"updated\": 6151.271248228299,\n    \"groupid\": \"string\",\n    \"_id\": {\n      \"$oid\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://services.phaidra.univie.ac.at/api/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a30477d2-4ad1-44b4-a5dc-e407cc9d4741",
+    "name": "PHAIDRA datastream directory API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Documentation of the PHAIDRA API.",
+      "type": "text/plain"
+    }
+  }
+}

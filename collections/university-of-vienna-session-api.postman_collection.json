@@ -1,0 +1,423 @@
+{
+  "item": [
+    {
+      "id": "0a6764ef-efff-4dfc-a205-6a264d762aa3",
+      "name": "session",
+      "description": {
+        "content": "Session management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bd97acd8-c2ed-4cca-b1d0-d4bf84368766",
+          "name": "Sign in",
+          "request": {
+            "name": "Sign in",
+            "description": {
+              "content": "Authenticate with the api to get an XSFR token back (a cookie with the same name will be set as well). You then have to send this token back in an X-XSRF-TOKEN header for each authenticated call.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "signin"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e66b0af4-40c5-4055-b31b-c08c0beaf0b7",
+              "name": "a JSON object with an XSRF-Token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"alerts\": [\n    {\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"status\": 7514.045642657707,\n  \"XSRF-TOKEN\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8cbd2928-9da9-4869-b03f-d042a03c9265",
+              "name": "credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "481e4cd9-53d3-4ff0-b4c1-5894d67ff09b",
+          "name": "Sign out",
+          "request": {
+            "name": "Sign out",
+            "description": {},
+            "url": {
+              "path": [
+                "signout"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-XSRF-TOKEN"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "24481329-c4f2-49ff-a4e6-cb1c8ec9b364",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signout"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-XSRF-TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"alerts\": [\n    {\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"sid\": \"string\",\n  \"status\": 9416.415958858599\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "83f9dd45-c073-4bf6-92c0-2b226d968636",
+              "name": "credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signout"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-XSRF-TOKEN",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cece06bf-ba44-4a20-879a-993e245997da",
+          "name": "Extends session expiration time",
+          "request": {
+            "name": "Extends session expiration time",
+            "description": {
+              "content": "Extends the expiration time of the session token (the session is identified by the token).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "keepalive"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-XSRF-TOKEN"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5e70f999-87da-42f5-9783-2e81648e16eb",
+              "name": "a JSON object with an XSRF-Token and a new expiration time",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "keepalive"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-XSRF-TOKEN",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"alerts\": [\n    {\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"sid\": \"string\",\n  \"expires\": 8461.449970432042,\n  \"status\": 3144.5844467728534\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "37a8ffe9-7764-4c75-a772-e8d02b492f18",
+              "name": "credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "keepalive"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-XSRF-TOKEN",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://services.phaidra.univie.ac.at/api/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "753b9280-63fc-4efd-8668-7939b12005a0",
+    "name": "PHAIDRA datastream session API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Documentation of the PHAIDRA API.",
+      "type": "text/plain"
+    }
+  }
+}

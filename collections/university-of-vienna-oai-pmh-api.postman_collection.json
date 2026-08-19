@@ -1,0 +1,177 @@
+{
+  "item": [
+    {
+      "id": "a9205156-8f87-4ede-809d-bb3c79ba080e",
+      "name": "oai-pmh",
+      "description": {
+        "content": "Look at the [OAI-PMH protocol](https://www.openarchives.org/pmh) used in this endpoint",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5be401e7-264c-4597-aee4-05a2b7fe4b22",
+          "name": "OAI-PMH endpoint.",
+          "request": {
+            "name": "OAI-PMH endpoint.",
+            "description": {},
+            "url": {
+              "path": [
+                "oai"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "verb",
+                  "value": "<number>",
+                  "description": "See [the OAI-PMH protocol](https://www.openarchives.org/pmh/)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9109021c-65ae-4747-9b9d-ef2c86a32e22",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oai"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "verb",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8e835b6a-fff2-4be0-bc2f-2be1e36bb7c2",
+          "name": "Same as GET.",
+          "request": {
+            "name": "Same as GET.",
+            "description": {},
+            "url": {
+              "path": [
+                "oai"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1a26f507-7919-44d7-ad3a-2ed2d7620348",
+              "name": "See [the OAI-PMH protocol](https://www.openarchives.org/pmh/)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oai"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://services.phaidra.univie.ac.at/api/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5dced082-c6fe-4383-9c36-456030fc2679",
+    "name": "PHAIDRA datastream oai-pmh API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Documentation of the PHAIDRA API.",
+      "type": "text/plain"
+    }
+  }
+}
