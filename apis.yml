@@ -1,17 +1,22 @@
----
 aid: university-of-vienna
 name: University of Vienna
+x-type: university
+x-category: Public Research University
 description: >-
-  The University of Vienna (Universität Wien), founded in 1365, is Austria's
-  largest university and ranks #78 in the QS World University Rankings 2025.
-  Its public, programmatically accessible footprint centers on research and
-  scholarly infrastructure rather than a unified developer portal: PHAIDRA, the
-  university's institutional repository, exposes a documented REST(ish) API and
-  an OAI-PMH metadata harvesting endpoint, and the institution's structured data
-  is also published through the pan-European HEI API. Course, library discovery
-  (u:find / u:search) and student-information systems are public web services
-  but do not publish open developer documentation. No central, branded API
-  developer portal or official GitHub organization was confirmed.
+  The University of Vienna (Universitat Wien), founded 1365, is Austria's largest university and a member
+  of LERU. Its programmable footprint is unusual for a university in one specific way: Vienna does not
+  merely deploy a repository platform, it AUTHORS one. PHAIDRA (Permanent Hosting, Archiving and Indexing
+  of Digital Resources and Assets) is open-source Fedora-based software built and hosted by the university's
+  Zentraler Informatikdienst and University Library, published under Apache 2.0 at github.com/phaidra,
+  and deployed by 25+ institutions across Europe including Padua, Ca' Foscari and IUAV. The OpenAPI in
+  this repository is therefore the institution's own engineering output, not a vendor's contract running
+  under its name. Everything else is bought: u:cris (research information) is Elsevier Pure, u:search
+  is Ex Libris Primo, and u:ai runs on the ACOmarket-operated Academic AI platform shared by 20+ Austrian
+  universities - all recorded here as tenant relationships, not as Vienna's contracts. The university
+  also operates a Shibboleth identity provider registered in the ACOnet federation and eduGAIN, and an
+  authenticated API gateway at api.univie.ac.at. There is no central branded developer portal, no public
+  API documentation site, and no official GitHub organization for the institution itself (github.com/univie
+  is an unrelated personal account).
 type: Index
 deliveryModel:
   model: saas
@@ -43,26 +48,37 @@ access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/university-of-vienna.png
 url: https://raw.githubusercontent.com/api-evangelist/university-of-vienna/refs/heads/main/apis.yml
 tags:
-  - Education
-  - Higher Education
-  - University
-  - Research
-  - Repository
-  - Open Data
-  - Austria
-  - Europe
+- Education
+- Higher Education
+- University
+- Public Research University
+- Austria
+- Europe
+- Research
+- Research Data
+- Repository
+- Open Source
+- Digital Preservation
+- Identity Federation
+- OAI-PMH
+- Library
+- Course Catalog
 created: '2026-06-03'
-modified: '2026-06-03'
+modified: '2026-08-30'
 specificationVersion: '0.23'
 apis:
 - aid: university-of-vienna:phaidra-oai-pmh
   name: PHAIDRA OAI-PMH Endpoint
   description: >-
-    OAI-PMH metadata harvesting interface for the PHAIDRA repository, used by aggregators such as OpenAIRE,
-    Europeana, BASE, OAPEN, EBSCO and Primo. Supports the oai_dc (Dublin Core) and oai_openaire metadata
-    formats. Verified live returning a valid Identify response.
+    OAI-PMH 2.0 metadata harvesting interface for PHAIDRA, the University of Vienna's own institutional
+    repository platform. Harvested by OpenAIRE, Europeana, BASE, OAPEN, EBSCO and Primo; supports oai_dc
+    (Dublin Core) and oai_openaire. Re-based 2026-08-30: the previously recorded host services.phaidra.univie.ac.at
+    now returns HTTP 200 with a zero-length body on EVERY path including nonsense ones (Caddy catch-all
+    vhost, CNAME to phaidra.univie.ac.at) - a soft-200, not a live API. re3data r3d100010472 registers
+    the current base as https://phaidra.univie.ac.at/api/oai/. That host is live but fronted by an Anubis
+    proof-of-work bot challenge, which grades LIVE, not dead.
   humanURL: https://phaidra.org/docs/api/
-  baseURL: https://services.phaidra.univie.ac.at/api/oai/
+  baseURL: https://phaidra.univie.ac.at/api/oai/
   tags:
   - OAI-PMH
   - Metadata
@@ -72,30 +88,16 @@ apis:
   properties:
   - type: Documentation
     url: https://phaidra.org/docs/api/
-- aid: university-of-vienna:hei-api
-  name: HEI API (University of Vienna record)
-  description: >-
-    The pan-European Higher Education Institutions (HEI) API, operated by the European University Foundation,
-    publishes structured institutional data for the University of Vienna in JSON:API format, including
-    Erasmus codes, PIC, Erasmus Charter (ECHE) status and address. This is a third-party API exposing
-    University of Vienna data, not operated by the university itself.
-  humanURL: https://hei.api.uni-foundation.eu/about
-  baseURL: https://hei.api.uni-foundation.eu/api/public/schac/univie.ac.at/hei
-  tags:
-  - JSON:API
-  - Institutional Data
-  - Erasmus
-  - Third-Party
-  properties:
-  - type: Documentation
-    url: https://hei.api.uni-foundation.eu/about
+  x-operator: institution
+  x-operator-basis: >-
+    Institution's own domain (univie.ac.at), institution-authored platform (github.com/phaidra).
 - aid: university-of-vienna:university-of-vienna-datastream-api
-  name: University of Vienna datastream API
+  name: PHAIDRA datastream API (University of Vienna)
   description: Requests for transforming and validating datastreams
   humanURL: https://phaidra.org/docs/api/
-  baseURL: https://services.phaidra.univie.ac.at/api
+  baseURL: https://phaidra.univie.ac.at/api
   tags:
-  - Datastream
+  - datastream
   tags_raw:
   - datastream
   properties:
@@ -123,11 +125,19 @@ apis:
     url: json-ld/university-of-vienna-context.jsonld
   - type: GitHub
     url: https://github.com/phaidra/phaidra-api/wiki/Documentation
+  x-operator: institution
+  x-operator-basis: >-
+    PHAIDRA is authored and hosted BY the University of Vienna (github.com/phaidra: 'originally developed
+    by the University of Vienna'; ZID + University Library operate it; Apache 2.0). The cohort audit flags
+    this title as a shared contract because Padua ships it too - but Padua licensed the platform FROM
+    Vienna in 2010. The shared-contract heuristic is host-independent and cannot tell a product's AUTHOR
+    from its CONSUMER; here the institution is the author, so the verdict inverts to institution. The
+    spec's own first server is 'University of Vienna PHAIDRA'.
 - aid: university-of-vienna:university-of-vienna-directory-api
-  name: University of Vienna directory API
+  name: PHAIDRA directory API (University of Vienna)
   description: Requests related to users, user groups and organisation structure
   humanURL: https://phaidra.org/docs/api/
-  baseURL: https://services.phaidra.univie.ac.at/api
+  baseURL: https://phaidra.univie.ac.at/api
   tags:
   - Directory
   tags_raw:
@@ -157,11 +167,19 @@ apis:
     url: json-ld/university-of-vienna-context.jsonld
   - type: GitHub
     url: https://github.com/phaidra/phaidra-api/wiki/Documentation
+  x-operator: institution
+  x-operator-basis: >-
+    PHAIDRA is authored and hosted BY the University of Vienna (github.com/phaidra: 'originally developed
+    by the University of Vienna'; ZID + University Library operate it; Apache 2.0). The cohort audit flags
+    this title as a shared contract because Padua ships it too - but Padua licensed the platform FROM
+    Vienna in 2010. The shared-contract heuristic is host-independent and cannot tell a product's AUTHOR
+    from its CONSUMER; here the institution is the author, so the verdict inverts to institution. The
+    spec's own first server is 'University of Vienna PHAIDRA'.
 - aid: university-of-vienna:university-of-vienna-imageserver-api
-  name: University of Vienna imageserver API
+  name: PHAIDRA imageserver API (University of Vienna)
   description: Requests to the imageserver
   humanURL: https://phaidra.org/docs/api/
-  baseURL: https://services.phaidra.univie.ac.at/api
+  baseURL: https://phaidra.univie.ac.at/api
   tags:
   - imageserver
   properties:
@@ -189,11 +207,19 @@ apis:
     url: json-ld/university-of-vienna-context.jsonld
   - type: GitHub
     url: https://github.com/phaidra/phaidra-api/wiki/Documentation
+  x-operator: institution
+  x-operator-basis: >-
+    PHAIDRA is authored and hosted BY the University of Vienna (github.com/phaidra: 'originally developed
+    by the University of Vienna'; ZID + University Library operate it; Apache 2.0). The cohort audit flags
+    this title as a shared contract because Padua ships it too - but Padua licensed the platform FROM
+    Vienna in 2010. The shared-contract heuristic is host-independent and cannot tell a product's AUTHOR
+    from its CONSUMER; here the institution is the author, so the verdict inverts to institution. The
+    spec's own first server is 'University of Vienna PHAIDRA'.
 - aid: university-of-vienna:university-of-vienna-lists-api
-  name: University of Vienna lists API
+  name: PHAIDRA lists API (University of Vienna)
   description: Requests for manipulating object lists
   humanURL: https://phaidra.org/docs/api/
-  baseURL: https://services.phaidra.univie.ac.at/api
+  baseURL: https://phaidra.univie.ac.at/api
   tags:
   - List
   tags_raw:
@@ -223,11 +249,19 @@ apis:
     url: json-ld/university-of-vienna-context.jsonld
   - type: GitHub
     url: https://github.com/phaidra/phaidra-api/wiki/Documentation
+  x-operator: institution
+  x-operator-basis: >-
+    PHAIDRA is authored and hosted BY the University of Vienna (github.com/phaidra: 'originally developed
+    by the University of Vienna'; ZID + University Library operate it; Apache 2.0). The cohort audit flags
+    this title as a shared contract because Padua ships it too - but Padua licensed the platform FROM
+    Vienna in 2010. The shared-contract heuristic is host-independent and cannot tell a product's AUTHOR
+    from its CONSUMER; here the institution is the author, so the verdict inverts to institution. The
+    spec's own first server is 'University of Vienna PHAIDRA'.
 - aid: university-of-vienna:university-of-vienna-misc-api
-  name: University of Vienna misc API
+  name: PHAIDRA misc API (University of Vienna)
   description: The misc API from University of Vienna — 7 operation(s) for misc.
   humanURL: https://phaidra.org/docs/api/
-  baseURL: https://services.phaidra.univie.ac.at/api
+  baseURL: https://phaidra.univie.ac.at/api
   tags: []
   tags_raw:
   - misc
@@ -256,11 +290,20 @@ apis:
     url: json-ld/university-of-vienna-context.jsonld
   - type: GitHub
     url: https://github.com/phaidra/phaidra-api/wiki/Documentation
+  x-operator: institution
+  x-operator-basis: >-
+    PHAIDRA is authored and hosted BY the University of Vienna (github.com/phaidra: 'originally developed
+    by the University of Vienna'; ZID + University Library operate it; Apache 2.0). The cohort audit flags
+    this title as a shared contract because Padua ships it too - but Padua licensed the platform FROM
+    Vienna in 2010. The shared-contract heuristic is host-independent and cannot tell a product's AUTHOR
+    from its CONSUMER; here the institution is the author, so the verdict inverts to institution. The
+    spec's own first server is 'University of Vienna PHAIDRA'.
 - aid: university-of-vienna:university-of-vienna-oai-pmh-api
-  name: University of Vienna oai-pmh API
-  description: Look at the [OAI-PMH protocol](https://www.openarchives.org/pmh) used in this endpoint
+  name: PHAIDRA oai-pmh API (University of Vienna)
+  description: Look at the [OAI-PMH protocol](https://www.openarchives.org/pmh) used in this 
+    endpoint
   humanURL: https://phaidra.org/docs/api/
-  baseURL: https://services.phaidra.univie.ac.at/api
+  baseURL: https://phaidra.univie.ac.at/api
   tags:
   - OAI-PMH
   tags_raw:
@@ -290,11 +333,19 @@ apis:
     url: json-ld/university-of-vienna-context.jsonld
   - type: GitHub
     url: https://github.com/phaidra/phaidra-api/wiki/Documentation
+  x-operator: institution
+  x-operator-basis: >-
+    PHAIDRA is authored and hosted BY the University of Vienna (github.com/phaidra: 'originally developed
+    by the University of Vienna'; ZID + University Library operate it; Apache 2.0). The cohort audit flags
+    this title as a shared contract because Padua ships it too - but Padua licensed the platform FROM
+    Vienna in 2010. The shared-contract heuristic is host-independent and cannot tell a product's AUTHOR
+    from its CONSUMER; here the institution is the author, so the verdict inverts to institution. The
+    spec's own first server is 'University of Vienna PHAIDRA'.
 - aid: university-of-vienna:university-of-vienna-object-advanced-api
-  name: University of Vienna object-advanced API
+  name: PHAIDRA object-advanced API (University of Vienna)
   description: Additional requests for the manipulation of digital objects
   humanURL: https://phaidra.org/docs/api/
-  baseURL: https://services.phaidra.univie.ac.at/api
+  baseURL: https://phaidra.univie.ac.at/api
   tags:
   - object-advanced
   properties:
@@ -322,11 +373,19 @@ apis:
     url: json-ld/university-of-vienna-context.jsonld
   - type: GitHub
     url: https://github.com/phaidra/phaidra-api/wiki/Documentation
+  x-operator: institution
+  x-operator-basis: >-
+    PHAIDRA is authored and hosted BY the University of Vienna (github.com/phaidra: 'originally developed
+    by the University of Vienna'; ZID + University Library operate it; Apache 2.0). The cohort audit flags
+    this title as a shared contract because Padua ships it too - but Padua licensed the platform FROM
+    Vienna in 2010. The shared-contract heuristic is host-independent and cannot tell a product's AUTHOR
+    from its CONSUMER; here the institution is the author, so the verdict inverts to institution. The
+    spec's own first server is 'University of Vienna PHAIDRA'.
 - aid: university-of-vienna:university-of-vienna-object-basics-api
-  name: University of Vienna object-basics API
+  name: PHAIDRA object-basics API (University of Vienna)
   description: Most important requests you'll need to manage digital objects in PHAIDRA
   humanURL: https://phaidra.org/docs/api/
-  baseURL: https://services.phaidra.univie.ac.at/api
+  baseURL: https://phaidra.univie.ac.at/api
   tags:
   - object-basics
   properties:
@@ -354,13 +413,21 @@ apis:
     url: json-ld/university-of-vienna-context.jsonld
   - type: GitHub
     url: https://github.com/phaidra/phaidra-api/wiki/Documentation
+  x-operator: institution
+  x-operator-basis: >-
+    PHAIDRA is authored and hosted BY the University of Vienna (github.com/phaidra: 'originally developed
+    by the University of Vienna'; ZID + University Library operate it; Apache 2.0). The cohort audit flags
+    this title as a shared contract because Padua ships it too - but Padua licensed the platform FROM
+    Vienna in 2010. The shared-contract heuristic is host-independent and cannot tell a product's AUTHOR
+    from its CONSUMER; here the institution is the author, so the verdict inverts to institution. The
+    spec's own first server is 'University of Vienna PHAIDRA'.
 - aid: university-of-vienna:university-of-vienna-relationships-api
-  name: University of Vienna relationships API
+  name: PHAIDRA relationships API (University of Vienna)
   description: Requests for adding and removing object relationships
   humanURL: https://phaidra.org/docs/api/
-  baseURL: https://services.phaidra.univie.ac.at/api
+  baseURL: https://phaidra.univie.ac.at/api
   tags:
-  - Relationships
+  - relationships
   tags_raw:
   - relationships
   properties:
@@ -388,11 +455,19 @@ apis:
     url: json-ld/university-of-vienna-context.jsonld
   - type: GitHub
     url: https://github.com/phaidra/phaidra-api/wiki/Documentation
+  x-operator: institution
+  x-operator-basis: >-
+    PHAIDRA is authored and hosted BY the University of Vienna (github.com/phaidra: 'originally developed
+    by the University of Vienna'; ZID + University Library operate it; Apache 2.0). The cohort audit flags
+    this title as a shared contract because Padua ships it too - but Padua licensed the platform FROM
+    Vienna in 2010. The shared-contract heuristic is host-independent and cannot tell a product's AUTHOR
+    from its CONSUMER; here the institution is the author, so the verdict inverts to institution. The
+    spec's own first server is 'University of Vienna PHAIDRA'.
 - aid: university-of-vienna:university-of-vienna-search-api
-  name: University of Vienna search API
+  name: PHAIDRA search API (University of Vienna)
   description: The search API from University of Vienna — 1 operation(s) for search.
   humanURL: https://phaidra.org/docs/api/
-  baseURL: https://services.phaidra.univie.ac.at/api
+  baseURL: https://phaidra.univie.ac.at/api
   tags:
   - Search
   tags_raw:
@@ -422,11 +497,19 @@ apis:
     url: json-ld/university-of-vienna-context.jsonld
   - type: GitHub
     url: https://github.com/phaidra/phaidra-api/wiki/Documentation
+  x-operator: institution
+  x-operator-basis: >-
+    PHAIDRA is authored and hosted BY the University of Vienna (github.com/phaidra: 'originally developed
+    by the University of Vienna'; ZID + University Library operate it; Apache 2.0). The cohort audit flags
+    this title as a shared contract because Padua ships it too - but Padua licensed the platform FROM
+    Vienna in 2010. The shared-contract heuristic is host-independent and cannot tell a product's AUTHOR
+    from its CONSUMER; here the institution is the author, so the verdict inverts to institution. The
+    spec's own first server is 'University of Vienna PHAIDRA'.
 - aid: university-of-vienna:university-of-vienna-session-api
-  name: University of Vienna session API
+  name: PHAIDRA session API (University of Vienna)
   description: Session management
   humanURL: https://phaidra.org/docs/api/
-  baseURL: https://services.phaidra.univie.ac.at/api
+  baseURL: https://phaidra.univie.ac.at/api
   tags:
   - Session
   tags_raw:
@@ -456,11 +539,19 @@ apis:
     url: json-ld/university-of-vienna-context.jsonld
   - type: GitHub
     url: https://github.com/phaidra/phaidra-api/wiki/Documentation
+  x-operator: institution
+  x-operator-basis: >-
+    PHAIDRA is authored and hosted BY the University of Vienna (github.com/phaidra: 'originally developed
+    by the University of Vienna'; ZID + University Library operate it; Apache 2.0). The cohort audit flags
+    this title as a shared contract because Padua ships it too - but Padua licensed the platform FROM
+    Vienna in 2010. The shared-contract heuristic is host-independent and cannot tell a product's AUTHOR
+    from its CONSUMER; here the institution is the author, so the verdict inverts to institution. The
+    spec's own first server is 'University of Vienna PHAIDRA'.
 - aid: university-of-vienna:university-of-vienna-stats-api
-  name: University of Vienna stats API
+  name: PHAIDRA stats API (University of Vienna)
   description: The stats API from University of Vienna — 4 operation(s) for stats.
   humanURL: https://phaidra.org/docs/api/
-  baseURL: https://services.phaidra.univie.ac.at/api
+  baseURL: https://phaidra.univie.ac.at/api
   tags:
   - Stats
   tags_raw:
@@ -490,11 +581,19 @@ apis:
     url: json-ld/university-of-vienna-context.jsonld
   - type: GitHub
     url: https://github.com/phaidra/phaidra-api/wiki/Documentation
+  x-operator: institution
+  x-operator-basis: >-
+    PHAIDRA is authored and hosted BY the University of Vienna (github.com/phaidra: 'originally developed
+    by the University of Vienna'; ZID + University Library operate it; Apache 2.0). The cohort audit flags
+    this title as a shared contract because Padua ships it too - but Padua licensed the platform FROM
+    Vienna in 2010. The shared-contract heuristic is host-independent and cannot tell a product's AUTHOR
+    from its CONSUMER; here the institution is the author, so the verdict inverts to institution. The
+    spec's own first server is 'University of Vienna PHAIDRA'.
 - aid: university-of-vienna:university-of-vienna-templates-api
-  name: University of Vienna templates API
+  name: PHAIDRA templates API (University of Vienna)
   description: Requests for managing metadata templates
   humanURL: https://phaidra.org/docs/api/
-  baseURL: https://services.phaidra.univie.ac.at/api
+  baseURL: https://phaidra.univie.ac.at/api
   tags:
   - Templates
   tags_raw:
@@ -524,13 +623,21 @@ apis:
     url: json-ld/university-of-vienna-context.jsonld
   - type: GitHub
     url: https://github.com/phaidra/phaidra-api/wiki/Documentation
+  x-operator: institution
+  x-operator-basis: >-
+    PHAIDRA is authored and hosted BY the University of Vienna (github.com/phaidra: 'originally developed
+    by the University of Vienna'; ZID + University Library operate it; Apache 2.0). The cohort audit flags
+    this title as a shared contract because Padua ships it too - but Padua licensed the platform FROM
+    Vienna in 2010. The shared-contract heuristic is host-independent and cannot tell a product's AUTHOR
+    from its CONSUMER; here the institution is the author, so the verdict inverts to institution. The
+    spec's own first server is 'University of Vienna PHAIDRA'.
 - aid: university-of-vienna:university-of-vienna-vocabularies-api
-  name: University of Vienna vocabularies API
+  name: PHAIDRA vocabularies API (University of Vienna)
   description: Requests for controlled vocabularies
   humanURL: https://phaidra.org/docs/api/
-  baseURL: https://services.phaidra.univie.ac.at/api
+  baseURL: https://phaidra.univie.ac.at/api
   tags:
-  - Vocabularies
+  - vocabularies
   tags_raw:
   - vocabularies
   properties:
@@ -558,25 +665,260 @@ apis:
     url: json-ld/university-of-vienna-context.jsonld
   - type: GitHub
     url: https://github.com/phaidra/phaidra-api/wiki/Documentation
-common:
-  - type: AgenticAccess
-    url: agentic-access/university-of-vienna-agentic-access.yml
-  - type: DomainSecurity
-    url: security/university-of-vienna-domain-security.yml
-  - type: Authentication
-    url: authentication/university-of-vienna-authentication.yml
+  x-operator: institution
+  x-operator-basis: >-
+    PHAIDRA is authored and hosted BY the University of Vienna (github.com/phaidra: 'originally developed
+    by the University of Vienna'; ZID + University Library operate it; Apache 2.0). The cohort audit flags
+    this title as a shared contract because Padua ships it too - but Padua licensed the platform FROM
+    Vienna in 2010. The shared-contract heuristic is host-independent and cannot tell a product's AUTHOR
+    from its CONSUMER; here the institution is the author, so the verdict inverts to institution. The
+    spec's own first server is 'University of Vienna PHAIDRA'.
+- aid: university-of-vienna:ucris-pure
+  name: u:cris Research Information System (Elsevier Pure)
+  description: >-
+    u:cris is the University of Vienna's research information system. It runs Elsevier Pure and says so
+    in its own OAI-PMH Identify response: 'This service is based on Pure.' The Pure Web Service is live
+    at /ws/api (an api-docs page titled 'Pure API' returns 200 at /ws/api/524/api-docs) and the OAI-PMH
+    endpoint at /ws/oai returns a valid Identify - repositoryName 'u:cris - University of Vienna', adminEmail
+    ucris@univie.ac.at, earliest datestamp 2013-09-07, OpenAIRE CERIF 1.2 compatible, metadata formats
+    oai_cerif_openaire/mods/nl_didl/oai_dc/qdc/xmetadiss. Recorded as a TENANT relationship: the data
+    and the DOIs are Vienna's, the contract is Elsevier's. Pure's generic specification is deliberately
+    NOT saved under this institution.
+  humanURL: https://ucris.univie.ac.at/
+  baseURL: https://ucris.univie.ac.at/ws/oai
+  tags:
+  - Research Information
+  - CRIS
+  - OAI-PMH
+  - Elsevier Pure
+  - Tenant
+  - CERIF
+  x-operator: tenant
+  x-operator-basis: >-
+    Institution-specific host on the institution's own domain running a vendor platform. Product identity
+    confirmed from the endpoint's own self-description, not from the hostname.
+  properties:
+  - type: Documentation
+    url: https://ucris.univie.ac.at/ws/api/524/api-docs
+  - type: x-oai-pmh
+    url: https://ucris.univie.ac.at/ws/oai?verb=Identify
   - type: Website
-    url: https://www.univie.ac.at/en/
-  - type: LinkedIn
-    url: https://www.linkedin.com/school/univienna/
-  - type: Plans
-    url: plans/university-of-vienna-plans-pricing.yml
-  - type: RateLimits
-    url: rate-limits/university-of-vienna-rate-limits.yml
-  - type: FinOps
-    url: finops/university-of-vienna-finops.yml
-  - type: Review
-    url: review.yml
+    url: https://ucris.univie.ac.at/
+- aid: university-of-vienna:uai-api
+  name: u:ai API (Academic AI)
+  description: >-
+    u:ai is the University of Vienna's AI assistant for staff and students, offered with API access for
+    scripted and research use. The API base is https://univie-api.academic-ai.at - an institution-branded
+    subdomain on academic-ai.at, the Academic AI platform run by ACOmarket with Microsoft Osterreich and
+    KPMG on an isolated Azure Secure Landing Zone and shared by 20+ Austrian universities. Access is requested
+    through the ZID Servicedesk, authenticated with a 12-month API secret, capped at 100 requests/minute
+    and EUR 20/month of centrally funded credit. Probed 2026-08-30: returns HTTP 403 with 'Access to this
+    application is only possible from within EU and EFTA' - geo-fenced and live, not dead. DNS resolves
+    to fde-univieai-prod-*.azurefd.net (Azure Front Door). Recorded as a TENANT relationship: Vienna's
+    branding and Vienna's accounts on a consortium platform.
+  humanURL: https://zid.univie.ac.at/en/uai/uai-api-access/
+  baseURL: https://univie-api.academic-ai.at
+  tags:
+  - AI
+  - LLM
+  - Academic AI
+  - Tenant
+  - Gated
+  - Austria
+  x-operator: tenant
+  x-operator-basis: >-
+    academic-ai.at is not a University of Vienna domain; univie-api is Vienna's tenant subdomain on a
+    multi-institution platform operated by ACOmarket/ACOnet.
+  properties:
+  - type: Documentation
+    url: https://zid.univie.ac.at/en/uai/uai-api-access/
+  - type: Website
+    url: 'https://studieren.univie.ac.at/en/using-ai-in-your-studies/uai-the-university-of-viennas-ai-tool/'
+- aid: university-of-vienna:univie-api-gateway
+  name: api.univie.ac.at (authenticated gateway)
+  description: >-
+    An API gateway on the university's apex domain. Probed 2026-08-30 on /, /v1, /api, /docs, /openapi.json,
+    /swagger.json, /health and /.well-known/openapi: every path returns an identical structured JSON 400
+    - {"httpStatusNumber":400,"httpStatusCode":"Bad Request","errorMessage":"Could not parse Authorization
+    header"} - with HSTS, X-Frame-Options DENY and a session cookie. That is a real, uniformly authenticated
+    gateway, not a soft-200 or a parked host. No public documentation, no discoverable OpenAPI and no
+    unauthenticated surface was located, so no contract is claimed for it. Recorded because it is a genuine
+    institution-operated programmable surface that the June 2026 profile missed entirely.
+  humanURL: https://zid.univie.ac.at/en/
+  baseURL: https://api.univie.ac.at
+  tags:
+  - Gateway
+  - Authentication Required
+  - Undocumented
+  - Austria
+  x-operator: institution
+  x-operator-basis: >-
+    Apex host under the institution's own registrable domain univie.ac.at.
+  properties:
+  - type: Support
+    url: https://servicedesk.univie.ac.at/
+- aid: university-of-vienna:shibboleth-idp
+  name: University of Vienna Shibboleth Identity Provider
+  description: >-
+    The university's SAML 2.0 identity provider, entityID https://weblogin.univie.ac.at/shibboleth, registered
+    in the ACOnet Austrian research and education federation and propagated to eduGAIN. Its IDPSSODescriptor
+    and mdui DisplayNames ('Universitat Wien' / 'University of Vienna') were read directly out of the
+    federation aggregate at https://eduid.at/md/aconet-registered.xml (200, application/samlmetadata+xml,
+    253 entities). Vienna also registers the service provider https://wiki.univie.ac.at/shibboleth. Identity
+    federation is institution-operated by definition, is machine-readable, and is almost never catalogued
+    - this repository did not record it before 2026-08-30. The IdP's own /idp/shibboleth metadata path
+    returns 403 to our client; the entity is published through the federation aggregate instead.
+  humanURL: https://weblogin.univie.ac.at/
+  baseURL: https://weblogin.univie.ac.at/shibboleth
+  tags:
+  - Identity Federation
+  - Shibboleth
+  - SAML
+  - eduGAIN
+  - ACOnet
+  - Single Sign-On
+  x-operator: institution
+  x-operator-basis: >-
+    Host under univie.ac.at; the IdP entity is the institution's own by definition of federated identity.
+  properties:
+  - type: x-federation-metadata
+    url: https://eduid.at/md/aconet-registered.xml
+  - type: Website
+    url: https://weblogin.univie.ac.at/
+- aid: university-of-vienna:usearch-primo
+  name: u:search Library Discovery (Ex Libris Primo)
+  description: >-
+    u:search is the Vienna University Library's discovery layer. Probed 2026-08-30: https://usearch.univie.ac.at/
+    redirects to /primo-explore/search?vid=UWI - an Ex Libris Primo instance. Recorded as a TENANT relationship.
+    No institution-authored contract exists for it and Ex Libris' own API specification is deliberately
+    not saved under this institution.
+  humanURL: https://bibliothek.univie.ac.at/en/
+  baseURL: https://usearch.univie.ac.at/primo-explore/search?vid=UWI
+  tags:
+  - Library
+  - Discovery
+  - Ex Libris Primo
+  - Tenant
+  x-operator: tenant
+  x-operator-basis: >-
+    Institution subdomain serving a vendor product; the /primo-explore/ path and vid=UWI view parameter
+    identify the Ex Libris Primo tenancy.
+  properties:
+  - type: Website
+    url: https://bibliothek.univie.ac.at/en/
+common:
+- type: AgenticAccess
+  url: agentic-access/university-of-vienna-agentic-access.yml
+- type: DomainSecurity
+  url: security/university-of-vienna-domain-security.yml
+- type: Authentication
+  url: authentication/university-of-vienna-authentication.yml
+- type: Website
+  url: https://www.univie.ac.at/en/
+- type: LinkedIn
+  url: https://www.linkedin.com/school/univienna/
+- type: Plans
+  url: plans/university-of-vienna-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/university-of-vienna-rate-limits.yml
+- type: FinOps
+  url: finops/university-of-vienna-finops.yml
+- type: Review
+  url: review.yml
+- type: Documentation
+  url: https://phaidra.org/docs/api/
+- type: APIReference
+  url: https://github.com/phaidra/phaidra-api/wiki/Documentation
+- type: GitHubOrganization
+  url: https://github.com/phaidra
+- type: TermsOfService
+  url: https://www.univie.ac.at/en/impressum
+- type: PrivacyPolicy
+  url: https://dsba.univie.ac.at/en/data-protection-declaration/
+- type: Support
+  url: https://servicedesk.univie.ac.at/
+- type: Blog
+  url: https://medienportal.univie.ac.at/en/uniview/
+- type: ResearchRepository
+  url: https://rdm.univie.ac.at/phaidra-repository/
+- type: LibraryCatalog
+  url: https://usearch.univie.ac.at/
+- type: CourseCatalog
+  url: https://ufind.univie.ac.at/en/
+- type: IdentityFederation
+  url: https://eduid.at/md/aconet-registered.xml
+- type: AITooling
+  url: https://zid.univie.ac.at/en/uai/uai-api-access/
+- type: AIPolicy
+  url: 'https://studieren.univie.ac.at/en/using-ai-in-your-studies/uai-the-university-of-viennas-ai-tool/'
+- type: Conformance
+  url: conformance/university-of-vienna-conformance.yml
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
+x-coverage:
+  state: covered
+  reason: covered
+  detail: >-
+    Institution-operated surfaces were located and verified: the PHAIDRA repository platform, which the
+    University of Vienna AUTHORS and hosts (Apache 2.0, github.com/phaidra) and for which this repo holds
+    the full OpenAPI; a Shibboleth SAML identity provider registered in ACOnet and eduGAIN; an authenticated
+    API gateway at api.univie.ac.at; and a live OAI-PMH endpoint on the institution's own host. Tenant
+    relationships were recorded rather than credited as contracts: u:cris (Elsevier Pure), u:search (Ex
+    Libris Primo) and u:ai (ACOmarket Academic AI). Two access limits qualify the reading but did not
+    prevent it: phaidra.univie.ac.at is fronted by an Anubis proof-of-work bot challenge (live, not dead),
+    and api.univie.ac.at rejects every unauthenticated request with a uniform JSON 400. One correction
+    of ours: the host recorded for all 16 PHAIDRA surfaces in the June 2026 profile, services.phaidra.univie.ac.at,
+    returns HTTP 200 with a zero-length body on every path INCLUDING nonsense paths - a Caddy catch-all
+    soft-200 that a status-code-only probe would have graded live. Re-based to phaidra.univie.ac.at/api
+    per re3data r3d100010472. No open data portal (data./opendata. univie.ac.at do not resolve), no institution
+    GitHub organization (github.com/univie is an unrelated personal account), no llms.txt, and no public
+    developer portal.
+  evidence:
+  - url: https://services.phaidra.univie.ac.at/api/oai?verb=Identify
+    status: 200 empty-body soft-200
+  - url: https://services.phaidra.univie.ac.at/api/this-path-does-not-exist-zzz
+    status: 200 empty-body control probe
+  - url: https://phaidra.univie.ac.at/api/oai/?verb=Identify
+    status: 200 Anubis bot challenge (live)
+  - url: https://www.re3data.org/api/v1/repository/r3d100010472
+    status: '200'
+  - url: https://ucris.univie.ac.at/ws/oai?verb=Identify
+    status: 200 application/xml
+  - url: https://ucris.univie.ac.at/ws/api/524/api-docs
+    status: 200 Pure API
+  - url: https://univie-api.academic-ai.at/v1/models
+    status: 403 EU/EFTA geo-fence (live)
+  - url: https://api.univie.ac.at/
+    status: 400 Could not parse Authorization header
+  - url: https://eduid.at/md/aconet-registered.xml
+    status: 200 application/samlmetadata+xml
+  - url: https://weblogin.univie.ac.at/
+    status: '200'
+  - url: https://weblogin.univie.ac.at/idp/shibboleth
+    status: '403'
+  - url: https://github.com/phaidra
+    status: '200'
+  - url: https://api.github.com/users/univie
+    status: 200 personal account, not the university
+  - url: https://data.univie.ac.at/
+    status: 000 DNS does not resolve
+  - url: https://opendata.univie.ac.at/
+    status: 000 DNS does not resolve
+  - url: https://www.univie.ac.at/llms.txt
+    status: '404'
+  - url: https://sandbox.phaidra.org/api/uwmetadata/tree
+    status: 000 connection timeout
+  generated: '2026-08-30'
+  method: probed
+x-attribution-notes:
+- generated: '2026-08-30'
+  pipeline: pipeline-university
+  finding: shared-contract heuristic producer/consumer inversion
+  detail: >-
+    audit-university-contracts.py flagged 14 PHAIDRA specs as SHARED CONTRACT because the University of
+    Padua ships the same titles. The flag is cohort-derived and host-independent, and it is correct that
+    these titles describe a product. It is INVERTED for this repo: the product's author is this institution.
+    Vienna built PHAIDRA, publishes it Apache 2.0 at github.com/phaidra, and Padua's Library System Technical
+    and Scientific Committee agreed in February 2010 to use Vienna's platform. Verdict held at x-operator:
+    institution. Padua's copy is the tenant deployment, not Vienna's.
