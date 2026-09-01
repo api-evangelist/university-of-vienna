@@ -57,6 +57,22 @@ tags:
 - Research
 - Research Data
 - Repository
+- Open-Source
+- Digital Preservation
+- Identity Federation
+- OAI-PMH
+- Library
+- Course Catalog
+tags_raw:
+- Education
+- Higher Education
+- University
+- Public Research University
+- Austria
+- Europe
+- Research
+- Research Data
+- Repository
 - Open Source
 - Digital Preservation
 - Identity Federation
@@ -97,7 +113,7 @@ apis:
   humanURL: https://phaidra.org/docs/api/
   baseURL: https://phaidra.univie.ac.at/api
   tags:
-  - datastream
+  - Datastream
   tags_raw:
   - datastream
   properties:
@@ -427,7 +443,7 @@ apis:
   humanURL: https://phaidra.org/docs/api/
   baseURL: https://phaidra.univie.ac.at/api
   tags:
-  - relationships
+  - Relationships
   tags_raw:
   - relationships
   properties:
@@ -637,7 +653,7 @@ apis:
   humanURL: https://phaidra.org/docs/api/
   baseURL: https://phaidra.univie.ac.at/api
   tags:
-  - vocabularies
+  - Vocabularies
   tags_raw:
   - vocabularies
   properties:
@@ -719,6 +735,13 @@ apis:
   humanURL: https://zid.univie.ac.at/en/uai/uai-api-access/
   baseURL: https://univie-api.academic-ai.at
   tags:
+  - Artificial Intelligence
+  - LLM
+  - Academic AI
+  - Tenant
+  - Gated
+  - Austria
+  tags_raw:
   - AI
   - LLM
   - Academic AI
