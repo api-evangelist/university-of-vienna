@@ -109,48 +109,6 @@ apis:
   x-operator: institution
   x-operator-basis: >-
     Institution's own domain (univie.ac.at), institution-authored platform (github.com/phaidra).
-- aid: university-of-vienna:university-of-vienna-datastream-api
-  name: PHAIDRA datastream API (University of Vienna)
-  description: Requests for transforming and validating datastreams
-  humanURL: https://phaidra.org/docs/api/
-  baseURL: https://phaidra.univie.ac.at/api
-  tags:
-  - Datastream
-  tags_raw:
-  - datastream
-  properties:
-  - type: OpenAPI
-    url: openapi/university-of-vienna-datastream-api-openapi.yml
-  - type: Documentation
-    url: https://phaidra.org/docs/api/
-  - type: JSONSchema
-    url: json-schema/university-of-vienna-object-info-schema.json
-  - type: JSONSchema
-    url: json-schema/university-of-vienna-index-schema.json
-  - type: x-json-structure
-    url: json-structure/university-of-vienna-object-info-structure.json
-  - type: x-json-structure
-    url: json-structure/university-of-vienna-index-structure.json
-  - type: x-example
-    url: examples/university-of-vienna-object-info-example.json
-  - type: x-example
-    url: examples/university-of-vienna-search-select-example.json
-  - type: x-spectral-ruleset
-    url: rules/university-of-vienna-rules.yml
-  - type: x-vocabulary
-    url: vocabulary/university-of-vienna-vocabulary.yml
-  - type: x-json-ld-context
-    url: json-ld/university-of-vienna-context.jsonld
-  - type: GitHub
-    url: https://github.com/phaidra/phaidra-api/wiki/Documentation
-  x-operator: institution
-  x-operator-basis: >-
-    PHAIDRA is authored and hosted BY the University of Vienna (github.com/phaidra: 'originally developed
-    by the University of Vienna'; ZID + University Library operate it; Apache 2.0). The cohort audit flags
-    this title as a shared contract because Padua ships it too - but Padua licensed the platform FROM
-    Vienna in 2010. The shared-contract heuristic is host-independent and cannot tell a product's AUTHOR
-    from its CONSUMER; here the institution is the author, so the verdict inverts to institution. The
-    spec's own first server is 'University of Vienna PHAIDRA'.
 - aid: university-of-vienna:university-of-vienna-directory-api
   name: PHAIDRA directory API (University of Vienna)
   description: Requests related to users, user groups and organisation structure
@@ -318,8 +276,7 @@ apis:
     spec's own first server is 'University of Vienna PHAIDRA'.
 - aid: university-of-vienna:university-of-vienna-oai-pmh-api
   name: PHAIDRA oai-pmh API (University of Vienna)
-  description: Look at the [OAI-PMH protocol](https://www.openarchives.org/pmh) used in this 
-    endpoint
+  description: Look at the [OAI-PMH protocol](https://www.openarchives.org/pmh) used in this endpoint
   humanURL: https://phaidra.org/docs/api/
   baseURL: https://phaidra.univie.ac.at/api
   tags:
@@ -758,7 +715,8 @@ apis:
   - type: Documentation
     url: https://zid.univie.ac.at/en/uai/uai-api-access/
   - type: Website
-    url: 'https://studieren.univie.ac.at/en/using-ai-in-your-studies/uai-the-university-of-viennas-ai-tool/'
+    url: >-
+      https://studieren.univie.ac.at/en/using-ai-in-your-studies/uai-the-university-of-viennas-ai-tool/
 - aid: university-of-vienna:univie-api-gateway
   name: api.univie.ac.at (authenticated gateway)
   description: >-
@@ -777,8 +735,7 @@ apis:
   - Undocumented
   - Austria
   x-operator: institution
-  x-operator-basis: >-
-    Apex host under the institution's own registrable domain univie.ac.at.
+  x-operator-basis: Apex host under the institution's own registrable domain univie.ac.at.
   properties:
   - type: Support
     url: https://servicedesk.univie.ac.at/
@@ -831,6 +788,38 @@ apis:
   properties:
   - type: Website
     url: https://bibliothek.univie.ac.at/en/
+- aid: university-of-vienna:university-of-vienna-data-stream-api
+  name: University of Vienna Data Stream API
+  description: Requests for transforming and validating datastreams
+  humanURL: https://phaidra.org/docs/api/
+  baseURL: https://phaidra.univie.ac.at/api/oai/
+  tags:
+  - Data Stream
+  properties:
+  - type: OpenAPI
+    url: openapi/university-of-vienna-data-stream-api-openapi.yml
+  - type: Documentation
+    url: https://phaidra.org/docs/api/
+  - type: JSONSchema
+    url: json-schema/university-of-vienna-object-info-schema.json
+  - type: JSONSchema
+    url: json-schema/university-of-vienna-index-schema.json
+  - type: x-json-structure
+    url: json-structure/university-of-vienna-object-info-structure.json
+  - type: x-json-structure
+    url: json-structure/university-of-vienna-index-structure.json
+  - type: x-example
+    url: examples/university-of-vienna-object-info-example.json
+  - type: x-example
+    url: examples/university-of-vienna-search-select-example.json
+  - type: x-spectral-ruleset
+    url: rules/university-of-vienna-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/university-of-vienna-vocabulary.yml
+  - type: x-json-ld-context
+    url: json-ld/university-of-vienna-context.jsonld
+  - type: GitHub
+    url: https://github.com/phaidra/phaidra-api/wiki/Documentation
 common:
 - type: AgenticAccess
   url: agentic-access/university-of-vienna-agentic-access.yml
