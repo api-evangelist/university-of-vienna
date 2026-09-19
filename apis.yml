@@ -486,7 +486,7 @@ apis:
   humanURL: https://phaidra.org/docs/api/
   baseURL: https://phaidra.univie.ac.at/api
   tags:
-  - Session
+  - Sessions
   tags_raw:
   - session
   properties:
@@ -663,6 +663,13 @@ apis:
   baseURL: https://ucris.univie.ac.at/ws/oai
   tags:
   - Research Information
+  - CRI
+  - OAI-PMH
+  - Elsevier Pure
+  - Tenants
+  - CERIF
+  tags_raw:
+  - Research Information
   - CRIS
   - OAI-PMH
   - Elsevier Pure
@@ -697,7 +704,7 @@ apis:
   - Artificial Intelligence
   - LLM
   - Academic AI
-  - Tenant
+  - Tenants
   - Gated
   - Austria
   tags_raw:
@@ -730,6 +737,11 @@ apis:
   humanURL: https://zid.univie.ac.at/en/
   baseURL: https://api.univie.ac.at
   tags:
+  - Gateways
+  - Authentication Required
+  - Undocumented
+  - Austria
+  tags_raw:
   - Gateway
   - Authentication Required
   - Undocumented
@@ -758,6 +770,13 @@ apis:
   - SAML
   - eduGAIN
   - ACOnet
+  - SSO
+  tags_raw:
+  - Identity Federation
+  - Shibboleth
+  - SAML
+  - eduGAIN
+  - ACOnet
   - Single Sign-On
   x-operator: institution
   x-operator-basis: >-
@@ -780,6 +799,11 @@ apis:
   - Library
   - Discovery
   - Ex Libris Primo
+  - Tenants
+  tags_raw:
+  - Library
+  - Discovery
+  - Ex Libris Primo
   - Tenant
   x-operator: tenant
   x-operator-basis: >-
@@ -794,6 +818,8 @@ apis:
   humanURL: https://phaidra.org/docs/api/
   baseURL: https://phaidra.univie.ac.at/api/oai/
   tags:
+  - Datastream
+  tags_raw:
   - Data Stream
   properties:
   - type: OpenAPI
