@@ -1,6 +1,6 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: PHAIDRA datastream API
+  title: PHAIDRA Datastream API
   version: '3.0'
   description: Documentation of the PHAIDRA API.
   license:
@@ -12,15 +12,15 @@ servers:
 - description: PHAIDRA Sandbox
   url: https://sandbox.phaidra.org/api/
 tags:
-- name: datastream
+- name: Data Stream
   description: Requests for transforming and validating datastreams
 paths:
   /uwmetadata/tree:
     get:
-      summary: Get uwmetadata structure.
+      summary: Get uwmetadata structure
       description: Returns the uwmetadata structure with all nodes, labels, dictionaries, etc.
       tags:
-      - datastream
+      - Data Stream
       responses:
         '200':
           description: Uwmetadata tree.
@@ -44,12 +44,14 @@ paths:
                     type: object
                   tree:
                     $ref: '#/components/schemas/uwmetadata'
+      operationId: getUwmetadataTree
+      x-operation-id-source: derived
   /uwmetadata/json2xml:
     post:
-      summary: Transforms uwmetadata JSON to XML.
-      description: Transforms uwmetadata structure from JSON to XML (see [examples of uwmetadata](https://github.com/phaidra/phaidra-api/wiki/Datastream-examples)).
+      summary: Transforms uwmetadata JSON to XML
+      description: Transforms uwmetadata structure from JSON to XML (see examples of uwmetadata).
       tags:
-      - datastream
+      - Data Stream
       requestBody:
         content:
           multipart/form-data:
@@ -87,12 +89,14 @@ paths:
                     properties:
                       uwmetadata:
                         type: string
+      operationId: postUwmetadataJson2xml
+      x-operation-id-source: derived
   /uwmetadata/xml2json:
     post:
-      summary: Transforms uwmetadata XML to JSON.
-      description: Transforms the uwmetadata structure from XML to JSON (see [examples of uwmetadata](https://github.com/phaidra/phaidra-api/wiki/Datastream-examples)).
+      summary: Transforms uwmetadata XML to JSON
+      description: Transforms the uwmetadata structure from XML to JSON (see examples of uwmetadata).
       tags:
-      - datastream
+      - Data Stream
       requestBody:
         content:
           application/json:
@@ -174,12 +178,14 @@ paths:
                     properties:
                       uwmetadata:
                         $ref: '#/components/schemas/uwmetadata_min'
+      operationId: postUwmetadataXml2json
+      x-operation-id-source: derived
   /uwmetadata/validate:
     post:
-      summary: Validates uwmetadata XML.
-      description: Validates the uwmetadata structure in XML (see an [example of uwmetadata XML](https://github.com/phaidra/phaidra-api/wiki/Article-uwmetadata-in-xml-format)). The XML has to be sent in the request body as raw data.
+      summary: Validates uwmetadata XML
+      description: Validates the uwmetadata structure in XML (see an example of uwmetadata XML). The XML has to be sent in the request body as raw data.
       tags:
-      - datastream
+      - Data Stream
       requestBody:
         content:
           text/plain:
@@ -200,12 +206,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/default'
+      operationId: postUwmetadataValidate
+      x-operation-id-source: derived
   /uwmetadata/json2xml_validate:
     post:
-      summary: Validates JSON uwmetadata.
-      description: 'Transforms uwmetadata structure from JSON to XML, then validates the uwmetadata XML. See [examples of uwmetadata](https://github.com/phaidra/phaidra-api/wiki/Datastream-examples). '
+      summary: Validates JSON uwmetadata
+      description: Transforms uwmetadata structure from JSON to XML, then validates the uwmetadata XML. See examples of uwmetadata.
       tags:
-      - datastream
+      - Data Stream
       requestBody:
         description: JSON uwmetadata. An example of article uwmetadata in basic mode is provided.
         content:
@@ -228,12 +236,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/default'
+      operationId: postUwmetadataJson2xmlValidate
+      x-operation-id-source: derived
   /mods/tree:
     get:
-      summary: Get MODS tree.
+      summary: Get MODS tree
       description: Returns the MODS structure with all nodes, dictionaries, etc.
       tags:
-      - datastream
+      - Data Stream
       responses:
         '200':
           description: Mods tree.
@@ -241,12 +251,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/mods_tree'
+      operationId: getModsTree
+      x-operation-id-source: derived
   /mods/json2xml:
     post:
-      summary: Transforms MODS JSON to XML.
+      summary: Transforms MODS JSON to XML
       description: Transforms the MODS from JSON to XML.
       tags:
-      - datastream
+      - Data Stream
       requestBody:
         content:
           multipart/form-data:
@@ -278,12 +290,14 @@ paths:
                     properties:
                       mods:
                         type: string
+      operationId: postModsJson2xml
+      x-operation-id-source: derived
   /mods/xml2json:
     post:
-      summary: Transforms MODS XML to JSON.
+      summary: Transforms MODS XML to JSON
       description: Transforms the MODS from XML to JSON.
       tags:
-      - datastream
+      - Data Stream
       requestBody:
         content:
           application/json:
@@ -326,12 +340,14 @@ paths:
                           type: string
                   mods:
                     $ref: '#/components/schemas/mods'
+      operationId: postModsXml2json
+      x-operation-id-source: derived
   /mods/validate:
     post:
-      summary: Validates the MODS XML.
+      summary: Validates the MODS XML
       description: Validates the MODS structure in XML.
       tags:
-      - datastream
+      - Data Stream
       requestBody:
         content:
           application/json:
@@ -351,12 +367,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/default'
+      operationId: postModsValidate
+      x-operation-id-source: derived
   /mods/json2xml_validate:
     post:
       summary: Validates MODS JSON
       description: Transforms the MODS structure from JSON to XML and validates it.
       tags:
-      - datastream
+      - Data Stream
       requestBody:
         content:
           multipart/form-data:
@@ -378,12 +396,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/default'
+      operationId: postModsJson2xmlValidate
+      x-operation-id-source: derived
   /rights/json2xml:
     post:
-      summary: Transforms rights JSON to XML.
-      description: Transforms the rights structure from JSON to XML (see [examples of rights structure](https://github.com/phaidra/phaidra-api/wiki/Example-of-rights))
+      summary: Transforms rights JSON to XML
+      description: Transforms the rights structure from JSON to XML (see examples of rights structure)
       tags:
-      - datastream
+      - Data Stream
       requestBody:
         content:
           multipart/form-data:
@@ -421,12 +441,14 @@ paths:
                     properties:
                       rights:
                         type: string
+      operationId: postRightsJson2xml
+      x-operation-id-source: derived
   /rights/xml2json:
     post:
-      summary: Transforms rights XML to JSON.
-      description: Transforms the rights structure from XML to JSON (see [examples of rights structure](https://github.com/phaidra/phaidra-api/wiki/Example-of-rights)).
+      summary: Transforms rights XML to JSON
+      description: Transforms the rights structure from XML to JSON (see examples of rights structure).
       tags:
-      - datastream
+      - Data Stream
       requestBody:
         content:
           application/json:
@@ -460,12 +482,14 @@ paths:
                     type: number
                   rights:
                     $ref: '#/components/schemas/rights'
+      operationId: postRightsXml2json
+      x-operation-id-source: derived
   /rights/validate:
     post:
-      summary: Validates rights XML.
+      summary: Validates rights XML
       description: Validates the rights structure in XML.
       tags:
-      - datastream
+      - Data Stream
       requestBody:
         content:
           application/json:
@@ -485,12 +509,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/default'
+      operationId: postRightsValidate
+      x-operation-id-source: derived
   /rights/json2xml_validate:
     post:
-      summary: Validates rights JSON.
-      description: Transforms the rights structure from JSON to XML and validates it (see [examples of rights structure](https://github.com/phaidra/phaidra-api/wiki/Example-of-rights)).
+      summary: Validates rights JSON
+      description: Transforms the rights structure from JSON to XML and validates it (see examples of rights structure).
       tags:
-      - datastream
+      - Data Stream
       requestBody:
         content:
           multipart/form-data:
@@ -515,12 +541,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/default'
+      operationId: postRightsJson2xmlValidate
+      x-operation-id-source: derived
   /geo/json2xml:
     post:
-      summary: Transforms the geo JSON to XML.
-      description: Transforms the geo structure from JSON to XML (see [examples of geo datastream of a map object](https://github.com/phaidra/phaidra-api/wiki/GEO-datastream-of-a-map-object)).
+      summary: Transforms the geo JSON to XML
+      description: Transforms the geo structure from JSON to XML (see examples of geo datastream of a map object).
       tags:
-      - datastream
+      - Data Stream
       requestBody:
         description: Geo JSON
         content:
@@ -556,12 +584,14 @@ paths:
                     properties:
                       geo:
                         type: string
+      operationId: postGeoJson2xml
+      x-operation-id-source: derived
   /geo/xml2json:
     post:
-      summary: Transforms geo XML to JSON.
-      description: Transforms the geo structure from XML to JSON (see [examples of geo datastream of a map object](https://github.com/phaidra/phaidra-api/wiki/GEO-datastream-of-a-map-object)).
+      summary: Transforms geo XML to JSON
+      description: Transforms the geo structure from XML to JSON (see examples of geo datastream of a map object).
       tags:
-      - datastream
+      - Data Stream
       requestBody:
         content:
           application/json:
@@ -593,12 +623,14 @@ paths:
                           type: string
                   geo:
                     $ref: '#/components/schemas/geo'
+      operationId: postGeoXml2json
+      x-operation-id-source: derived
   /geo/validate:
     post:
-      summary: Validates the geo XML.
+      summary: Validates the geo XML
       description: Validates the geo structure in XML.
       tags:
-      - datastream
+      - Data Stream
       requestBody:
         content:
           application/json:
@@ -618,12 +650,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/default'
+      operationId: postGeoValidate
+      x-operation-id-source: derived
   /geo/json2xml_validate:
     post:
-      summary: Validates the geo JSON.
-      description: Transforms the geo structure from JSON to XML and validates it. See [examples of geo datastream of a map object](https://github.com/phaidra/phaidra-api/wiki/GEO-datastream-of-a-map-object).
+      summary: Validates the geo JSON
+      description: Transforms the geo structure from JSON to XML and validates it. See examples of geo datastream of a map object.
       tags:
-      - datastream
+      - Data Stream
       requestBody:
         content:
           multipart/form-data:
@@ -645,12 +679,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/default'
+      operationId: postGeoJson2xmlValidate
+      x-operation-id-source: derived
   /members/order/json2xml:
     post:
-      summary: Transforms members JSON to XML.
-      description: Transforms the members JSON structure to XML. See [example of members JSON structure](https://github.com/phaidra/phaidra-api/wiki/Collection-members-json-structure).
+      summary: Transforms members JSON to XML
+      description: Transforms the members JSON structure to XML. See example of members JSON structure.
       tags:
-      - datastream
+      - Data Stream
       requestBody:
         content:
           multipart/form-data:
@@ -674,11 +710,13 @@ paths:
                     type: array
                   metadata:
                     type: string
+      operationId: postMembersOrderJson2xml
+      x-operation-id-source: derived
   /members/order/xml2json:
     post:
-      summary: Transforms the members XML structure to JSON.
+      summary: Transforms the members XML structure to JSON
       tags:
-      - datastream
+      - Data Stream
       requestBody:
         content:
           application/json:
@@ -710,12 +748,14 @@ paths:
                           type: string
                   metadata:
                     $ref: '#/components/schemas/members'
+      operationId: postMembersOrderXml2json
+      x-operation-id-source: derived
   /annotations/json2xml:
     post:
-      summary: Transforms annotations JSON to XML.
-      description: Transforms the annotations JSON structure to XML (see an [example of annotation JSON structure](https://github.com/phaidra/phaidra-api/wiki/Annotations)).
+      summary: Transforms annotations JSON to XML
+      description: Transforms the annotations JSON structure to XML (see an example of annotation JSON structure).
       tags:
-      - datastream
+      - Data Stream
       requestBody:
         description: Annotations JSON
         content:
@@ -748,12 +788,14 @@ paths:
                           type: string
                   annotations:
                     type: object
+      operationId: postAnnotationsJson2xml
+      x-operation-id-source: derived
   /annotations/xml2json:
     post:
-      summary: Transforms annotations XML to JSON.
+      summary: Transforms annotations XML to JSON
       description: Transforms the XML annotations structure to JSON.
       tags:
-      - datastream
+      - Data Stream
       requestBody:
         content:
           application/json:
@@ -785,12 +827,14 @@ paths:
                           type: string
                   metadata:
                     $ref: '#/components/schemas/annotations'
+      operationId: postAnnotationsXml2json
+      x-operation-id-source: derived
   /annotations/validate:
     post:
-      summary: Validates the annotations XML.
+      summary: Validates the annotations XML
       description: Validates the annotations structure in XML.
       tags:
-      - datastream
+      - Data Stream
       requestBody:
         content:
           application/json:
@@ -810,12 +854,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/default'
+      operationId: postAnnotationsValidate
+      x-operation-id-source: derived
   /annotations/json2xml_validate:
     post:
-      summary: Validates the annotations JSON.
-      description: 'Transforms the annotations structure from JSON to XML and validates it. '
+      summary: Validates the annotations JSON
+      description: Transforms the annotations structure from JSON to XML and validates it.
       tags:
-      - datastream
+      - Data Stream
       requestBody:
         content:
           multipart/form-data:
@@ -837,22 +883,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/default'
+      operationId: postAnnotationsJson2xmlValidate
+      x-operation-id-source: derived
 components:
   schemas:
-    members:
-      type: array
-      items:
-        type: object
-        properties:
-          pid:
-            type: string
-          pos:
-            type: string
-      example:
-      - pid: o:1
-        pos: 1
-      - pid: o:2
-        pos: 2
     mods:
       type: object
       properties:
@@ -976,259 +1010,6 @@ components:
                 - xmlname: altRepGroup
                   input_type: input_text
                   label: Alternative representation group
-    vocabularies_mapping:
-      type: object
-      properties:
-        abstract_shareable:
-          type: string
-        abstract_type:
-          type: string
-        accessCondition_type:
-          type: string
-        classification_authority:
-          type: string
-        classification_usage:
-          type: string
-        genre_authority:
-          type: string
-        genre_type:
-          type: string
-        genre_usage:
-          type: string
-        identifier_invalid:
-          type: string
-        identifier_type:
-          type: string
-        language_languageTerm_authority:
-          type: string
-        language_languageTerm_type:
-          type: string
-        language_scriptTerm_type:
-          type: string
-        language_usage_primary:
-          type: string
-        location_holdingSimple_copyInformation_enumerationAndChronology_unitType:
-          type: string
-        location_physicalLocation_authority:
-          type: string
-        location_physicalLocation_type:
-          type: string
-        location_url_access:
-          type: string
-        location_url_usage:
-          type: string
-        name_authority:
-          type: string
-        name_namePart_type:
-          type: string
-        name_role_roleTerm_authority:
-          type: string
-        name_role_roleTerm_type:
-          type: string
-        name_type:
-          type: string
-        name_usage:
-          type: string
-        note_type:
-          type: string
-        originInfo_copyrightDate_encoding:
-          type: string
-        originInfo_copyrightDate_keyDate:
-          type: string
-        originInfo_copyrightDate_point:
-          type: string
-        originInfo_copyrightDate_qualifier:
-          type: string
-        originInfo_dateCaptured_encoding:
-          type: string
-        originInfo_dateCaptured_keyDate:
-          type: string
-        originInfo_dateCaptured_point:
-          type: string
-        originInfo_dateCaptured_qualifier:
-          type: string
-        originInfo_dateCreated_encoding:
-          type: string
-        originInfo_dateCreated_keyDate:
-          type: string
-        originInfo_dateCreated_point:
-          type: string
-        originInfo_dateCreated_qualifier:
-          type: string
-        originInfo_dateIssued_encoding:
-          type: string
-        originInfo_dateIssued_keyDate:
-          type: string
-        originInfo_dateIssued_point:
-          type: string
-        originInfo_dateIssued_qualifier:
-          type: string
-        originInfo_dateModified_encoding:
-          type: string
-        originInfo_dateModified_keyDate:
-          type: string
-        originInfo_dateModified_point:
-          type: string
-        originInfo_dateModified_qualifier:
-          type: string
-        originInfo_dateOther_encoding:
-          type: string
-        originInfo_dateOther_keyDate:
-          type: string
-        originInfo_dateOther_point:
-          type: string
-        originInfo_dateOther_qualifier:
-          type: string
-        originInfo_dateValid_encoding:
-          type: string
-        originInfo_dateValid_keyDate:
-          type: string
-        originInfo_dateValid_point:
-          type: string
-        originInfo_dateValid_qualifier:
-          type: string
-        originInfo_edition_supplied:
-          type: string
-        originInfo_eventType:
-          type: string
-        originInfo_frequency_authority:
-          type: string
-        originInfo_issuance:
-          type: string
-        originInfo_place_placeTerm_authority:
-          type: string
-        originInfo_place_placeTerm_type:
-          type: string
-        originInfo_place_supplied:
-          type: string
-        originInfo_publisher_supplied:
-          type: string
-        part_date_encoding:
-          type: string
-        part_date_keyDate:
-          type: string
-        part_date_point:
-          type: string
-        part_date_qualifier:
-          type: string
-        part_detail_type:
-          type: string
-        part_extent_unit:
-          type: string
-        part_text_type:
-          type: string
-        part_type:
-          type: string
-        physicalDescription_digitalOrigin:
-          type: string
-        physicalDescription_extent_supplied:
-          type: string
-        physicalDescription_form_authority:
-          type: string
-        physicalDescription_form_type:
-          type: string
-        physicalDescription_note_type:
-          type: string
-        physicalDescription_reformattingQuality:
-          type: string
-        recordInfo_descriptionStandard:
-          type: string
-        recordInfo_descriptionStandard_authority:
-          type: string
-        recordInfo_languageOfCataloging_languageTerm_authority:
-          type: string
-        recordInfo_languageOfCataloging_languageTerm_type:
-          type: string
-        recordInfo_languageOfCataloging_scriptTerm_type:
-          type: string
-        recordInfo_languageOfCataloging_usage:
-          type: string
-        recordInfo_recordChangeDate_encoding:
-          type: string
-        recordInfo_recordChangeDate_keyDate:
-          type: string
-        recordInfo_recordChangeDate_point:
-          type: string
-        recordInfo_recordChangeDate_qualifier:
-          type: string
-        recordInfo_recordContentSource_authority:
-          type: string
-        recordInfo_recordCreationDate_encoding:
-          type: string
-        recordInfo_recordCreationDate_keyDate:
-          type: string
-        recordInfo_recordCreationDate_point:
-          type: string
-        recordInfo_recordCreationDate_qualifier:
-          type: string
-        recordInfo_recordIdentifier_source:
-          type: string
-        relatedItem_type:
-          type: string
-        subject_authority:
-          type: string
-        subject_geographicCode_authority:
-          type: string
-        subject_name_authority:
-          type: string
-        subject_name_namePart_type:
-          type: string
-        subject_name_role_roleTerm_authority:
-          type: string
-        subject_name_role_roleTerm_type:
-          type: string
-        subject_name_type:
-          type: string
-        subject_temporal_encoding:
-          type: string
-        subject_temporal_keyDate:
-          type: string
-        subject_temporal_point:
-          type: string
-        subject_temporal_qualifier:
-          type: string
-        subject_titleInfo_authority:
-          type: string
-        subject_titleInfo_type:
-          type: string
-        subject_usage:
-          type: string
-        tableOfContents_shareable:
-          type: string
-        tableOfContents_type:
-          type: string
-        targetAudience_authority:
-          type: string
-        titleInfo_authority:
-          type: string
-        titleInfo_supplied:
-          type: string
-        titleInfo_type:
-          type: string
-        titleInfo_usage:
-          type: string
-        typeOfResource:
-          type: string
-        typeOfResource_collection:
-          type: string
-        typeOfResource_manuscript:
-          type: string
-        typeOfResource_usage:
-          type: string
-    default:
-      type: object
-      properties:
-        alerts:
-          type: array
-          items:
-            type: object
-            properties:
-              msg:
-                type: string
-              type:
-                type: string
-        status:
-          type: number
     geo:
       type: object
       properties:
@@ -1247,281 +1028,21 @@ components:
                           latitude: '41.6902784095934'
                       name: Name of geo datastream
                       description: Json example of a point geo datastream
-    uwmetadata_min:
-      type: array
-      items:
-        type: object
-        properties:
-          xmlns:
-            type: string
-          xmlname:
-            type: string
-          datatype:
-            type: string
-          input_type:
-            type: string
-          children:
-            type: array
-            items:
-              type: object
-              properties:
-                ui_value:
-                  type: string
-                input_type:
-                  type: string
-                value_lang:
-                  type: string
-                datatype:
-                  type: string
-                xmlns:
-                  type: string
-                xmlname:
-                  type: string
-      example:
-      - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
-        xmlname: general
-        children:
-        - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
-          xmlname: title
-          ui_value: Title
-          value_lang: de
-        - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
-          xmlname: language
-          ui_value: de
-          datatype: Language
-      - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
-        xmlname: lifecycle
-        children:
-        - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
-          xmlname: contribute
-          data_order: '0'
-          ordered: 1
-          children:
-          - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
-            xmlname: role
-            ui_value: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/voc_3/46
-            datatype: Vocabulary
-          - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
-            xmlname: entity
-            data_order: '0'
-            ordered: 1
-            children:
-            - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/entity
-              xmlname: firstname
-              ui_value: Brenda
-              datatype: CharacterString
-            - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/entity
-              xmlname: lastname
-              ui_value: Walsh
-              datatype: CharacterString
-      - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
-        xmlname: rights
-        children:
-        - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
-          xmlname: license
-          ui_value: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/voc_21/1
-          datatype: License
-    mods_tree:
+    rights:
       type: object
       properties:
-        alerts:
+        username:
           type: array
           items:
             type: object
             properties:
-              msg:
+              value:
                 type: string
-              type:
+              expires:
                 type: string
-        languages:
-          type: object
-        status:
-          type: number
-        tree:
-          $ref: '#/components/schemas/mods'
-        vocabularies:
-          $ref: '#/components/schemas/vocabularies'
-        vocabularies_mapping:
-          $ref: '#/components/schemas/vocabularies_mapping'
-    vocabularies:
-      type: object
-      properties:
-        abstract_type:
-          type: array
-          items:
-            type: string
-        accessCondition_type:
-          type: array
-          items:
-            type: string
-        authority_genre_form:
-          type: array
-          items:
-            type: string
-        authority_name_title:
-          type: array
-          items:
-            type: string
-        authority_relator_role:
-          type: array
-          items:
-            type: string
-        classification_authority:
-          type: array
-          items:
-            type: string
-        date_encoding:
-          type: array
-          items:
-            type: string
-        date_point:
-          type: array
-          items:
-            type: string
-        date_qualifier:
-          type: array
-          items:
-            type: string
-        descriptionStandard:
-          type: array
-          items:
-            type: string
-        description_authority:
-          type: array
-          items:
-            type: string
-        description_form_type:
-          type: array
-          items:
-            type: string
-        digital_origin:
-          type: array
-          items:
-            type: string
-        event_type:
-          type: array
-          items:
-            type: string
-        frequency:
-          type: array
-          items:
-            type: string
-        identifier_type:
-          type: array
-          items:
-            type: string
-        issuance:
-          type: array
-          items:
-            type: string
-        item_type:
-          type: array
-          items:
-            type: string
-        language_authority:
-          type: array
-          items:
-            type: string
-        location_type:
-          type: array
-          items:
-            type: string
-        location_url_type:
-          type: array
-          items:
-            type: string
-        location_url_usage:
-          type: array
-          items:
-            type: string
-        'no':
-          type: array
-          items:
-            type: string
-        note_type:
-          type: array
-          items:
-            type: string
-        org_authority:
-          type: array
-          items:
-            type: string
-        part_detail_title_type:
-          type: array
-          items:
-            type: string
-        part_extent_unit:
-          type: array
-          items:
-            type: string
-        part_text_type:
-          type: array
-          items:
-            type: string
-        part_type:
-          type: array
-          items:
-            type: string
-        physdesc_note_type:
-          type: array
-          items:
-            type: string
-        primary:
-          type: array
-          items:
-            type: string
-        reformatting_quality:
-          type: array
-          items:
-            type: string
-        subject_authority:
-          type: array
-          items:
-            type: string
-        target_authority:
-          type: array
-          items:
-            type: string
-        thority:
-          type: array
-          items:
-            type: string
-        toc_type:
-          type: array
-          items:
-            type: string
-        type_1:
-          type: array
-          items:
-            type: string
-        type_2:
-          type: array
-          items:
-            type: string
-        type_3:
-          type: array
-          items:
-            type: string
-        type_4:
-          type: array
-          items:
-            type: string
-        type_5:
-          type: array
-          items:
-            type: string
-        type_of_resource:
-          type: array
-          items:
-            type: string
-        unitType_type:
-          type: array
-          items:
-            type: string
-        'yes':
-          type: array
-          items:
-            type: string
+            example:
+              value: user123
+              expires: '2016-08-25T14:31:34Z'
     uwmetadata_article_basic:
       type: object
       example:
@@ -2052,21 +1573,548 @@ components:
                   h: 0.1
                   category: people
                   text: Third example of annotation
-    rights:
+    default:
       type: object
       properties:
-        username:
+        alerts:
           type: array
           items:
             type: object
             properties:
-              value:
+              msg:
                 type: string
-              expires:
+              type:
                 type: string
-            example:
-              value: user123
-              expires: '2016-08-25T14:31:34Z'
+        status:
+          type: number
+    vocabularies_mapping:
+      type: object
+      properties:
+        abstract_shareable:
+          type: string
+        abstract_type:
+          type: string
+        accessCondition_type:
+          type: string
+        classification_authority:
+          type: string
+        classification_usage:
+          type: string
+        genre_authority:
+          type: string
+        genre_type:
+          type: string
+        genre_usage:
+          type: string
+        identifier_invalid:
+          type: string
+        identifier_type:
+          type: string
+        language_languageTerm_authority:
+          type: string
+        language_languageTerm_type:
+          type: string
+        language_scriptTerm_type:
+          type: string
+        language_usage_primary:
+          type: string
+        location_holdingSimple_copyInformation_enumerationAndChronology_unitType:
+          type: string
+        location_physicalLocation_authority:
+          type: string
+        location_physicalLocation_type:
+          type: string
+        location_url_access:
+          type: string
+        location_url_usage:
+          type: string
+        name_authority:
+          type: string
+        name_namePart_type:
+          type: string
+        name_role_roleTerm_authority:
+          type: string
+        name_role_roleTerm_type:
+          type: string
+        name_type:
+          type: string
+        name_usage:
+          type: string
+        note_type:
+          type: string
+        originInfo_copyrightDate_encoding:
+          type: string
+        originInfo_copyrightDate_keyDate:
+          type: string
+        originInfo_copyrightDate_point:
+          type: string
+        originInfo_copyrightDate_qualifier:
+          type: string
+        originInfo_dateCaptured_encoding:
+          type: string
+        originInfo_dateCaptured_keyDate:
+          type: string
+        originInfo_dateCaptured_point:
+          type: string
+        originInfo_dateCaptured_qualifier:
+          type: string
+        originInfo_dateCreated_encoding:
+          type: string
+        originInfo_dateCreated_keyDate:
+          type: string
+        originInfo_dateCreated_point:
+          type: string
+        originInfo_dateCreated_qualifier:
+          type: string
+        originInfo_dateIssued_encoding:
+          type: string
+        originInfo_dateIssued_keyDate:
+          type: string
+        originInfo_dateIssued_point:
+          type: string
+        originInfo_dateIssued_qualifier:
+          type: string
+        originInfo_dateModified_encoding:
+          type: string
+        originInfo_dateModified_keyDate:
+          type: string
+        originInfo_dateModified_point:
+          type: string
+        originInfo_dateModified_qualifier:
+          type: string
+        originInfo_dateOther_encoding:
+          type: string
+        originInfo_dateOther_keyDate:
+          type: string
+        originInfo_dateOther_point:
+          type: string
+        originInfo_dateOther_qualifier:
+          type: string
+        originInfo_dateValid_encoding:
+          type: string
+        originInfo_dateValid_keyDate:
+          type: string
+        originInfo_dateValid_point:
+          type: string
+        originInfo_dateValid_qualifier:
+          type: string
+        originInfo_edition_supplied:
+          type: string
+        originInfo_eventType:
+          type: string
+        originInfo_frequency_authority:
+          type: string
+        originInfo_issuance:
+          type: string
+        originInfo_place_placeTerm_authority:
+          type: string
+        originInfo_place_placeTerm_type:
+          type: string
+        originInfo_place_supplied:
+          type: string
+        originInfo_publisher_supplied:
+          type: string
+        part_date_encoding:
+          type: string
+        part_date_keyDate:
+          type: string
+        part_date_point:
+          type: string
+        part_date_qualifier:
+          type: string
+        part_detail_type:
+          type: string
+        part_extent_unit:
+          type: string
+        part_text_type:
+          type: string
+        part_type:
+          type: string
+        physicalDescription_digitalOrigin:
+          type: string
+        physicalDescription_extent_supplied:
+          type: string
+        physicalDescription_form_authority:
+          type: string
+        physicalDescription_form_type:
+          type: string
+        physicalDescription_note_type:
+          type: string
+        physicalDescription_reformattingQuality:
+          type: string
+        recordInfo_descriptionStandard:
+          type: string
+        recordInfo_descriptionStandard_authority:
+          type: string
+        recordInfo_languageOfCataloging_languageTerm_authority:
+          type: string
+        recordInfo_languageOfCataloging_languageTerm_type:
+          type: string
+        recordInfo_languageOfCataloging_scriptTerm_type:
+          type: string
+        recordInfo_languageOfCataloging_usage:
+          type: string
+        recordInfo_recordChangeDate_encoding:
+          type: string
+        recordInfo_recordChangeDate_keyDate:
+          type: string
+        recordInfo_recordChangeDate_point:
+          type: string
+        recordInfo_recordChangeDate_qualifier:
+          type: string
+        recordInfo_recordContentSource_authority:
+          type: string
+        recordInfo_recordCreationDate_encoding:
+          type: string
+        recordInfo_recordCreationDate_keyDate:
+          type: string
+        recordInfo_recordCreationDate_point:
+          type: string
+        recordInfo_recordCreationDate_qualifier:
+          type: string
+        recordInfo_recordIdentifier_source:
+          type: string
+        relatedItem_type:
+          type: string
+        subject_authority:
+          type: string
+        subject_geographicCode_authority:
+          type: string
+        subject_name_authority:
+          type: string
+        subject_name_namePart_type:
+          type: string
+        subject_name_role_roleTerm_authority:
+          type: string
+        subject_name_role_roleTerm_type:
+          type: string
+        subject_name_type:
+          type: string
+        subject_temporal_encoding:
+          type: string
+        subject_temporal_keyDate:
+          type: string
+        subject_temporal_point:
+          type: string
+        subject_temporal_qualifier:
+          type: string
+        subject_titleInfo_authority:
+          type: string
+        subject_titleInfo_type:
+          type: string
+        subject_usage:
+          type: string
+        tableOfContents_shareable:
+          type: string
+        tableOfContents_type:
+          type: string
+        targetAudience_authority:
+          type: string
+        titleInfo_authority:
+          type: string
+        titleInfo_supplied:
+          type: string
+        titleInfo_type:
+          type: string
+        titleInfo_usage:
+          type: string
+        typeOfResource:
+          type: string
+        typeOfResource_collection:
+          type: string
+        typeOfResource_manuscript:
+          type: string
+        typeOfResource_usage:
+          type: string
+    vocabularies:
+      type: object
+      properties:
+        abstract_type:
+          type: array
+          items:
+            type: string
+        accessCondition_type:
+          type: array
+          items:
+            type: string
+        authority_genre_form:
+          type: array
+          items:
+            type: string
+        authority_name_title:
+          type: array
+          items:
+            type: string
+        authority_relator_role:
+          type: array
+          items:
+            type: string
+        classification_authority:
+          type: array
+          items:
+            type: string
+        date_encoding:
+          type: array
+          items:
+            type: string
+        date_point:
+          type: array
+          items:
+            type: string
+        date_qualifier:
+          type: array
+          items:
+            type: string
+        descriptionStandard:
+          type: array
+          items:
+            type: string
+        description_authority:
+          type: array
+          items:
+            type: string
+        description_form_type:
+          type: array
+          items:
+            type: string
+        digital_origin:
+          type: array
+          items:
+            type: string
+        event_type:
+          type: array
+          items:
+            type: string
+        frequency:
+          type: array
+          items:
+            type: string
+        identifier_type:
+          type: array
+          items:
+            type: string
+        issuance:
+          type: array
+          items:
+            type: string
+        item_type:
+          type: array
+          items:
+            type: string
+        language_authority:
+          type: array
+          items:
+            type: string
+        location_type:
+          type: array
+          items:
+            type: string
+        location_url_type:
+          type: array
+          items:
+            type: string
+        location_url_usage:
+          type: array
+          items:
+            type: string
+        'no':
+          type: array
+          items:
+            type: string
+        note_type:
+          type: array
+          items:
+            type: string
+        org_authority:
+          type: array
+          items:
+            type: string
+        part_detail_title_type:
+          type: array
+          items:
+            type: string
+        part_extent_unit:
+          type: array
+          items:
+            type: string
+        part_text_type:
+          type: array
+          items:
+            type: string
+        part_type:
+          type: array
+          items:
+            type: string
+        physdesc_note_type:
+          type: array
+          items:
+            type: string
+        primary:
+          type: array
+          items:
+            type: string
+        reformatting_quality:
+          type: array
+          items:
+            type: string
+        subject_authority:
+          type: array
+          items:
+            type: string
+        target_authority:
+          type: array
+          items:
+            type: string
+        thority:
+          type: array
+          items:
+            type: string
+        toc_type:
+          type: array
+          items:
+            type: string
+        type_1:
+          type: array
+          items:
+            type: string
+        type_2:
+          type: array
+          items:
+            type: string
+        type_3:
+          type: array
+          items:
+            type: string
+        type_4:
+          type: array
+          items:
+            type: string
+        type_5:
+          type: array
+          items:
+            type: string
+        type_of_resource:
+          type: array
+          items:
+            type: string
+        unitType_type:
+          type: array
+          items:
+            type: string
+        'yes':
+          type: array
+          items:
+            type: string
+    members:
+      type: array
+      items:
+        type: object
+        properties:
+          pid:
+            type: string
+          pos:
+            type: string
+      example:
+      - pid: o:1
+        pos: 1
+      - pid: o:2
+        pos: 2
+    uwmetadata_min:
+      type: array
+      items:
+        type: object
+        properties:
+          xmlns:
+            type: string
+          xmlname:
+            type: string
+          datatype:
+            type: string
+          input_type:
+            type: string
+          children:
+            type: array
+            items:
+              type: object
+              properties:
+                ui_value:
+                  type: string
+                input_type:
+                  type: string
+                value_lang:
+                  type: string
+                datatype:
+                  type: string
+                xmlns:
+                  type: string
+                xmlname:
+                  type: string
+      example:
+      - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
+        xmlname: general
+        children:
+        - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
+          xmlname: title
+          ui_value: Title
+          value_lang: de
+        - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
+          xmlname: language
+          ui_value: de
+          datatype: Language
+      - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
+        xmlname: lifecycle
+        children:
+        - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
+          xmlname: contribute
+          data_order: '0'
+          ordered: 1
+          children:
+          - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
+            xmlname: role
+            ui_value: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/voc_3/46
+            datatype: Vocabulary
+          - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
+            xmlname: entity
+            data_order: '0'
+            ordered: 1
+            children:
+            - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/entity
+              xmlname: firstname
+              ui_value: Brenda
+              datatype: CharacterString
+            - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/entity
+              xmlname: lastname
+              ui_value: Walsh
+              datatype: CharacterString
+      - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
+        xmlname: rights
+        children:
+        - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
+          xmlname: license
+          ui_value: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/voc_21/1
+          datatype: License
+    mods_tree:
+      type: object
+      properties:
+        alerts:
+          type: array
+          items:
+            type: object
+            properties:
+              msg:
+                type: string
+              type:
+                type: string
+        languages:
+          type: object
+        status:
+          type: number
+        tree:
+          $ref: '#/components/schemas/mods'
+        vocabularies:
+          $ref: '#/components/schemas/vocabularies'
+        vocabularies_mapping:
+          $ref: '#/components/schemas/vocabularies_mapping'
     uwmetadata:
       type: array
       items:

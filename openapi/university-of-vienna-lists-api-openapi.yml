@@ -1,6 +1,6 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: PHAIDRA datastream lists API
+  title: PHAIDRA Lists API
   version: '3.0'
   description: Documentation of the PHAIDRA API.
   license:
@@ -12,14 +12,14 @@ servers:
 - description: PHAIDRA Sandbox
   url: https://sandbox.phaidra.org/api/
 tags:
-- name: lists
+- name: Lists
   description: Requests for manipulating object lists
 paths:
   /list/token/{token}:
     get:
-      summary: Get object list exposed under specified token.
+      summary: Get object list exposed under specified token
       tags:
-      - lists
+      - Lists
       parameters:
       - in: path
         name: token
@@ -44,11 +44,13 @@ paths:
                           type: string
                   list:
                     $ref: '#/components/schemas/group'
+      operationId: getListTokenByToken
+      x-operation-id-source: derived
   /lists:
     get:
       summary: Get user's object lists
       tags:
-      - lists
+      - Lists
       security:
       - basicAuth: []
       responses:
@@ -70,11 +72,13 @@ paths:
                           type: string
                   lists:
                     $ref: '#/components/schemas/members'
+      operationId: getLists
+      x-operation-id-source: derived
   /list/{lid}:
     get:
       summary: Get list detail
       tags:
-      - lists
+      - Lists
       security:
       - basicAuth: []
       parameters:
@@ -103,12 +107,14 @@ paths:
                           type: string
                   list:
                     $ref: '#/components/schemas/group'
+      operationId: getListByLid
+      x-operation-id-source: derived
   /list/add:
     post:
       summary: Add list
       description: Add a list to the user (from credentials).
       tags:
-      - lists
+      - Lists
       security:
       - basicAuth: []
       requestBody:
@@ -139,12 +145,14 @@ paths:
                           type: string
                   lid:
                     type: string
+      operationId: postListAdd
+      x-operation-id-source: derived
   /list/{lid}/token/create:
     post:
       summary: Create a list token
       description: The token can be used in the /list/token/{token} request to create a URL under which the list can be publicly displayed.
       tags:
-      - lists
+      - Lists
       security:
       - basicAuth: []
       parameters:
@@ -175,11 +183,13 @@ paths:
                     type: string
                   alert:
                     type: number
+      operationId: postListByLidTokenCreate
+      x-operation-id-source: derived
   /list/{lid}/token/delete:
     post:
       summary: Delete list token
       tags:
-      - lists
+      - Lists
       security:
       - basicAuth: []
       parameters:
@@ -208,12 +218,14 @@ paths:
                           type: string
                   status:
                     type: number
+      operationId: postListByLidTokenDelete
+      x-operation-id-source: derived
   /list/{lid}/remove:
     post:
       summary: Remove list
       description: Remove list (input list id).
       tags:
-      - lists
+      - Lists
       security:
       - basicAuth: []
       parameters:
@@ -240,11 +252,13 @@ paths:
                           type: string
                         type:
                           type: string
+      operationId: postListByLidRemove
+      x-operation-id-source: derived
   /list/{lid}/members/add:
     post:
       summary: Add objects to list
       tags:
-      - lists
+      - Lists
       security:
       - basicAuth: []
       parameters:
@@ -285,11 +299,13 @@ paths:
                           type: string
                   status:
                     type: number
+      operationId: postListByLidMembersAdd
+      x-operation-id-source: derived
   /list/{lid}/members/remove:
     post:
       summary: Remove objects from list
       tags:
-      - lists
+      - Lists
       security:
       - basicAuth: []
       parameters:
@@ -333,6 +349,8 @@ paths:
                           type: string
                   status:
                     type: number
+      operationId: postListByLidMembersRemove
+      x-operation-id-source: derived
 components:
   schemas:
     lists:
@@ -349,20 +367,6 @@ components:
         title: Title 1
       - pid: o:2
         title: Title 2
-    members:
-      type: array
-      items:
-        type: object
-        properties:
-          pid:
-            type: string
-          pos:
-            type: string
-      example:
-      - pid: o:1
-        pos: 1
-      - pid: o:2
-        pos: 2
     group:
       type: object
       properties:
@@ -390,6 +394,20 @@ components:
           properties:
             $oid:
               type: string
+    members:
+      type: array
+      items:
+        type: object
+        properties:
+          pid:
+            type: string
+          pos:
+            type: string
+      example:
+      - pid: o:1
+        pos: 1
+      - pid: o:2
+        pos: 2
   securitySchemes:
     tokenAuth:
       type: apiKey

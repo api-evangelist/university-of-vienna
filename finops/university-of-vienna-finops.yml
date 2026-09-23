@@ -54,3 +54,9 @@ principles:
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
+x-provenance:
+  generated: '2026-08-30'
+  method: generated
+  source: >-
+    No published cost surface; not a commercial API programme.
+  x-operator: institution

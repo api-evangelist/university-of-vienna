@@ -183,5 +183,11 @@
         }
       }
     }
+  },
+  "x-provenance": {
+    "generated": "2026-08-30",
+    "method": "derived",
+    "source": "Derived from the PHAIDRA OpenAPI object-info responses in openapi/.",
+    "x-operator": "institution"
   }
 }

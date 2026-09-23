@@ -1,6 +1,6 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: PHAIDRA datastream stats API
+  title: PHAIDRA Stats API
   version: '3.0'
   description: Documentation of the PHAIDRA API.
   license:
@@ -12,7 +12,7 @@ servers:
 - description: PHAIDRA Sandbox
   url: https://sandbox.phaidra.org/api/
 tags:
-- name: stats
+- name: Stats
   description: ''
 paths:
   /stats/{pid}:
@@ -20,7 +20,7 @@ paths:
       summary: Get usage statistics
       description: Returns object's usage statistics
       tags:
-      - stats
+      - Stats
       parameters:
       - in: path
         name: pid
@@ -43,11 +43,13 @@ paths:
                         type: string
                       detail_page:
                         type: string
+      operationId: getStatsByPid
+      x-operation-id-source: derived
   /stats/{pid}/downloads:
     get:
-      summary: Get downloads count.
+      summary: Get downloads count
       tags:
-      - stats
+      - Stats
       parameters:
       - in: path
         name: pid
@@ -62,12 +64,14 @@ paths:
             text/plain:
               schema:
                 type: number
+      operationId: getStatsByPidDownloads
+      x-operation-id-source: derived
   /stats/{pid}/detail_page:
     get:
-      summary: Get number of /info calls.
+      summary: Get number of /info calls
       description: Returns the number of /info calls, which are typically used when accessing the detail page.
       tags:
-      - stats
+      - Stats
       parameters:
       - in: path
         name: pid
@@ -82,12 +86,14 @@ paths:
             text/plain:
               schema:
                 type: number
+      operationId: getStatsByPidDetailPage
+      x-operation-id-source: derived
   /stats/{pid}/chart:
     get:
-      summary: Get timestamped /info and download count.
+      summary: Get timestamped /info and download count
       description: Get /info and download count, with detailed timestamps.
       tags:
-      - stats
+      - Stats
       parameters:
       - in: path
         name: pid
@@ -124,6 +130,8 @@ paths:
                         type: number
                   status:
                     type: number
+      operationId: getStatsByPidChart
+      x-operation-id-source: derived
 components:
   securitySchemes:
     tokenAuth:

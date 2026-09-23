@@ -57,3 +57,9 @@ plans:
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
+x-provenance:
+  generated: '2026-08-30'
+  method: generated
+  source: >-
+    No published pricing surface exists; PHAIDRA and its OAI-PMH endpoint are free to use.
+  x-operator: institution

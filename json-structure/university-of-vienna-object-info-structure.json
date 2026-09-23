@@ -164,5 +164,11 @@
     "metatags": {
       "type": "object"
     }
+  },
+  "x-provenance": {
+    "generated": "2026-08-30",
+    "method": "derived",
+    "source": "Derived from json-schema/university-of-vienna-object-info-schema.json.",
+    "x-operator": "institution"
   }
 }

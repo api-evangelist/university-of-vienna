@@ -1,6 +1,6 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: PHAIDRA datastream vocabularies API
+  title: PHAIDRA Vocabularies API
   version: '3.0'
   description: Documentation of the PHAIDRA API.
   license:
@@ -12,7 +12,7 @@ servers:
 - description: PHAIDRA Sandbox
   url: https://sandbox.phaidra.org/api/
 tags:
-- name: vocabularies
+- name: Vocabularies
   description: Requests for controlled vocabularies
 paths:
   /vocabulary:
@@ -20,7 +20,7 @@ paths:
       summary: Get controlled vocabulary
       description: Get vocabulary which was saved in API in vocabulary folder.
       tags:
-      - vocabularies
+      - Vocabularies
       parameters:
       - in: query
         name: uri
@@ -59,12 +59,14 @@ paths:
                           type: string
                   status:
                     type: number
+      operationId: getVocabulary
+      x-operation-id-source: derived
   /terms/label:
     get:
-      summary: Get term labels.
+      summary: Get term labels
       description: Retrieves the labels for a particular term using its URI as a parameter. It could be a term of a classification or a vocabulary (any type, even licenses and organisational units).
       tags:
-      - vocabularies
+      - Vocabularies
       parameters:
       - in: query
         name: uri
@@ -121,12 +123,14 @@ paths:
                             type: string
                   status:
                     type: number
+      operationId: getTermsLabel
+      x-operation-id-source: derived
   /terms/children:
     get:
-      summary: Get children.
+      summary: Get children
       description: Retrieve the children for a term URI.
       tags:
-      - vocabularies
+      - Vocabularies
       parameters:
       - in: query
         name: uri
@@ -175,11 +179,13 @@ paths:
                             type: string
                   status:
                     type: number
+      operationId: getTermsChildren
+      x-operation-id-source: derived
   /terms/taxonpath:
     get:
-      summary: Get the taxon path.
+      summary: Get the taxon path
       tags:
-      - vocabularies
+      - Vocabularies
       parameters:
       - in: query
         name: uri
@@ -219,12 +225,14 @@ paths:
                             type: string
                   status:
                     type: number
+      operationId: getTermsTaxonpath
+      x-operation-id-source: derived
   /terms/parent:
     get:
-      summary: Get parent.
+      summary: Get parent
       description: Retrieve the parent of a term, using its URI.
       tags:
-      - vocabularies
+      - Vocabularies
       parameters:
       - in: query
         name: uri
@@ -246,12 +254,14 @@ paths:
                 properties:
                   parent:
                     type: string
+      operationId: getTermsParent
+      x-operation-id-source: derived
   /resolve:
     get:
       summary: Resolve an URI
       description: The resolver must be known/configured.
       tags:
-      - vocabularies
+      - Vocabularies
       parameters:
       - in: query
         name: uri
@@ -279,6 +289,8 @@ paths:
                           type: string
                   status:
                     type: number
+      operationId: getResolve
+      x-operation-id-source: derived
 components:
   securitySchemes:
     tokenAuth:

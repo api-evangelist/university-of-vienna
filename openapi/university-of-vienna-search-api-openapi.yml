@@ -1,6 +1,6 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: PHAIDRA datastream search API
+  title: PHAIDRA Search API
   version: '3.0'
   description: Documentation of the PHAIDRA API.
   license:
@@ -12,15 +12,15 @@ servers:
 - description: PHAIDRA Sandbox
   url: https://sandbox.phaidra.org/api/
 tags:
-- name: search
+- name: Search
   description: ''
 paths:
   /search/select:
     post:
       summary: Search query
-      description: Solr query, for the query parameters see [Solr common query parameters](https://solr.apache.org/guide/solr/latest/query-guide/common-query-parameters.html)
+      description: Solr query, for the query parameters see Solr common query parameters
       tags:
-      - search
+      - Search
       parameters:
       - in: query
         name: q
@@ -77,6 +77,8 @@ paths:
             application/json:
               schema:
                 type: object
+      operationId: postSearchSelect
+      x-operation-id-source: derived
 components:
   securitySchemes:
     tokenAuth:

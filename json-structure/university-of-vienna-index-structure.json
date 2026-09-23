@@ -155,5 +155,11 @@
         "type": "string"
       }
     }
+  },
+  "x-provenance": {
+    "generated": "2026-08-30",
+    "method": "derived",
+    "source": "Derived from json-schema/university-of-vienna-index-schema.json.",
+    "x-operator": "institution"
   }
 }

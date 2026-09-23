@@ -155,5 +155,11 @@
         "type": "string"
       }
     }
+  },
+  "x-provenance": {
+    "generated": "2026-08-30",
+    "method": "derived",
+    "source": "Derived from the PHAIDRA OpenAPI search/index responses in openapi/.",
+    "x-operator": "institution"
   }
 }

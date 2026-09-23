@@ -1,20 +1,7 @@
 {
   "provider": "university-of-vienna",
   "sources": [
-    "university-of-vienna-datastream-api-openapi.yml",
-    "university-of-vienna-directory-api-openapi.yml",
-    "university-of-vienna-imageserver-api-openapi.yml",
-    "university-of-vienna-lists-api-openapi.yml",
-    "university-of-vienna-misc-api-openapi.yml",
-    "university-of-vienna-oai-pmh-api-openapi.yml",
-    "university-of-vienna-object-advanced-api-openapi.yml",
-    "university-of-vienna-object-basics-api-openapi.yml",
-    "university-of-vienna-relationships-api-openapi.yml",
-    "university-of-vienna-search-api-openapi.yml",
-    "university-of-vienna-session-api-openapi.yml",
-    "university-of-vienna-stats-api-openapi.yml",
-    "university-of-vienna-templates-api-openapi.yml",
-    "university-of-vienna-vocabularies-api-openapi.yml"
+    "_original/university-of-vienna-phaidra-api.yaml"
   ],
   "outputs": [
     "university-of-vienna-datastream-api-openapi.yml",
@@ -32,9 +19,31 @@
     "university-of-vienna-templates-api-openapi.yml",
     "university-of-vienna-vocabularies-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "university-of-vienna-phaidra-api.yaml: upgraded openapi 3.0.2 -> OpenAPI 3.2.0",
+    "superseded outputs removed: university-of-vienna-data-stream-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 20 total)"
+  ],
+  "skipped": [
+    "university-of-vienna-data-stream-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "university-of-vienna-directory-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "university-of-vienna-imageserver-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "university-of-vienna-lists-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "university-of-vienna-misc-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "university-of-vienna-oai-pmh-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "university-of-vienna-object-advanced-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "university-of-vienna-object-basics-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "university-of-vienna-relationships-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "university-of-vienna-search-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "university-of-vienna-session-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "university-of-vienna-stats-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "university-of-vienna-templates-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "university-of-vienna-vocabularies-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

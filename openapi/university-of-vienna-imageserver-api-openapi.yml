@@ -1,6 +1,6 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: PHAIDRA datastream imageserver API
+  title: PHAIDRA Imageserver API
   version: '3.0'
   description: Documentation of the PHAIDRA API.
   license:
@@ -17,8 +17,8 @@ tags:
 paths:
   /imageserver:
     get:
-      summary: Proxy for the imageserver.
-      description: Proxy for the [imageserver API](http://www.hexaplant.com/pixeldragon/3-access-images.html). This is necessary for the frontend. The images at the image server are hashed so that it's possible to restrict access to them. This method checks if the user (if credentials are provided) is authorized to access the image and if it is, it uses the configured secret to create the hash under which image server knows the image. It then accesses the image server proxying all the parameters and proxies back the response.
+      summary: Proxy for the imageserver
+      description: Proxy for the imageserver API. This is necessary for the frontend. The images at the image server are hashed so that it's possible to restrict access to them. This method checks if the user (if credentials are provided) is authorized to access the image and if it is, it uses the configured secret to create the hash under which image server knows the image. It then accesses the image server proxying all the parameters and proxies back the response.
       tags:
       - imageserver
       parameters:
@@ -56,6 +56,8 @@ paths:
             application/json:
               schema:
                 type: object
+      operationId: getImageserver
+      x-operation-id-source: derived
   /imageserver/{pid}/status:
     get:
       summary: Get imageserver job status
@@ -91,9 +93,11 @@ paths:
             application/json:
               schema:
                 type: object
+      operationId: getImageserverByPidStatus
+      x-operation-id-source: derived
   /imageserver/process:
     post:
-      summary: Let imageserver process multiple objects.
+      summary: Let imageserver process multiple objects
       description: If an image server is configured, creates a job in the image server's database to process all the pids from the provided list. Needs admin credentials.
       tags:
       - imageserver
@@ -144,9 +148,11 @@ paths:
             application/json:
               schema:
                 type: object
+      operationId: postImageserverProcess
+      x-operation-id-source: derived
   /imageserver/{pid}/process:
     post:
-      summary: Post to (re-)process one pid on imageserver.
+      summary: Post to (re-)process one pid on imageserver
       description: Post an object to be processed to the imageserver. Needs admin credentials
       tags:
       - imageserver
@@ -195,6 +201,8 @@ paths:
             application/json:
               schema:
                 type: object
+      operationId: postImageserverByPidProcess
+      x-operation-id-source: derived
 components:
   securitySchemes:
     tokenAuth:

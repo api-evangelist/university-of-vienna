@@ -1,0 +1,96 @@
+# Education-regime domain standard conformance for the University of Vienna.
+# Kin Score 0.12.0 `education` regime standards[]: scim, lti, oneroster, ed-fi,
+# caliper, qti, oai-pmh, shibboleth, saml, orcid, datacite, crossref.
+# REWARD-ONLY. Only standards with located, machine-readable evidence are listed.
+name: University of Vienna — domain standard conformance
+aid: university-of-vienna
+generated: '2026-08-30'
+method: probed
+source: >-
+  Located by reading the institution's own OpenAPI contracts in openapi/ and by
+  live-probing the endpoints and federation metadata named below on 2026-08-30.
+regime: education
+standards:
+  - standard: oai-pmh
+    status: conformant
+    operator: institution
+    evidence:
+      - kind: contract
+        location: openapi/university-of-vienna-oai-pmh-api-openapi.yml
+        detail: >-
+          Tag `oai-pmh` and path `/oai` in the PHAIDRA contract, documented against
+          https://www.openarchives.org/pmh/. Response example carries the oai_dc
+          (Dublin Core) namespace http://www.openarchives.org/OAI/2.0/oai_dc/.
+      - kind: endpoint
+        location: https://ucris.univie.ac.at/ws/oai?verb=Identify
+        status: 200
+        detail: >-
+          Live OAI-PMH 2.0 Identify on the institution's own host.
+          repositoryName "u:cris - University of Vienna", adminEmail
+          ucris@univie.ac.at, earliestDatestamp 2013-09-07. Advertises OpenAIRE
+          CERIF profile 1.2 compatibility; ListMetadataFormats returns
+          oai_cerif_openaire, mods, nl_didl, oai_dc, qdc, xmetadiss.
+          The software underneath is Elsevier Pure (the Identify description
+          says so verbatim: "This service is based on Pure.") — the HARVESTING
+          SURFACE is institution-hosted, the repository product is not.
+      - kind: registry
+        location: https://www.re3data.org/api/v1/repository/r3d100010472
+        status: 200
+        detail: >-
+          re3data records the PHAIDRA OAI-PMH base as
+          https://phaidra.univie.ac.at/api/oai/?verb=Identify
+  - standard: datacite
+    status: conformant
+    operator: institution
+    evidence:
+      - kind: contract
+        location: openapi/university-of-vienna-object-advanced-api-openapi.yml
+        detail: >-
+          Path `/object/{pid}/datacite` — "Transforms metadata to DataCite" —
+          with a `datacite` response schema and `datacite_elements` component in
+          openapi/_original/university-of-vienna-phaidra-api.yaml (lines 2996,
+          7749, 7857). In-contract, not a prose claim.
+  - standard: shibboleth
+    status: conformant
+    operator: institution
+    evidence:
+      - kind: federation-metadata
+        location: https://eduid.at/md/aconet-registered.xml
+        status: 200
+        detail: >-
+          ACOnet (Austrian R&E federation) registered-entity metadata, 253
+          entities, served as application/samlmetadata+xml. Contains
+          entityID="https://weblogin.univie.ac.at/shibboleth" with an
+          IDPSSODescriptor and mdui:DisplayName "Universität Wien" /
+          "University of Vienna". ACOnet-registered entities propagate to eduGAIN
+          (https://mds.edugain.org/edugain-v2.xml, 200, 93MB).
+      - kind: endpoint
+        location: https://weblogin.univie.ac.at/
+        status: 200
+        detail: >-
+          Shibboleth IdP live. /idp/shibboleth metadata endpoint returns 403 to
+          our client — access-restricted, not dead; the entity is published
+          through the federation aggregate instead.
+  - standard: saml
+    status: conformant
+    operator: institution
+    evidence:
+      - kind: federation-metadata
+        location: https://eduid.at/md/aconet-registered.xml
+        detail: >-
+          SAML 2.0 IdP entity for the University of Vienna, plus SP entity
+          entityID="https://wiki.univie.ac.at/shibboleth" (Wiki Universität Wien).
+not_found:
+  - scim
+  - lti
+  - oneroster
+  - ed-fi
+  - caliper
+  - qti
+  - orcid
+  - crossref
+not_found_note: >-
+  No in-contract or machine-readable evidence located for these on 2026-08-30.
+  ORCID and Crossref are plausible via u:cris/Pure but the Pure API is a vendor
+  contract and any conformance there is Elsevier's, not the institution's — it is
+  deliberately NOT claimed here. Nothing is asserted from prose.

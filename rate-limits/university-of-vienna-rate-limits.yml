@@ -33,3 +33,9 @@ policies:
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
+x-provenance:
+  generated: '2026-08-30'
+  method: generated
+  source: >-
+    No published rate-limit policy located for PHAIDRA. The u:ai tenant API publishes 100 req/min at zid.univie.ac.at/en/uai/uai-api-access/.
+  x-operator: institution

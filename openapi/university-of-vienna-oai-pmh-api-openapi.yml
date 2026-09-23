@@ -1,6 +1,6 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: PHAIDRA datastream oai-pmh API
+  title: PHAIDRA Oai Pmh API
   version: '3.0'
   description: Documentation of the PHAIDRA API.
   license:
@@ -12,14 +12,14 @@ servers:
 - description: PHAIDRA Sandbox
   url: https://sandbox.phaidra.org/api/
 tags:
-- name: oai-pmh
-  description: Look at the [OAI-PMH protocol](https://www.openarchives.org/pmh) used in this endpoint
+- name: oai pmh
+  description: Look at the OAI-PMH protocol used in this endpoint
 paths:
   /oai:
     get:
-      summary: OAI-PMH endpoint.
+      summary: OAI-PMH endpoint
       tags:
-      - oai-pmh
+      - oai pmh
       parameters:
       - in: query
         name: verb
@@ -46,10 +46,12 @@ paths:
             text/xml:
               schema:
                 type: string
+      operationId: getOai
+      x-operation-id-source: derived
     post:
-      summary: Same as GET.
+      summary: Same as GET
       tags:
-      - oai-pmh
+      - oai pmh
       responses:
         '200':
           description: See [the OAI-PMH protocol](https://www.openarchives.org/pmh/)
@@ -57,6 +59,8 @@ paths:
             application/json:
               schema:
                 type: object
+      operationId: postOai
+      x-operation-id-source: derived
 components:
   securitySchemes:
     tokenAuth:

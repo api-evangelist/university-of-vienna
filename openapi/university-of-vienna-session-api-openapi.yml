@@ -1,6 +1,6 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: PHAIDRA datastream session API
+  title: PHAIDRA Session API
   version: '3.0'
   description: Documentation of the PHAIDRA API.
   license:
@@ -12,7 +12,7 @@ servers:
 - description: PHAIDRA Sandbox
   url: https://sandbox.phaidra.org/api/
 tags:
-- name: session
+- name: Session
   description: Session management
 paths:
   /signin:
@@ -20,7 +20,7 @@ paths:
       summary: Sign in
       description: Authenticate with the api to get an XSFR token back (a cookie with the same name will be set as well). You then have to send this token back in an X-XSRF-TOKEN header for each authenticated call.
       tags:
-      - session
+      - Session
       security:
       - basicAuth: []
       responses:
@@ -46,11 +46,13 @@ paths:
                     type: string
         '403':
           description: credentials invalid
+      operationId: getSignin
+      x-operation-id-source: derived
   /signout:
     get:
       summary: Sign out
       tags:
-      - session
+      - Session
       security:
       - tokenAuth: []
       responses:
@@ -76,12 +78,14 @@ paths:
                     type: number
         '403':
           description: credentials invalid
+      operationId: getSignout
+      x-operation-id-source: derived
   /keepalive:
     get:
       summary: Extends session expiration time
       description: Extends the expiration time of the session token (the session is identified by the token).
       tags:
-      - session
+      - Session
       security:
       - tokenAuth: []
       responses:
@@ -109,6 +113,8 @@ paths:
                     type: number
         '403':
           description: credentials invalid
+      operationId: getKeepalive
+      x-operation-id-source: derived
 components:
   securitySchemes:
     tokenAuth:

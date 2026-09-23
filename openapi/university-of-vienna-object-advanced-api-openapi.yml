@@ -1,6 +1,6 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: PHAIDRA datastream object-advanced API
+  title: PHAIDRA Object Advanced API
   version: '3.0'
   description: Documentation of the PHAIDRA API.
   license:
@@ -17,7 +17,7 @@ tags:
 paths:
   /object/{pid}/uwmetadata:
     get:
-      summary: Get uwmetadata.
+      summary: Get uwmetadata
       description: Retrieves the object uwmetadata datastream.
       tags:
       - object-advanced
@@ -76,8 +76,10 @@ paths:
             application/json:
               schema:
                 type: object
+      operationId: getObjectByPidUwmetadata
+      x-operation-id-source: derived
     post:
-      summary: Saves uwmetadata.
+      summary: Saves uwmetadata
       description: This method saves the object's metadata if you are using the uwmetadata as a metadata structure.
       tags:
       - object-advanced
@@ -124,9 +126,11 @@ paths:
                           type: string
                   status:
                     type: string
+      operationId: postObjectByPidUwmetadata
+      x-operation-id-source: derived
   /object/{pid}/mods:
     get:
-      summary: Get mods.
+      summary: Get mods
       description: Retrieves object mods datastream.
       tags:
       - object-advanced
@@ -181,9 +185,11 @@ paths:
             application/json:
               schema:
                 type: object
+      operationId: getObjectByPidMods
+      x-operation-id-source: derived
     post:
-      summary: Saves mods.
-      description: 'This method saves the object''s metadata if you are using the mods as a metadata structure. '
+      summary: Saves mods
+      description: This method saves the object's metadata if you are using the mods as a metadata structure.
       tags:
       - object-advanced
       security:
@@ -223,10 +229,12 @@ paths:
                           type: string
                   status:
                     type: string
+      operationId: postObjectByPidMods
+      x-operation-id-source: derived
   /object/{pid}/jsonld:
     get:
       description: Retrieve object JSON-LD metadata.
-      summary: Get JSON-LD.
+      summary: Get JSON-LD
       tags:
       - object-advanced
       parameters:
@@ -263,8 +271,10 @@ paths:
             application/json:
               schema:
                 type: object
+      operationId: getObjectByPidJsonld
+      x-operation-id-source: derived
     post:
-      summary: Saves JSON-LD.
+      summary: Saves JSON-LD
       description: This method saves the metadata if you are using JSON-LD as a metadata structure.
       tags:
       - object-advanced
@@ -310,9 +320,11 @@ paths:
                           type: string
                   status:
                     type: string
+      operationId: postObjectByPidJsonld
+      x-operation-id-source: derived
   /object/{pid}/json-ld:
     get:
-      summary: Get full JSON-LD.
+      summary: Get full JSON-LD
       description: Retrieve full object JSON-LD, with `@context` header, etc.
       tags:
       - object-advanced
@@ -350,9 +362,11 @@ paths:
             application/json:
               schema:
                 type: object
+      operationId: getObjectByPidJsonLd
+      x-operation-id-source: derived
   /object/{pid}/geo:
     get:
-      summary: Get geo.
+      summary: Get geo
       description: Retrieves geo datastream of object.
       tags:
       - object-advanced
@@ -390,8 +404,10 @@ paths:
             application/json:
               schema:
                 type: object
+      operationId: getObjectByPidGeo
+      x-operation-id-source: derived
     post:
-      summary: Saves geo.
+      summary: Saves geo
       description: This method saves information about the object's geolocation.
       tags:
       - object-advanced
@@ -431,6 +447,8 @@ paths:
                           type: string
                   status:
                     type: string
+      operationId: postObjectByPidGeo
+      x-operation-id-source: derived
   /object/{pid}/members/order:
     get:
       summary: Retrieve members
@@ -468,9 +486,11 @@ paths:
             application/json:
               schema:
                 type: object
+      operationId: getObjectByPidMembersOrder
+      x-operation-id-source: derived
   /object/{pid}/annotations:
     get:
-      summary: Get annotations.
+      summary: Get annotations
       description: Retrieve annotations datastream.
       tags:
       - object-advanced
@@ -508,8 +528,10 @@ paths:
             application/json:
               schema:
                 type: object
+      operationId: getObjectByPidAnnotations
+      x-operation-id-source: derived
     post:
-      summary: Saves annotations.
+      summary: Saves annotations
       description: This method can save annotations to an object. The format chosen is taken from IIPMooViewer.
       tags:
       - object-advanced
@@ -550,6 +572,8 @@ paths:
                           type: string
                   status:
                     type: string
+      operationId: postObjectByPidAnnotations
+      x-operation-id-source: derived
   /object/{pid}/index/dc:
     get:
       summary: Get DC
@@ -577,10 +601,12 @@ paths:
             application/json:
               schema:
                 type: object
+      operationId: getObjectByPidIndexDc
+      x-operation-id-source: derived
   /object/{pid}/index/relationships:
     get:
       description: Retrieves the object's relationships using indexed data.
-      summary: Get relationships, from index.
+      summary: Get relationships, from index
       tags:
       - object-advanced
       parameters:
@@ -629,9 +655,11 @@ paths:
             application/json:
               schema:
                 type: object
+      operationId: getObjectByPidIndexRelationships
+      x-operation-id-source: derived
   /object/{pid}/index/members:
     get:
-      summary: Get object's members.
+      summary: Get object's members
       description: Get object's members using indexed data.
       tags:
       - object-advanced
@@ -669,9 +697,11 @@ paths:
             application/json:
               schema:
                 type: object
+      operationId: getObjectByPidIndexMembers
+      x-operation-id-source: derived
   /object/{pid}/datacite:
     get:
-      summary: Transforms metadata to DataCite.
+      summary: Transforms metadata to DataCite
       tags:
       - object-advanced
       parameters:
@@ -708,6 +738,8 @@ paths:
             application/json:
               schema:
                 type: object
+      operationId: getObjectByPidDatacite
+      x-operation-id-source: derived
   /object/{pid}/state:
     get:
       summary: Get state
@@ -742,6 +774,8 @@ paths:
                     type: string
                   status:
                     type: number
+      operationId: getObjectByPidState
+      x-operation-id-source: derived
   /object/{pid}/cmodel:
     get:
       summary: Get cmodel
@@ -776,9 +810,11 @@ paths:
                     type: string
                   status:
                     type: number
+      operationId: getObjectByPidCmodel
+      x-operation-id-source: derived
   /object/{pid}/relationships:
     get:
-      summary: Get relationships.
+      summary: Get relationships
       description: Returns the object relationships (triplestore).
       tags:
       - object-advanced
@@ -815,9 +851,11 @@ paths:
                           type: string
                   status:
                     type: string
+      operationId: getObjectByPidRelationships
+      x-operation-id-source: derived
   /object/{pid}/iiifmanifest:
     get:
-      summary: Get iiifmanifest.
+      summary: Get iiifmanifest
       description: Retrieves the iiifmanifest datastream.
       tags:
       - object-advanced
@@ -835,8 +873,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/iiifmanifest'
+      operationId: getObjectByPidIiifmanifest
+      x-operation-id-source: derived
     post:
-      summary: Saves the iiifmanifest.
+      summary: Saves the iiifmanifest
       tags:
       - object-advanced
       security:
@@ -881,10 +921,12 @@ paths:
                           type: string
                   status:
                     type: string
+      operationId: postObjectByPidIiifmanifest
+      x-operation-id-source: derived
   /object/{pid}/id:
     get:
-      summary: Get Dublin Core identifiers.
-      description: Get a list of identifiers that are saved in Dublin Core as [http://purl.org/dc/terms/identifier](http://purl.org/dc/terms/identifier).
+      summary: Get Dublin Core identifiers
+      description: Get a list of identifiers that are saved in Dublin Core as http://purl.org/dc/terms/identifier.
       tags:
       - object-advanced
       parameters:
@@ -917,6 +959,8 @@ paths:
                       type: string
                   status:
                     type: string
+      operationId: getObjectByPidId
+      x-operation-id-source: derived
   /authz/check/{pid}/{op}:
     get:
       summary: Checks rights
@@ -978,6 +1022,8 @@ paths:
                           type: string
                   status:
                     type: string
+      operationId: getAuthzCheckByPidByOp
+      x-operation-id-source: derived
   /object/{pid}/metadata:
     get:
       summary: Get object's metadata
@@ -1007,9 +1053,11 @@ paths:
             application/json:
               schema:
                 type: object
+      operationId: getObjectByPidMetadata
+      x-operation-id-source: derived
   /object/{pid}/fulltext:
     get:
-      summary: 'Retrieves the FULLTEXT datastream of a specified object. It returns this datastream as it was saved: this is not a method which extracts fulltext from object''s data.'
+      summary: Retrieves the FULLTEXT datastream of a specified object.
       tags:
       - object-advanced
       security:
@@ -1055,9 +1103,11 @@ paths:
             application/json:
               schema:
                 type: object
+      operationId: getObjectByPidFulltext
+      x-operation-id-source: derived
   /object/{pid}/jsonldprivate:
     get:
-      summary: Get the non-public JSON-LD-PRIVATE datastream.
+      summary: Get the non-public JSON-LD-PRIVATE datastream
       tags:
       - object-advanced
       security:
@@ -1094,6 +1144,8 @@ paths:
             application/json:
               schema:
                 type: object
+      operationId: getObjectByPidJsonldprivate
+      x-operation-id-source: derived
     post:
       summary: Save JSON-LD-PRIVATE datastream
       description: This method saves the object's metadata if you are using jsonld as a metadata structure. Unlike JSON-LD which is always visible, JSON-LD-PRIVATE is only available to the owner/admin.
@@ -1129,6 +1181,8 @@ paths:
                           type: string
                   status:
                     type: string
+      operationId: postObjectByPidJsonldprivate
+      x-operation-id-source: derived
   '/index ':
     post:
       summary: Re-index multiple objects at once
@@ -1143,6 +1197,8 @@ paths:
           content:
             application/json:
               schema: {}
+      operationId: 'postIndex '
+      x-operation-id-source: derived
   /object/{pid}/modify:
     post:
       summary: Modify object properties
@@ -1216,6 +1272,8 @@ paths:
             application/json:
               schema:
                 type: object
+      operationId: postObjectByPidModify
+      x-operation-id-source: derived
   /object/{pid}/id/add:
     post:
       summary: Add an identifier triple
@@ -1277,6 +1335,8 @@ paths:
             application/json:
               schema:
                 type: object
+      operationId: postObjectByPidIdAdd
+      x-operation-id-source: derived
   /object/{pid}/id/remove:
     post:
       summary: Remove identifier from triples
@@ -1337,6 +1397,8 @@ paths:
             application/json:
               schema:
                 type: object
+      operationId: postObjectByPidIdRemove
+      x-operation-id-source: derived
   /object/{pid}/datastream/{dsid}:
     post:
       summary: Add or modify datastream
@@ -1413,6 +1475,8 @@ paths:
             application/json:
               schema:
                 type: object
+      operationId: postObjectByPidDatastreamByDsid
+      x-operation-id-source: derived
   /object/{pid}/data:
     post:
       summary: Replace data (add a new version of OCTETS datastream)
@@ -1469,6 +1533,8 @@ paths:
             application/json:
               schema:
                 type: object
+      operationId: postObjectByPidData
+      x-operation-id-source: derived
   /resource/create:
     post:
       summary: Creates a resource(-link) object
@@ -1537,6 +1603,8 @@ paths:
             application/json:
               schema:
                 type: object
+      operationId: postResourceCreate
+      x-operation-id-source: derived
   /page/create:
     post:
       summary: Creates a page object
@@ -1605,6 +1673,8 @@ paths:
             application/json:
               schema:
                 type: object
+      operationId: postPageCreate
+      x-operation-id-source: derived
   /object/create:
     post:
       summary: Create empty object, without a specified cmodel
@@ -1673,6 +1743,8 @@ paths:
             application/json:
               schema:
                 type: object
+      operationId: postObjectCreate
+      x-operation-id-source: derived
   /object/create/{cmodel}:
     post:
       summary: Create empty object, with cmodel
@@ -1728,69 +1800,133 @@ paths:
             application/json:
               schema:
                 type: object
+      operationId: postObjectCreateByCmodel
+      x-operation-id-source: derived
 components:
   schemas:
-    index_relationship:
+    mods:
       type: object
       properties:
-        hasalternativeformat:
-          type: array
-          items:
-            type: string
-        hasalternativeversion:
-          type: array
-          items:
-            type: string
-        hasbackside:
-          type: array
-          items:
-            type: string
-        hassuccessor:
-          type: array
-          items:
-            type: string
-        hasthumbnail:
-          type: array
-          items:
-            type: string
-        isalternativeformatof:
-          type: array
-          items:
-            type: string
-        isalternativeversionof:
-          type: array
-          items:
-            type: string
-        isbacksideof:
-          type: array
-          items:
-            type: string
-        ismemberof:
-          type: array
-          items:
-            type: string
-        ispartof:
-          type: array
-          items:
-            type: object
-        isreferencedby:
-          type: array
-          items:
-            type: string
-        issuccessorof:
-          type: array
-          items:
-            type: string
-        isthumbnailfor:
-          type: array
-          items:
-            type: string
-        references:
-          type: array
-          items:
-            type: string
-    jsonld:
-      type: object
+        metadata:
+          type: object
+          properties:
+            mods:
+              type: array
+              items:
+                type: object
+                properties:
+                  attributes:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        input_type:
+                          type: string
+                        label:
+                          type: string
+                        xmlname:
+                          type: string
+                        ui_value:
+                          type: string
+                  children:
+                    type: array
+                    items:
+                      type: object
+                  label:
+                    type: string
+                  ui_value:
+                    type: string
+                  xmlname:
+                    type: string
+                  input_type:
+                    type: string
+                  extensible:
+                    type: number
+              example:
+              - ui_value: AC04090285
+                xmlname: identifier
+                input_type: input_text
+                label: Identifier
+                attributes:
+                - ui_value: ac-number
+                  xmlname: type
+                  input_type: select
+                  label: Type
+                - xmlname: lang
+                  input_type: input_text
+                  label: Language
+                - xmlname: script
+                  input_type: input_text
+                  label: Script
+                - xmlname: transliteration
+                  input_type: input_text
+                  label: Transliteration
+                - xmlname: typeURI
+                  input_type: input_text
+                  label: Type URI
+                - xmlname: displayLabel
+                  input_type: input_text
+                  label: Display label
+                - xmlname: invalid
+                  input_type: select
+                  label: Invalid
+                - xmlname: altRepGroup
+                  input_type: input_text
+                  label: Alternative representation group
+              - xmlname: language
+                input_type: node
+                label: Language
+                children:
+                - ui_value: ger
+                  xmlname: languageTerm
+                  input_type: input_text
+                  label: Language term
+                  attributes:
+                  - ui_value: code
+                    xmlname: type
+                    input_type: select
+                    label: Type
+                  - ui_value: iso639-2b
+                    xmlname: authority
+                    input_type: select
+                    label: Authority
+                  - xmlname: authorityURI
+                    input_type: input_text
+                    label: Authority URI
+                  - xmlname: valueURI
+                    input_type: input_text
+                    label: Value URI
+                  - xmlname: lang
+                    input_type: input_text
+                    label: Language
+                  - xmlname: script
+                    input_type: input_text
+                    label: Script
+                  - xmlname: transliteration
+                    input_type: input_text
+                    label: Transliteration
+                attributes:
+                - xmlname: objectPart
+                  input_type: input_text
+                  label: Object part
+                - xmlname: lang
+                  input_type: input_text
+                  label: Language
+                - xmlname: script
+                  input_type: input_text
+                  label: Script
+                - xmlname: transliteration
+                  input_type: input_text
+                  label: Transliteration
+                - xmlname: displayLabel
+                  input_type: input_text
+                  label: Display label
+                - xmlname: usage
+                  input_type: select
+                  label: Usage
+                - xmlname: altRepGroup
+                  input_type: input_text
+                  label: Alternative representation group
     datacite:
       type: object
       properties:
@@ -1921,80 +2057,24 @@ components:
             type: string
         status:
           type: string
-    uwmetadata_min:
-      type: array
-      items:
-        type: object
-        properties:
-          xmlns:
-            type: string
-          xmlname:
-            type: string
-          datatype:
-            type: string
-          input_type:
-            type: string
-          children:
-            type: array
-            items:
+    geo:
+      type: object
+      properties:
+        metadata:
+          type: object
+          properties:
+            geo:
               type: object
-              properties:
-                ui_value:
-                  type: string
-                input_type:
-                  type: string
-                value_lang:
-                  type: string
-                datatype:
-                  type: string
-                xmlns:
-                  type: string
-                xmlname:
-                  type: string
-      example:
-      - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
-        xmlname: general
-        children:
-        - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
-          xmlname: title
-          ui_value: Title
-          value_lang: de
-        - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
-          xmlname: language
-          ui_value: de
-          datatype: Language
-      - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
-        xmlname: lifecycle
-        children:
-        - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
-          xmlname: contribute
-          data_order: '0'
-          ordered: 1
-          children:
-          - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
-            xmlname: role
-            ui_value: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/voc_3/46
-            datatype: Vocabulary
-          - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
-            xmlname: entity
-            data_order: '0'
-            ordered: 1
-            children:
-            - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/entity
-              xmlname: firstname
-              ui_value: Brenda
-              datatype: CharacterString
-            - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/entity
-              xmlname: lastname
-              ui_value: Walsh
-              datatype: CharacterString
-      - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
-        xmlname: rights
-        children:
-        - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
-          xmlname: license
-          ui_value: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/voc_21/1
-          datatype: License
+              example:
+                kml:
+                  document:
+                    placemark:
+                    - point:
+                        coordinates:
+                          longitude: '44.8112504748688'
+                          latitude: '41.6902784095934'
+                      name: Name of geo datastream
+                      description: Json example of a point geo datastream
     json-ld:
       type: object
       properties:
@@ -2153,6 +2233,38 @@ components:
           - '@value': Last Name
         edm:rights:
         - https://rightsstatements.org/page/InC/1.0/
+    annotations:
+      type: object
+      properties:
+        metadata:
+          type: object
+          properties:
+            annotations:
+              type: object
+              example:
+                '1':
+                  x: 0.7
+                  y: 0.6
+                  w: 0.2
+                  h: 0.18
+                  category: place
+                  text: First example of annotation
+                '2':
+                  x: 0.1
+                  y: 0.8
+                  w: 0.15
+                  h: 0.1
+                  category: place
+                  text: Second example of annotation
+                '3':
+                  x: 0.7
+                  y: 0.4
+                  w: 0.1
+                  h: 0.1
+                  category: people
+                  text: Third example of annotation
+    jsonld:
+      type: object
     iiifmanifest:
       type: object
       properties:
@@ -2336,177 +2448,139 @@ components:
         start:
           id: https://sandbox.phaidra.org/api/iiif/o:***/canvas/1
           type: Canvas
-    annotations:
-      type: object
-      properties:
-        metadata:
-          type: object
-          properties:
-            annotations:
+    uwmetadata_min:
+      type: array
+      items:
+        type: object
+        properties:
+          xmlns:
+            type: string
+          xmlname:
+            type: string
+          datatype:
+            type: string
+          input_type:
+            type: string
+          children:
+            type: array
+            items:
               type: object
-              example:
-                '1':
-                  x: 0.7
-                  y: 0.6
-                  w: 0.2
-                  h: 0.18
-                  category: place
-                  text: First example of annotation
-                '2':
-                  x: 0.1
-                  y: 0.8
-                  w: 0.15
-                  h: 0.1
-                  category: place
-                  text: Second example of annotation
-                '3':
-                  x: 0.7
-                  y: 0.4
-                  w: 0.1
-                  h: 0.1
-                  category: people
-                  text: Third example of annotation
-    geo:
+              properties:
+                ui_value:
+                  type: string
+                input_type:
+                  type: string
+                value_lang:
+                  type: string
+                datatype:
+                  type: string
+                xmlns:
+                  type: string
+                xmlname:
+                  type: string
+      example:
+      - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
+        xmlname: general
+        children:
+        - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
+          xmlname: title
+          ui_value: Title
+          value_lang: de
+        - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
+          xmlname: language
+          ui_value: de
+          datatype: Language
+      - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
+        xmlname: lifecycle
+        children:
+        - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
+          xmlname: contribute
+          data_order: '0'
+          ordered: 1
+          children:
+          - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
+            xmlname: role
+            ui_value: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/voc_3/46
+            datatype: Vocabulary
+          - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
+            xmlname: entity
+            data_order: '0'
+            ordered: 1
+            children:
+            - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/entity
+              xmlname: firstname
+              ui_value: Brenda
+              datatype: CharacterString
+            - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/entity
+              xmlname: lastname
+              ui_value: Walsh
+              datatype: CharacterString
+      - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
+        xmlname: rights
+        children:
+        - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
+          xmlname: license
+          ui_value: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/voc_21/1
+          datatype: License
+    index_relationship:
       type: object
       properties:
-        metadata:
-          type: object
-          properties:
-            geo:
-              type: object
-              example:
-                kml:
-                  document:
-                    placemark:
-                    - point:
-                        coordinates:
-                          longitude: '44.8112504748688'
-                          latitude: '41.6902784095934'
-                      name: Name of geo datastream
-                      description: Json example of a point geo datastream
-    mods:
-      type: object
-      properties:
-        metadata:
-          type: object
-          properties:
-            mods:
-              type: array
-              items:
-                type: object
-                properties:
-                  attributes:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        input_type:
-                          type: string
-                        label:
-                          type: string
-                        xmlname:
-                          type: string
-                        ui_value:
-                          type: string
-                  children:
-                    type: array
-                    items:
-                      type: object
-                  label:
-                    type: string
-                  ui_value:
-                    type: string
-                  xmlname:
-                    type: string
-                  input_type:
-                    type: string
-                  extensible:
-                    type: number
-              example:
-              - ui_value: AC04090285
-                xmlname: identifier
-                input_type: input_text
-                label: Identifier
-                attributes:
-                - ui_value: ac-number
-                  xmlname: type
-                  input_type: select
-                  label: Type
-                - xmlname: lang
-                  input_type: input_text
-                  label: Language
-                - xmlname: script
-                  input_type: input_text
-                  label: Script
-                - xmlname: transliteration
-                  input_type: input_text
-                  label: Transliteration
-                - xmlname: typeURI
-                  input_type: input_text
-                  label: Type URI
-                - xmlname: displayLabel
-                  input_type: input_text
-                  label: Display label
-                - xmlname: invalid
-                  input_type: select
-                  label: Invalid
-                - xmlname: altRepGroup
-                  input_type: input_text
-                  label: Alternative representation group
-              - xmlname: language
-                input_type: node
-                label: Language
-                children:
-                - ui_value: ger
-                  xmlname: languageTerm
-                  input_type: input_text
-                  label: Language term
-                  attributes:
-                  - ui_value: code
-                    xmlname: type
-                    input_type: select
-                    label: Type
-                  - ui_value: iso639-2b
-                    xmlname: authority
-                    input_type: select
-                    label: Authority
-                  - xmlname: authorityURI
-                    input_type: input_text
-                    label: Authority URI
-                  - xmlname: valueURI
-                    input_type: input_text
-                    label: Value URI
-                  - xmlname: lang
-                    input_type: input_text
-                    label: Language
-                  - xmlname: script
-                    input_type: input_text
-                    label: Script
-                  - xmlname: transliteration
-                    input_type: input_text
-                    label: Transliteration
-                attributes:
-                - xmlname: objectPart
-                  input_type: input_text
-                  label: Object part
-                - xmlname: lang
-                  input_type: input_text
-                  label: Language
-                - xmlname: script
-                  input_type: input_text
-                  label: Script
-                - xmlname: transliteration
-                  input_type: input_text
-                  label: Transliteration
-                - xmlname: displayLabel
-                  input_type: input_text
-                  label: Display label
-                - xmlname: usage
-                  input_type: select
-                  label: Usage
-                - xmlname: altRepGroup
-                  input_type: input_text
-                  label: Alternative representation group
+        hasalternativeformat:
+          type: array
+          items:
+            type: string
+        hasalternativeversion:
+          type: array
+          items:
+            type: string
+        hasbackside:
+          type: array
+          items:
+            type: string
+        hassuccessor:
+          type: array
+          items:
+            type: string
+        hasthumbnail:
+          type: array
+          items:
+            type: string
+        isalternativeformatof:
+          type: array
+          items:
+            type: string
+        isalternativeversionof:
+          type: array
+          items:
+            type: string
+        isbacksideof:
+          type: array
+          items:
+            type: string
+        ismemberof:
+          type: array
+          items:
+            type: string
+        ispartof:
+          type: array
+          items:
+            type: object
+        isreferencedby:
+          type: array
+          items:
+            type: string
+        issuccessorof:
+          type: array
+          items:
+            type: string
+        isthumbnailfor:
+          type: array
+          items:
+            type: string
+        references:
+          type: array
+          items:
+            type: string
   securitySchemes:
     tokenAuth:
       type: apiKey

@@ -1,9 +1,8 @@
----
 # Spectral ruleset encoding patterns observed in the University of Vienna
 # PHAIDRA API (OpenAPI 3.0.2). Formats restricted to OpenAPI 3.x.
 extends: [[spectral:oas, off]]
 formats:
-  - oas3
+- oas3
 rules:
   phaidra-info-title:
     description: API document must declare an info.title.
@@ -59,3 +58,9 @@ rules:
     severity: warn
     then:
       function: truthy
+x-provenance:
+  generated: '2026-08-30'
+  method: derived
+  source: >-
+    Derived from the PHAIDRA OpenAPI contracts in openapi/.
+  x-operator: institution

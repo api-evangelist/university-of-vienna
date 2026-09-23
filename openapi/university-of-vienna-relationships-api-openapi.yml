@@ -1,6 +1,6 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: PHAIDRA datastream relationships API
+  title: PHAIDRA Relationships API
   version: '3.0'
   description: Documentation of the PHAIDRA API.
   license:
@@ -12,15 +12,15 @@ servers:
 - description: PHAIDRA Sandbox
   url: https://sandbox.phaidra.org/api/
 tags:
-- name: relationships
+- name: Relationships
   description: Requests for adding and removing object relationships
 paths:
   /collection/{pid}/members:
     get:
-      summary: Get pids of collection members.
-      description: 'Returns the pids of the members of a collection. '
+      summary: Get pids of collection members
+      description: Returns the pids of the members of a collection.
       tags:
-      - relationships
+      - Relationships
       parameters:
       - in: path
         name: pid
@@ -55,12 +55,14 @@ paths:
                             type: string
                           pos:
                             type: string
+      operationId: getCollectionByPidMembers
+      x-operation-id-source: derived
   /collection/{pid}/descendants:
     get:
       description: Get descendants.
-      summary: Returns descendants of collection.
+      summary: Returns descendants of collection
       tags:
-      - relationships
+      - Relationships
       parameters:
       - in: path
         name: pid
@@ -87,11 +89,13 @@ paths:
                           type: string
                   descendants:
                     $ref: '#/components/schemas/collection'
+      operationId: getCollectionByPidDescendants
+      x-operation-id-source: derived
   /collection/{pid}/members/remove:
     post:
-      summary: Remove collection members.
+      summary: Remove collection members
       tags:
-      - relationships
+      - Relationships
       security:
       - basicAuth: []
       parameters:
@@ -140,11 +144,13 @@ paths:
                             type: string
                           pos:
                             type: string
+      operationId: postCollectionByPidMembersRemove
+      x-operation-id-source: derived
   /collection/{pid}/members/add:
     post:
-      summary: Add collection members.
+      summary: Add collection members
       tags:
-      - relationships
+      - Relationships
       security:
       - basicAuth: []
       parameters:
@@ -193,11 +199,13 @@ paths:
                             type: string
                           pos:
                             type: string
+      operationId: postCollectionByPidMembersAdd
+      x-operation-id-source: derived
   /collection/{pid}/members/order:
     post:
       summary: Orders collection members
       tags:
-      - relationships
+      - Relationships
       security:
       - basicAuth: []
       parameters:
@@ -246,12 +254,14 @@ paths:
                             type: string
                           pos:
                             type: string
+      operationId: postCollectionByPidMembersOrder
+      x-operation-id-source: derived
   /collection/{pid}/members/{itempid}/order/{position}:
     post:
-      summary: Changes order of single member.
+      summary: Changes order of single member
       description: Changes order of a single collection member.
       tags:
-      - relationships
+      - Relationships
       security:
       - basicAuth: []
       parameters:
@@ -285,11 +295,13 @@ paths:
                     type: array
                   status:
                     type: string
+      operationId: postCollectionByPidMembersByItempidOrderByPosition
+      x-operation-id-source: derived
   /container/{pid}/members/order:
     post:
-      summary: Orders members of a container.
+      summary: Orders members of a container
       tags:
-      - relationships
+      - Relationships
       security:
       - basicAuth: []
       parameters:
@@ -338,12 +350,14 @@ paths:
                             type: string
                           pos:
                             type: string
+      operationId: postContainerByPidMembersOrder
+      x-operation-id-source: derived
   /container/{pid}/members/{itempid}/order/{position}:
     post:
-      summary: Changes order of single member.
+      summary: Changes order of single member
       description: Changes order of a single container member.
       tags:
-      - relationships
+      - Relationships
       security:
       - basicAuth: []
       parameters:
@@ -377,12 +391,14 @@ paths:
                     type: array
                   status:
                     type: string
+      operationId: postContainerByPidMembersByItempidOrderByPosition
+      x-operation-id-source: derived
   /object/{pid}/related:
     get:
-      summary: Get related objects.
+      summary: Get related objects
       description: This method returns all objects which are in some relation to the object specified in URL.
       tags:
-      - relationships
+      - Relationships
       parameters:
       - in: path
         name: pid
@@ -479,12 +495,14 @@ paths:
             application/json:
               schema:
                 type: object
+      operationId: getObjectByPidRelated
+      x-operation-id-source: derived
   /object/{pid}/relationship/add:
     post:
-      summary: Add a relationship.
-      description: Add a triple. It is then available in the triplestore and indexed automatically. Adding some system relationships (like hasModel) might be restricted. See the [list of supported relationships](https://github.com/phaidra/phaidra-api/wiki/Relations).
+      summary: Add a relationship
+      description: Add a triple. It is then available in the triplestore and indexed automatically. Adding some system relationships (like hasModel) might be restricted. See the list of supported relationships.
       tags:
-      - relationships
+      - Relationships
       security:
       - basicAuth: []
       parameters:
@@ -548,12 +566,14 @@ paths:
             application/json:
               schema:
                 type: object
+      operationId: postObjectByPidRelationshipAdd
+      x-operation-id-source: derived
   /object/{pid}/relationship/remove:
     post:
-      summary: Remove a relationship from RELS-EXT.
-      description: Remove a relationship from the RELS-EXT datastream. Removing some [system relationships](https://github.com/phaidra/phaidra-api/wiki/Relations) (like hasModel) might be restricted.
+      summary: Remove a relationship from RELS-EXT
+      description: Remove a relationship from the RELS-EXT datastream. Removing some system relationships (like hasModel) might be restricted.
       tags:
-      - relationships
+      - Relationships
       security:
       - basicAuth: []
       parameters:
@@ -617,22 +637,10 @@ paths:
             application/json:
               schema:
                 type: object
+      operationId: postObjectByPidRelationshipRemove
+      x-operation-id-source: derived
 components:
   schemas:
-    members:
-      type: array
-      items:
-        type: object
-        properties:
-          pid:
-            type: string
-          pos:
-            type: string
-      example:
-      - pid: o:1
-        pos: 1
-      - pid: o:2
-        pos: 2
     collection:
       type: object
       properties:
@@ -729,6 +737,20 @@ components:
               type: array
               items:
                 type: string
+    members:
+      type: array
+      items:
+        type: object
+        properties:
+          pid:
+            type: string
+          pos:
+            type: string
+      example:
+      - pid: o:1
+        pos: 1
+      - pid: o:2
+        pos: 2
   securitySchemes:
     tokenAuth:
       type: apiKey

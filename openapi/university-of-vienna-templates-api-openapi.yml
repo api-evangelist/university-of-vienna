@@ -1,6 +1,6 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: PHAIDRA datastream templates API
+  title: PHAIDRA Templates API
   version: '3.0'
   description: Documentation of the PHAIDRA API.
   license:
@@ -12,7 +12,7 @@ servers:
 - description: PHAIDRA Sandbox
   url: https://sandbox.phaidra.org/api/
 tags:
-- name: templates
+- name: Templates
   description: Requests for managing metadata templates
 paths:
   /jsonld/templates:
@@ -20,7 +20,7 @@ paths:
       summary: Get user's JSON-LD templates
       description: Retrieves the user's saved JSON-LD templates
       tags:
-      - templates
+      - Templates
       security:
       - basicAuth: []
       responses:
@@ -44,12 +44,13 @@ paths:
                     type: string
                   templates:
                     $ref: '#/components/schemas/templates'
+      operationId: getJsonldTemplates
+      x-operation-id-source: derived
   /jsonld/template/add:
     post:
       summary: Adds JSON-LD templates
-      description: Adds JSON-LD templates
       tags:
-      - templates
+      - Templates
       security:
       - basicAuth: []
       requestBody:
@@ -86,11 +87,13 @@ paths:
                     type: string
                   tid:
                     type: string
+      operationId: postJsonldTemplateAdd
+      x-operation-id-source: derived
   /jsonld/template/{tid}:
     get:
       summary: Get template detail
       tags:
-      - templates
+      - Templates
       security:
       - basicAuth: []
       parameters:
@@ -119,11 +122,13 @@ paths:
                           type: string
                   template:
                     $ref: '#/components/schemas/template'
+      operationId: getJsonldTemplateByTid
+      x-operation-id-source: derived
   /jsonld/template/{tid}/remove:
     post:
       summary: Remove template
       tags:
-      - templates
+      - Templates
       security:
       - basicAuth: []
       parameters:
@@ -152,6 +157,8 @@ paths:
                           type: string
                   status:
                     type: number
+      operationId: postJsonldTemplateByTidRemove
+      x-operation-id-source: derived
 components:
   schemas:
     template:
