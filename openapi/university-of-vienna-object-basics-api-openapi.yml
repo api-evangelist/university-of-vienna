@@ -801,196 +801,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    mods:
-      type: object
-      properties:
-        metadata:
-          type: object
-          properties:
-            mods:
-              type: array
-              items:
-                type: object
-                properties:
-                  attributes:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        input_type:
-                          type: string
-                        label:
-                          type: string
-                        xmlname:
-                          type: string
-                        ui_value:
-                          type: string
-                  children:
-                    type: array
-                    items:
-                      type: object
-                  label:
-                    type: string
-                  ui_value:
-                    type: string
-                  xmlname:
-                    type: string
-                  input_type:
-                    type: string
-                  extensible:
-                    type: number
-              example:
-              - ui_value: AC04090285
-                xmlname: identifier
-                input_type: input_text
-                label: Identifier
-                attributes:
-                - ui_value: ac-number
-                  xmlname: type
-                  input_type: select
-                  label: Type
-                - xmlname: lang
-                  input_type: input_text
-                  label: Language
-                - xmlname: script
-                  input_type: input_text
-                  label: Script
-                - xmlname: transliteration
-                  input_type: input_text
-                  label: Transliteration
-                - xmlname: typeURI
-                  input_type: input_text
-                  label: Type URI
-                - xmlname: displayLabel
-                  input_type: input_text
-                  label: Display label
-                - xmlname: invalid
-                  input_type: select
-                  label: Invalid
-                - xmlname: altRepGroup
-                  input_type: input_text
-                  label: Alternative representation group
-              - xmlname: language
-                input_type: node
-                label: Language
-                children:
-                - ui_value: ger
-                  xmlname: languageTerm
-                  input_type: input_text
-                  label: Language term
-                  attributes:
-                  - ui_value: code
-                    xmlname: type
-                    input_type: select
-                    label: Type
-                  - ui_value: iso639-2b
-                    xmlname: authority
-                    input_type: select
-                    label: Authority
-                  - xmlname: authorityURI
-                    input_type: input_text
-                    label: Authority URI
-                  - xmlname: valueURI
-                    input_type: input_text
-                    label: Value URI
-                  - xmlname: lang
-                    input_type: input_text
-                    label: Language
-                  - xmlname: script
-                    input_type: input_text
-                    label: Script
-                  - xmlname: transliteration
-                    input_type: input_text
-                    label: Transliteration
-                attributes:
-                - xmlname: objectPart
-                  input_type: input_text
-                  label: Object part
-                - xmlname: lang
-                  input_type: input_text
-                  label: Language
-                - xmlname: script
-                  input_type: input_text
-                  label: Script
-                - xmlname: transliteration
-                  input_type: input_text
-                  label: Transliteration
-                - xmlname: displayLabel
-                  input_type: input_text
-                  label: Display label
-                - xmlname: usage
-                  input_type: select
-                  label: Usage
-                - xmlname: altRepGroup
-                  input_type: input_text
-                  label: Alternative representation group
-    container_with_members:
-      type: object
-      example:
-        metadata:
-          json-ld:
-            container:
-              dcterms:type:
-              - '@type': skos:Concept
-                skos:exactMatch:
-                - https://pid.phaidra.org/vocabulary/8MY0-BQDQ
-                skos:prefLabel:
-                - '@language': eng
-                  '@value': container
-              edm:hasType:
-              - '@type': skos:Concept
-                skos:prefLabel:
-                - '@value': interview
-                  '@language': eng
-                skos:exactMatch:
-                - https://pid.phaidra.org/vocabulary/8KGA-CH97
-              dce:title:
-              - '@type': bf:Title
-                bf:mainTitle:
-                - '@value': Example container title
-                  '@language': eng
-            member_bar:
-              dcterms:type:
-              - '@type': skos:Concept
-                skos:exactMatch:
-                - https://pid.phaidra.org/vocabulary/8YB5-1M0J
-                skos:prefLabel:
-                - '@language': eng
-                  '@value': sound
-              dce:title:
-              - '@type': bf:Title
-                bf:mainTitle:
-                - '@value': Member 'bar' title
-                  '@language': eng
-              schema:duration:
-              - PTOH1M30S
-              ebucore:filename:
-              - test.wav
-              ebucore:hasMimeType:
-              - audio/wav
-              edm:rights:
-              - http://rightsstatements.org/vocab/InC/1.0/
-            member_foo:
-              dcterms:type:
-              - '@type': skos:Concept
-                skos:exactMatch:
-                - https://pid.phaidra.org/vocabulary/8YB5-1M0J
-                skos:prefLabel:
-                - '@language': eng
-                  '@value': sound
-              dce:title:
-              - '@type': bf:Title
-                bf:mainTitle:
-                - '@value': member 'foo' title
-                  '@language': deu
-              schema:duration:
-              - PTOH1M30S
-              ebucore:filename:
-              - test2.wav
-              ebucore:hasMimeType:
-              - audio/wav
-              edm:rights:
-              - http://rightsstatements.org/vocab/InC/1.0/
     geo:
       type: object
       properties:
@@ -1009,21 +819,6 @@ components:
                           latitude: '41.6902784095934'
                       name: Name of geo datastream
                       description: Json example of a point geo datastream
-    rights:
-      type: object
-      properties:
-        username:
-          type: array
-          items:
-            type: object
-            properties:
-              value:
-                type: string
-              expires:
-                type: string
-            example:
-              value: user123
-              expires: '2016-08-25T14:31:34Z'
     json-ld:
       type: object
       properties:
@@ -1317,6 +1112,211 @@ components:
         pos: 1
       - pid: o:2
         pos: 2
+    rights:
+      type: object
+      properties:
+        username:
+          type: array
+          items:
+            type: object
+            properties:
+              value:
+                type: string
+              expires:
+                type: string
+            example:
+              value: user123
+              expires: '2016-08-25T14:31:34Z'
+    container_with_members:
+      type: object
+      example:
+        metadata:
+          json-ld:
+            container:
+              dcterms:type:
+              - '@type': skos:Concept
+                skos:exactMatch:
+                - https://pid.phaidra.org/vocabulary/8MY0-BQDQ
+                skos:prefLabel:
+                - '@language': eng
+                  '@value': container
+              edm:hasType:
+              - '@type': skos:Concept
+                skos:prefLabel:
+                - '@value': interview
+                  '@language': eng
+                skos:exactMatch:
+                - https://pid.phaidra.org/vocabulary/8KGA-CH97
+              dce:title:
+              - '@type': bf:Title
+                bf:mainTitle:
+                - '@value': Example container title
+                  '@language': eng
+            member_bar:
+              dcterms:type:
+              - '@type': skos:Concept
+                skos:exactMatch:
+                - https://pid.phaidra.org/vocabulary/8YB5-1M0J
+                skos:prefLabel:
+                - '@language': eng
+                  '@value': sound
+              dce:title:
+              - '@type': bf:Title
+                bf:mainTitle:
+                - '@value': Member 'bar' title
+                  '@language': eng
+              schema:duration:
+              - PTOH1M30S
+              ebucore:filename:
+              - test.wav
+              ebucore:hasMimeType:
+              - audio/wav
+              edm:rights:
+              - http://rightsstatements.org/vocab/InC/1.0/
+            member_foo:
+              dcterms:type:
+              - '@type': skos:Concept
+                skos:exactMatch:
+                - https://pid.phaidra.org/vocabulary/8YB5-1M0J
+                skos:prefLabel:
+                - '@language': eng
+                  '@value': sound
+              dce:title:
+              - '@type': bf:Title
+                bf:mainTitle:
+                - '@value': member 'foo' title
+                  '@language': deu
+              schema:duration:
+              - PTOH1M30S
+              ebucore:filename:
+              - test2.wav
+              ebucore:hasMimeType:
+              - audio/wav
+              edm:rights:
+              - http://rightsstatements.org/vocab/InC/1.0/
+    mods:
+      type: object
+      properties:
+        metadata:
+          type: object
+          properties:
+            mods:
+              type: array
+              items:
+                type: object
+                properties:
+                  attributes:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        input_type:
+                          type: string
+                        label:
+                          type: string
+                        xmlname:
+                          type: string
+                        ui_value:
+                          type: string
+                  children:
+                    type: array
+                    items:
+                      type: object
+                  label:
+                    type: string
+                  ui_value:
+                    type: string
+                  xmlname:
+                    type: string
+                  input_type:
+                    type: string
+                  extensible:
+                    type: number
+              example:
+              - ui_value: AC04090285
+                xmlname: identifier
+                input_type: input_text
+                label: Identifier
+                attributes:
+                - ui_value: ac-number
+                  xmlname: type
+                  input_type: select
+                  label: Type
+                - xmlname: lang
+                  input_type: input_text
+                  label: Language
+                - xmlname: script
+                  input_type: input_text
+                  label: Script
+                - xmlname: transliteration
+                  input_type: input_text
+                  label: Transliteration
+                - xmlname: typeURI
+                  input_type: input_text
+                  label: Type URI
+                - xmlname: displayLabel
+                  input_type: input_text
+                  label: Display label
+                - xmlname: invalid
+                  input_type: select
+                  label: Invalid
+                - xmlname: altRepGroup
+                  input_type: input_text
+                  label: Alternative representation group
+              - xmlname: language
+                input_type: node
+                label: Language
+                children:
+                - ui_value: ger
+                  xmlname: languageTerm
+                  input_type: input_text
+                  label: Language term
+                  attributes:
+                  - ui_value: code
+                    xmlname: type
+                    input_type: select
+                    label: Type
+                  - ui_value: iso639-2b
+                    xmlname: authority
+                    input_type: select
+                    label: Authority
+                  - xmlname: authorityURI
+                    input_type: input_text
+                    label: Authority URI
+                  - xmlname: valueURI
+                    input_type: input_text
+                    label: Value URI
+                  - xmlname: lang
+                    input_type: input_text
+                    label: Language
+                  - xmlname: script
+                    input_type: input_text
+                    label: Script
+                  - xmlname: transliteration
+                    input_type: input_text
+                    label: Transliteration
+                attributes:
+                - xmlname: objectPart
+                  input_type: input_text
+                  label: Object part
+                - xmlname: lang
+                  input_type: input_text
+                  label: Language
+                - xmlname: script
+                  input_type: input_text
+                  label: Script
+                - xmlname: transliteration
+                  input_type: input_text
+                  label: Transliteration
+                - xmlname: displayLabel
+                  input_type: input_text
+                  label: Display label
+                - xmlname: usage
+                  input_type: select
+                  label: Usage
+                - xmlname: altRepGroup
+                  input_type: input_text
+                  label: Alternative representation group
   securitySchemes:
     tokenAuth:
       type: apiKey

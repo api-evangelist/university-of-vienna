@@ -20,15 +20,19 @@ description: >-
 type: Index
 deliveryModel:
   model: saas
-  open_source: false
+  license_evidence:
+    not_product:
+    - phaidra/phaidra-api
+  open_source: unknown
   commercial: true
   callable_host: true
   label: Hosted service · you call their endpoint
-  confidence: high
+  confidence: low
   source:
   - openapi
   - pricing
-  generated: '2026-08-28'
+  - repository-not-product
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: free
@@ -59,7 +63,7 @@ tags:
 - Research
 - Research Data
 - Repository
-- Open-Source
+- Open Source
 - Digital Preservation
 - Identity Federation
 - OAI-PMH
@@ -81,6 +85,7 @@ tags_raw:
 - OAI-PMH
 - Library
 - Course Catalog
+- Open-Source
 created: '2026-06-03'
 modified: '2026-08-30'
 specificationVersion: '0.23'
@@ -818,8 +823,6 @@ apis:
   humanURL: https://phaidra.org/docs/api/
   baseURL: https://phaidra.univie.ac.at/api/oai/
   tags:
-  - Datastream
-  tags_raw:
   - Data Stream
   properties:
   - type: OpenAPI

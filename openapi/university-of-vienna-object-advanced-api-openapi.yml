@@ -1804,129 +1804,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    mods:
-      type: object
-      properties:
-        metadata:
-          type: object
-          properties:
-            mods:
-              type: array
-              items:
-                type: object
-                properties:
-                  attributes:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        input_type:
-                          type: string
-                        label:
-                          type: string
-                        xmlname:
-                          type: string
-                        ui_value:
-                          type: string
-                  children:
-                    type: array
-                    items:
-                      type: object
-                  label:
-                    type: string
-                  ui_value:
-                    type: string
-                  xmlname:
-                    type: string
-                  input_type:
-                    type: string
-                  extensible:
-                    type: number
-              example:
-              - ui_value: AC04090285
-                xmlname: identifier
-                input_type: input_text
-                label: Identifier
-                attributes:
-                - ui_value: ac-number
-                  xmlname: type
-                  input_type: select
-                  label: Type
-                - xmlname: lang
-                  input_type: input_text
-                  label: Language
-                - xmlname: script
-                  input_type: input_text
-                  label: Script
-                - xmlname: transliteration
-                  input_type: input_text
-                  label: Transliteration
-                - xmlname: typeURI
-                  input_type: input_text
-                  label: Type URI
-                - xmlname: displayLabel
-                  input_type: input_text
-                  label: Display label
-                - xmlname: invalid
-                  input_type: select
-                  label: Invalid
-                - xmlname: altRepGroup
-                  input_type: input_text
-                  label: Alternative representation group
-              - xmlname: language
-                input_type: node
-                label: Language
-                children:
-                - ui_value: ger
-                  xmlname: languageTerm
-                  input_type: input_text
-                  label: Language term
-                  attributes:
-                  - ui_value: code
-                    xmlname: type
-                    input_type: select
-                    label: Type
-                  - ui_value: iso639-2b
-                    xmlname: authority
-                    input_type: select
-                    label: Authority
-                  - xmlname: authorityURI
-                    input_type: input_text
-                    label: Authority URI
-                  - xmlname: valueURI
-                    input_type: input_text
-                    label: Value URI
-                  - xmlname: lang
-                    input_type: input_text
-                    label: Language
-                  - xmlname: script
-                    input_type: input_text
-                    label: Script
-                  - xmlname: transliteration
-                    input_type: input_text
-                    label: Transliteration
-                attributes:
-                - xmlname: objectPart
-                  input_type: input_text
-                  label: Object part
-                - xmlname: lang
-                  input_type: input_text
-                  label: Language
-                - xmlname: script
-                  input_type: input_text
-                  label: Script
-                - xmlname: transliteration
-                  input_type: input_text
-                  label: Transliteration
-                - xmlname: displayLabel
-                  input_type: input_text
-                  label: Display label
-                - xmlname: usage
-                  input_type: select
-                  label: Usage
-                - xmlname: altRepGroup
-                  input_type: input_text
-                  label: Alternative representation group
     datacite:
       type: object
       properties:
@@ -2233,38 +2110,80 @@ components:
           - '@value': Last Name
         edm:rights:
         - https://rightsstatements.org/page/InC/1.0/
-    annotations:
-      type: object
-      properties:
-        metadata:
-          type: object
-          properties:
-            annotations:
+    uwmetadata_min:
+      type: array
+      items:
+        type: object
+        properties:
+          xmlns:
+            type: string
+          xmlname:
+            type: string
+          datatype:
+            type: string
+          input_type:
+            type: string
+          children:
+            type: array
+            items:
               type: object
-              example:
-                '1':
-                  x: 0.7
-                  y: 0.6
-                  w: 0.2
-                  h: 0.18
-                  category: place
-                  text: First example of annotation
-                '2':
-                  x: 0.1
-                  y: 0.8
-                  w: 0.15
-                  h: 0.1
-                  category: place
-                  text: Second example of annotation
-                '3':
-                  x: 0.7
-                  y: 0.4
-                  w: 0.1
-                  h: 0.1
-                  category: people
-                  text: Third example of annotation
-    jsonld:
-      type: object
+              properties:
+                ui_value:
+                  type: string
+                input_type:
+                  type: string
+                value_lang:
+                  type: string
+                datatype:
+                  type: string
+                xmlns:
+                  type: string
+                xmlname:
+                  type: string
+      example:
+      - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
+        xmlname: general
+        children:
+        - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
+          xmlname: title
+          ui_value: Title
+          value_lang: de
+        - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
+          xmlname: language
+          ui_value: de
+          datatype: Language
+      - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
+        xmlname: lifecycle
+        children:
+        - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
+          xmlname: contribute
+          data_order: '0'
+          ordered: 1
+          children:
+          - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
+            xmlname: role
+            ui_value: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/voc_3/46
+            datatype: Vocabulary
+          - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
+            xmlname: entity
+            data_order: '0'
+            ordered: 1
+            children:
+            - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/entity
+              xmlname: firstname
+              ui_value: Brenda
+              datatype: CharacterString
+            - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/entity
+              xmlname: lastname
+              ui_value: Walsh
+              datatype: CharacterString
+      - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
+        xmlname: rights
+        children:
+        - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
+          xmlname: license
+          ui_value: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/voc_21/1
+          datatype: License
     iiifmanifest:
       type: object
       properties:
@@ -2448,80 +2367,6 @@ components:
         start:
           id: https://sandbox.phaidra.org/api/iiif/o:***/canvas/1
           type: Canvas
-    uwmetadata_min:
-      type: array
-      items:
-        type: object
-        properties:
-          xmlns:
-            type: string
-          xmlname:
-            type: string
-          datatype:
-            type: string
-          input_type:
-            type: string
-          children:
-            type: array
-            items:
-              type: object
-              properties:
-                ui_value:
-                  type: string
-                input_type:
-                  type: string
-                value_lang:
-                  type: string
-                datatype:
-                  type: string
-                xmlns:
-                  type: string
-                xmlname:
-                  type: string
-      example:
-      - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
-        xmlname: general
-        children:
-        - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
-          xmlname: title
-          ui_value: Title
-          value_lang: de
-        - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
-          xmlname: language
-          ui_value: de
-          datatype: Language
-      - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
-        xmlname: lifecycle
-        children:
-        - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
-          xmlname: contribute
-          data_order: '0'
-          ordered: 1
-          children:
-          - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
-            xmlname: role
-            ui_value: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/voc_3/46
-            datatype: Vocabulary
-          - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
-            xmlname: entity
-            data_order: '0'
-            ordered: 1
-            children:
-            - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/entity
-              xmlname: firstname
-              ui_value: Brenda
-              datatype: CharacterString
-            - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/entity
-              xmlname: lastname
-              ui_value: Walsh
-              datatype: CharacterString
-      - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
-        xmlname: rights
-        children:
-        - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
-          xmlname: license
-          ui_value: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/voc_21/1
-          datatype: License
     index_relationship:
       type: object
       properties:
@@ -2581,6 +2426,161 @@ components:
           type: array
           items:
             type: string
+    jsonld:
+      type: object
+    mods:
+      type: object
+      properties:
+        metadata:
+          type: object
+          properties:
+            mods:
+              type: array
+              items:
+                type: object
+                properties:
+                  attributes:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        input_type:
+                          type: string
+                        label:
+                          type: string
+                        xmlname:
+                          type: string
+                        ui_value:
+                          type: string
+                  children:
+                    type: array
+                    items:
+                      type: object
+                  label:
+                    type: string
+                  ui_value:
+                    type: string
+                  xmlname:
+                    type: string
+                  input_type:
+                    type: string
+                  extensible:
+                    type: number
+              example:
+              - ui_value: AC04090285
+                xmlname: identifier
+                input_type: input_text
+                label: Identifier
+                attributes:
+                - ui_value: ac-number
+                  xmlname: type
+                  input_type: select
+                  label: Type
+                - xmlname: lang
+                  input_type: input_text
+                  label: Language
+                - xmlname: script
+                  input_type: input_text
+                  label: Script
+                - xmlname: transliteration
+                  input_type: input_text
+                  label: Transliteration
+                - xmlname: typeURI
+                  input_type: input_text
+                  label: Type URI
+                - xmlname: displayLabel
+                  input_type: input_text
+                  label: Display label
+                - xmlname: invalid
+                  input_type: select
+                  label: Invalid
+                - xmlname: altRepGroup
+                  input_type: input_text
+                  label: Alternative representation group
+              - xmlname: language
+                input_type: node
+                label: Language
+                children:
+                - ui_value: ger
+                  xmlname: languageTerm
+                  input_type: input_text
+                  label: Language term
+                  attributes:
+                  - ui_value: code
+                    xmlname: type
+                    input_type: select
+                    label: Type
+                  - ui_value: iso639-2b
+                    xmlname: authority
+                    input_type: select
+                    label: Authority
+                  - xmlname: authorityURI
+                    input_type: input_text
+                    label: Authority URI
+                  - xmlname: valueURI
+                    input_type: input_text
+                    label: Value URI
+                  - xmlname: lang
+                    input_type: input_text
+                    label: Language
+                  - xmlname: script
+                    input_type: input_text
+                    label: Script
+                  - xmlname: transliteration
+                    input_type: input_text
+                    label: Transliteration
+                attributes:
+                - xmlname: objectPart
+                  input_type: input_text
+                  label: Object part
+                - xmlname: lang
+                  input_type: input_text
+                  label: Language
+                - xmlname: script
+                  input_type: input_text
+                  label: Script
+                - xmlname: transliteration
+                  input_type: input_text
+                  label: Transliteration
+                - xmlname: displayLabel
+                  input_type: input_text
+                  label: Display label
+                - xmlname: usage
+                  input_type: select
+                  label: Usage
+                - xmlname: altRepGroup
+                  input_type: input_text
+                  label: Alternative representation group
+    annotations:
+      type: object
+      properties:
+        metadata:
+          type: object
+          properties:
+            annotations:
+              type: object
+              example:
+                '1':
+                  x: 0.7
+                  y: 0.6
+                  w: 0.2
+                  h: 0.18
+                  category: place
+                  text: First example of annotation
+                '2':
+                  x: 0.1
+                  y: 0.8
+                  w: 0.15
+                  h: 0.1
+                  category: place
+                  text: Second example of annotation
+                '3':
+                  x: 0.7
+                  y: 0.4
+                  w: 0.1
+                  h: 0.1
+                  category: people
+                  text: Third example of annotation
   securitySchemes:
     tokenAuth:
       type: apiKey

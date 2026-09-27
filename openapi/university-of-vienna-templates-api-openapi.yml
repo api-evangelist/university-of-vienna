@@ -225,19 +225,6 @@ components:
           properties:
             $oid:
               type: string
-    templates:
-      type: array
-      items:
-        type: object
-        properties:
-          created:
-            type: number
-          name:
-            type: string
-          updated:
-            type: number
-          tid:
-            type: string
     json-ld:
       type: object
       properties:
@@ -396,6 +383,19 @@ components:
           - '@value': Last Name
         edm:rights:
         - https://rightsstatements.org/page/InC/1.0/
+    templates:
+      type: array
+      items:
+        type: object
+        properties:
+          created:
+            type: number
+          name:
+            type: string
+          updated:
+            type: number
+          tid:
+            type: string
   securitySchemes:
     tokenAuth:
       type: apiKey

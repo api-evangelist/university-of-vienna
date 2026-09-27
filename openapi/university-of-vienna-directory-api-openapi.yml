@@ -535,22 +535,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    units:
-      type: object
-      properties:
-        '@id':
-          type: string
-        '@type':
-          type: string
-        skos:notation:
-          type: string
-        skos:prefLabel:
-          type: object
-          properties:
-            deu:
-              type: string
-            eng:
-              type: string
     group:
       type: object
       properties:
@@ -578,19 +562,6 @@ components:
           properties:
             $oid:
               type: string
-    groups:
-      type: array
-      items:
-        type: object
-        properties:
-          created:
-            type: number
-          name:
-            type: string
-          updated:
-            type: number
-          groupid:
-            type: string
     user_data:
       type: object
       properties:
@@ -610,6 +581,35 @@ components:
           type: array
           items:
             type: string
+    groups:
+      type: array
+      items:
+        type: object
+        properties:
+          created:
+            type: number
+          name:
+            type: string
+          updated:
+            type: number
+          groupid:
+            type: string
+    units:
+      type: object
+      properties:
+        '@id':
+          type: string
+        '@type':
+          type: string
+        skos:notation:
+          type: string
+        skos:prefLabel:
+          type: object
+          properties:
+            deu:
+              type: string
+            eng:
+              type: string
   securitySchemes:
     tokenAuth:
       type: apiKey
