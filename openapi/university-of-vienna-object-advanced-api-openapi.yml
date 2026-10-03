@@ -1804,386 +1804,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    datacite:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            contributors:
-              type: array
-              items:
-                type: string
-            creators:
-              type: array
-              items:
-                type: object
-                properties:
-                  firstname:
-                    type: string
-                  institution:
-                    type: string
-                  lastname:
-                    type: string
-                  value:
-                    type: string
-            descriptions:
-              type: array
-              items:
-                type: object
-                properties:
-                  lang:
-                    type: string
-                  ns:
-                    type: string
-                  value:
-                    type: string
-            embargodates:
-              type: array
-              items:
-                type: string
-            filesizes:
-              type: array
-              items:
-                type: object
-                properties:
-                  value:
-                    type: string
-            formats:
-              type: array
-              items:
-                type: string
-            identifiers:
-              type: array
-              items:
-                type: object
-                properties:
-                  type:
-                    type: string
-                  value:
-                    type: string
-            langs:
-              type: array
-              items:
-                type: object
-                properties:
-                  value:
-                    type: string
-            licenses:
-              type: array
-              items:
-                type: object
-                properties:
-                  value:
-                    type: string
-            publicationYear:
-              type: array
-              items:
-                type: string
-            publishers:
-              type: array
-              items:
-                type: string
-            pubyears:
-              type: array
-              items:
-                type: string
-            titles:
-              type: array
-              items:
-                type: object
-                properties:
-                  lang:
-                    type: string
-                  title:
-                    type: string
-                  value:
-                    type: string
-            upload_date:
-              type: array
-              items:
-                type: string
-            uploaddates:
-              type: array
-              items:
-                type: object
-                properties:
-                  ns:
-                    type: string
-                  value:
-                    type: string
-        datacite_elements:
-          type: array
-          items:
-            type: object
-            properties:
-              children:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    value:
-                      type: string
-                    xmlname:
-                      type: string
-              xmlname:
-                type: string
-        errors:
-          type: array
-          items:
-            type: string
-        status:
-          type: string
-    geo:
-      type: object
-      properties:
-        metadata:
-          type: object
-          properties:
-            geo:
-              type: object
-              example:
-                kml:
-                  document:
-                    placemark:
-                    - point:
-                        coordinates:
-                          longitude: '44.8112504748688'
-                          latitude: '41.6902784095934'
-                      name: Name of geo datastream
-                      description: Json example of a point geo datastream
-    json-ld:
-      type: object
-      properties:
-        dcterms:type:
-          type: array
-          items:
-            type: object
-            properties:
-              '@type':
-                type: string
-              skos:exactMatch:
-                type: array
-                items:
-                  type: string
-              skos:prefLabel:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@language':
-                      type: string
-                    '@value':
-                      type: string
-        edm:hasType:
-          type: array
-          items:
-            type: object
-            properties:
-              '@type':
-                type: string
-              skos:exactMatch:
-                type: array
-                items:
-                  type: string
-              skos:prefLabel:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@language':
-                      type: string
-                    '@value':
-                      type: string
-        dce:title:
-          type: array
-          items:
-            type: object
-            properties:
-              '@type':
-                type: string
-              bf:mainTitle:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@value':
-                      type: string
-                    '@language':
-                      type: string
-        role:aut:
-          type: array
-          items:
-            type: object
-            properties:
-              '@type':
-                type: string
-              schema:familyName:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@value':
-                      type: string
-              schema:givenName:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@value':
-                      type: string
-        dce:subject:
-          type: array
-          items:
-            type: object
-            properties:
-              '@type':
-                type: string
-              skos:prefLabel:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@value':
-                      type: string
-                    '@language':
-                      type: string
-        bf:note:
-          type: array
-          items:
-            type: object
-            properties:
-              skos:prefLabel:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@value':
-                      type: string
-                    '@language':
-                      type: string
-              '@type':
-                type: string
-        vra:hasInscription:
-          type: array
-          items:
-            type: object
-            properties:
-              '@type':
-                type: string
-              skos:prefLabel:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@value':
-                      type: string
-                    '@language':
-                      type: string
-        dcterms:language:
-          type: array
-          items:
-            type: string
-        ebucore:filename:
-          type: array
-          items:
-            type: string
-        ebucore:hasMimeType:
-          type: array
-          items:
-            type: string
-        edm:rights:
-          type: array
-          items:
-            type: string
-      example:
-        dce:title:
-        - '@type': bf:Title
-          bf:mainTitle:
-          - '@value': Title
-            '@language': deu
-        role:aut:
-        - '@type': schema:Person
-          schema:givenName:
-          - '@value': First name
-          schema:familyName:
-          - '@value': Last Name
-        edm:rights:
-        - https://rightsstatements.org/page/InC/1.0/
-    uwmetadata_min:
-      type: array
-      items:
-        type: object
-        properties:
-          xmlns:
-            type: string
-          xmlname:
-            type: string
-          datatype:
-            type: string
-          input_type:
-            type: string
-          children:
-            type: array
-            items:
-              type: object
-              properties:
-                ui_value:
-                  type: string
-                input_type:
-                  type: string
-                value_lang:
-                  type: string
-                datatype:
-                  type: string
-                xmlns:
-                  type: string
-                xmlname:
-                  type: string
-      example:
-      - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
-        xmlname: general
-        children:
-        - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
-          xmlname: title
-          ui_value: Title
-          value_lang: de
-        - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
-          xmlname: language
-          ui_value: de
-          datatype: Language
-      - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
-        xmlname: lifecycle
-        children:
-        - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
-          xmlname: contribute
-          data_order: '0'
-          ordered: 1
-          children:
-          - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
-            xmlname: role
-            ui_value: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/voc_3/46
-            datatype: Vocabulary
-          - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
-            xmlname: entity
-            data_order: '0'
-            ordered: 1
-            children:
-            - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/entity
-              xmlname: firstname
-              ui_value: Brenda
-              datatype: CharacterString
-            - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/entity
-              xmlname: lastname
-              ui_value: Walsh
-              datatype: CharacterString
-      - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
-        xmlname: rights
-        children:
-        - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
-          xmlname: license
-          ui_value: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/voc_21/1
-          datatype: License
     iiifmanifest:
       type: object
       properties:
@@ -2367,67 +1987,6 @@ components:
         start:
           id: https://sandbox.phaidra.org/api/iiif/o:***/canvas/1
           type: Canvas
-    index_relationship:
-      type: object
-      properties:
-        hasalternativeformat:
-          type: array
-          items:
-            type: string
-        hasalternativeversion:
-          type: array
-          items:
-            type: string
-        hasbackside:
-          type: array
-          items:
-            type: string
-        hassuccessor:
-          type: array
-          items:
-            type: string
-        hasthumbnail:
-          type: array
-          items:
-            type: string
-        isalternativeformatof:
-          type: array
-          items:
-            type: string
-        isalternativeversionof:
-          type: array
-          items:
-            type: string
-        isbacksideof:
-          type: array
-          items:
-            type: string
-        ismemberof:
-          type: array
-          items:
-            type: string
-        ispartof:
-          type: array
-          items:
-            type: object
-        isreferencedby:
-          type: array
-          items:
-            type: string
-        issuccessorof:
-          type: array
-          items:
-            type: string
-        isthumbnailfor:
-          type: array
-          items:
-            type: string
-        references:
-          type: array
-          items:
-            type: string
-    jsonld:
-      type: object
     mods:
       type: object
       properties:
@@ -2551,6 +2110,447 @@ components:
                 - xmlname: altRepGroup
                   input_type: input_text
                   label: Alternative representation group
+    index_relationship:
+      type: object
+      properties:
+        hasalternativeformat:
+          type: array
+          items:
+            type: string
+        hasalternativeversion:
+          type: array
+          items:
+            type: string
+        hasbackside:
+          type: array
+          items:
+            type: string
+        hassuccessor:
+          type: array
+          items:
+            type: string
+        hasthumbnail:
+          type: array
+          items:
+            type: string
+        isalternativeformatof:
+          type: array
+          items:
+            type: string
+        isalternativeversionof:
+          type: array
+          items:
+            type: string
+        isbacksideof:
+          type: array
+          items:
+            type: string
+        ismemberof:
+          type: array
+          items:
+            type: string
+        ispartof:
+          type: array
+          items:
+            type: object
+        isreferencedby:
+          type: array
+          items:
+            type: string
+        issuccessorof:
+          type: array
+          items:
+            type: string
+        isthumbnailfor:
+          type: array
+          items:
+            type: string
+        references:
+          type: array
+          items:
+            type: string
+    json-ld:
+      type: object
+      properties:
+        dcterms:type:
+          type: array
+          items:
+            type: object
+            properties:
+              '@type':
+                type: string
+              skos:exactMatch:
+                type: array
+                items:
+                  type: string
+              skos:prefLabel:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@language':
+                      type: string
+                    '@value':
+                      type: string
+        edm:hasType:
+          type: array
+          items:
+            type: object
+            properties:
+              '@type':
+                type: string
+              skos:exactMatch:
+                type: array
+                items:
+                  type: string
+              skos:prefLabel:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@language':
+                      type: string
+                    '@value':
+                      type: string
+        dce:title:
+          type: array
+          items:
+            type: object
+            properties:
+              '@type':
+                type: string
+              bf:mainTitle:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@value':
+                      type: string
+                    '@language':
+                      type: string
+        role:aut:
+          type: array
+          items:
+            type: object
+            properties:
+              '@type':
+                type: string
+              schema:familyName:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@value':
+                      type: string
+              schema:givenName:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@value':
+                      type: string
+        dce:subject:
+          type: array
+          items:
+            type: object
+            properties:
+              '@type':
+                type: string
+              skos:prefLabel:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@value':
+                      type: string
+                    '@language':
+                      type: string
+        bf:note:
+          type: array
+          items:
+            type: object
+            properties:
+              skos:prefLabel:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@value':
+                      type: string
+                    '@language':
+                      type: string
+              '@type':
+                type: string
+        vra:hasInscription:
+          type: array
+          items:
+            type: object
+            properties:
+              '@type':
+                type: string
+              skos:prefLabel:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@value':
+                      type: string
+                    '@language':
+                      type: string
+        dcterms:language:
+          type: array
+          items:
+            type: string
+        ebucore:filename:
+          type: array
+          items:
+            type: string
+        ebucore:hasMimeType:
+          type: array
+          items:
+            type: string
+        edm:rights:
+          type: array
+          items:
+            type: string
+      example:
+        dce:title:
+        - '@type': bf:Title
+          bf:mainTitle:
+          - '@value': Title
+            '@language': deu
+        role:aut:
+        - '@type': schema:Person
+          schema:givenName:
+          - '@value': First name
+          schema:familyName:
+          - '@value': Last Name
+        edm:rights:
+        - https://rightsstatements.org/page/InC/1.0/
+    geo:
+      type: object
+      properties:
+        metadata:
+          type: object
+          properties:
+            geo:
+              type: object
+              example:
+                kml:
+                  document:
+                    placemark:
+                    - point:
+                        coordinates:
+                          longitude: '44.8112504748688'
+                          latitude: '41.6902784095934'
+                      name: Name of geo datastream
+                      description: Json example of a point geo datastream
+    jsonld:
+      type: object
+    datacite:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            contributors:
+              type: array
+              items:
+                type: string
+            creators:
+              type: array
+              items:
+                type: object
+                properties:
+                  firstname:
+                    type: string
+                  institution:
+                    type: string
+                  lastname:
+                    type: string
+                  value:
+                    type: string
+            descriptions:
+              type: array
+              items:
+                type: object
+                properties:
+                  lang:
+                    type: string
+                  ns:
+                    type: string
+                  value:
+                    type: string
+            embargodates:
+              type: array
+              items:
+                type: string
+            filesizes:
+              type: array
+              items:
+                type: object
+                properties:
+                  value:
+                    type: string
+            formats:
+              type: array
+              items:
+                type: string
+            identifiers:
+              type: array
+              items:
+                type: object
+                properties:
+                  type:
+                    type: string
+                  value:
+                    type: string
+            langs:
+              type: array
+              items:
+                type: object
+                properties:
+                  value:
+                    type: string
+            licenses:
+              type: array
+              items:
+                type: object
+                properties:
+                  value:
+                    type: string
+            publicationYear:
+              type: array
+              items:
+                type: string
+            publishers:
+              type: array
+              items:
+                type: string
+            pubyears:
+              type: array
+              items:
+                type: string
+            titles:
+              type: array
+              items:
+                type: object
+                properties:
+                  lang:
+                    type: string
+                  title:
+                    type: string
+                  value:
+                    type: string
+            upload_date:
+              type: array
+              items:
+                type: string
+            uploaddates:
+              type: array
+              items:
+                type: object
+                properties:
+                  ns:
+                    type: string
+                  value:
+                    type: string
+        datacite_elements:
+          type: array
+          items:
+            type: object
+            properties:
+              children:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    value:
+                      type: string
+                    xmlname:
+                      type: string
+              xmlname:
+                type: string
+        errors:
+          type: array
+          items:
+            type: string
+        status:
+          type: string
+    uwmetadata_min:
+      type: array
+      items:
+        type: object
+        properties:
+          xmlns:
+            type: string
+          xmlname:
+            type: string
+          datatype:
+            type: string
+          input_type:
+            type: string
+          children:
+            type: array
+            items:
+              type: object
+              properties:
+                ui_value:
+                  type: string
+                input_type:
+                  type: string
+                value_lang:
+                  type: string
+                datatype:
+                  type: string
+                xmlns:
+                  type: string
+                xmlname:
+                  type: string
+      example:
+      - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
+        xmlname: general
+        children:
+        - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
+          xmlname: title
+          ui_value: Title
+          value_lang: de
+        - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
+          xmlname: language
+          ui_value: de
+          datatype: Language
+      - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
+        xmlname: lifecycle
+        children:
+        - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
+          xmlname: contribute
+          data_order: '0'
+          ordered: 1
+          children:
+          - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
+            xmlname: role
+            ui_value: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/voc_3/46
+            datatype: Vocabulary
+          - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
+            xmlname: entity
+            data_order: '0'
+            ordered: 1
+            children:
+            - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/entity
+              xmlname: firstname
+              ui_value: Brenda
+              datatype: CharacterString
+            - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/entity
+              xmlname: lastname
+              ui_value: Walsh
+              datatype: CharacterString
+      - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
+        xmlname: rights
+        children:
+        - xmlns: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0
+          xmlname: license
+          ui_value: http://phaidra.univie.ac.at/XML/metadata/lom/V1.0/voc_21/1
+          datatype: License
     annotations:
       type: object
       properties:

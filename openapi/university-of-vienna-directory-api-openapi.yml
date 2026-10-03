@@ -535,6 +535,38 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    groups:
+      type: array
+      items:
+        type: object
+        properties:
+          created:
+            type: number
+          name:
+            type: string
+          updated:
+            type: number
+          groupid:
+            type: string
+    user_data:
+      type: object
+      properties:
+        org_units_l1:
+          type: array
+          items:
+            type: string
+        firstname:
+          type: string
+        lastname:
+          type: string
+        username:
+          type: string
+        email:
+          type: string
+        org_units_l2:
+          type: array
+          items:
+            type: string
     group:
       type: object
       properties:
@@ -562,38 +594,6 @@ components:
           properties:
             $oid:
               type: string
-    user_data:
-      type: object
-      properties:
-        org_units_l1:
-          type: array
-          items:
-            type: string
-        firstname:
-          type: string
-        lastname:
-          type: string
-        username:
-          type: string
-        email:
-          type: string
-        org_units_l2:
-          type: array
-          items:
-            type: string
-    groups:
-      type: array
-      items:
-        type: object
-        properties:
-          created:
-            type: number
-          name:
-            type: string
-          updated:
-            type: number
-          groupid:
-            type: string
     units:
       type: object
       properties:

@@ -353,20 +353,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    members:
-      type: array
-      items:
-        type: object
-        properties:
-          pid:
-            type: string
-          pos:
-            type: string
-      example:
-      - pid: o:1
-        pos: 1
-      - pid: o:2
-        pos: 2
     lists:
       type: array
       items:
@@ -381,6 +367,20 @@ components:
         title: Title 1
       - pid: o:2
         title: Title 2
+    members:
+      type: array
+      items:
+        type: object
+        properties:
+          pid:
+            type: string
+          pos:
+            type: string
+      example:
+      - pid: o:1
+        pos: 1
+      - pid: o:2
+        pos: 2
     group:
       type: object
       properties:
