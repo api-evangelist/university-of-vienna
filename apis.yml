@@ -823,8 +823,6 @@ apis:
   humanURL: https://phaidra.org/docs/api/
   baseURL: https://phaidra.univie.ac.at/api/oai/
   tags:
-  - Datastream
-  tags_raw:
   - Data Stream
   properties:
   - type: OpenAPI

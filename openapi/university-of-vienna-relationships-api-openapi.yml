@@ -641,20 +641,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    members:
-      type: array
-      items:
-        type: object
-        properties:
-          pid:
-            type: string
-          pos:
-            type: string
-      example:
-      - pid: o:1
-        pos: 1
-      - pid: o:2
-        pos: 2
     collection:
       type: object
       properties:
@@ -751,6 +737,20 @@ components:
               type: array
               items:
                 type: string
+    members:
+      type: array
+      items:
+        type: object
+        properties:
+          pid:
+            type: string
+          pos:
+            type: string
+      example:
+      - pid: o:1
+        pos: 1
+      - pid: o:2
+        pos: 2
   securitySchemes:
     tokenAuth:
       type: apiKey

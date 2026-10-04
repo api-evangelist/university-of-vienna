@@ -801,250 +801,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    mods:
-      type: object
-      properties:
-        metadata:
-          type: object
-          properties:
-            mods:
-              type: array
-              items:
-                type: object
-                properties:
-                  attributes:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        input_type:
-                          type: string
-                        label:
-                          type: string
-                        xmlname:
-                          type: string
-                        ui_value:
-                          type: string
-                  children:
-                    type: array
-                    items:
-                      type: object
-                  label:
-                    type: string
-                  ui_value:
-                    type: string
-                  xmlname:
-                    type: string
-                  input_type:
-                    type: string
-                  extensible:
-                    type: number
-              example:
-              - ui_value: AC04090285
-                xmlname: identifier
-                input_type: input_text
-                label: Identifier
-                attributes:
-                - ui_value: ac-number
-                  xmlname: type
-                  input_type: select
-                  label: Type
-                - xmlname: lang
-                  input_type: input_text
-                  label: Language
-                - xmlname: script
-                  input_type: input_text
-                  label: Script
-                - xmlname: transliteration
-                  input_type: input_text
-                  label: Transliteration
-                - xmlname: typeURI
-                  input_type: input_text
-                  label: Type URI
-                - xmlname: displayLabel
-                  input_type: input_text
-                  label: Display label
-                - xmlname: invalid
-                  input_type: select
-                  label: Invalid
-                - xmlname: altRepGroup
-                  input_type: input_text
-                  label: Alternative representation group
-              - xmlname: language
-                input_type: node
-                label: Language
-                children:
-                - ui_value: ger
-                  xmlname: languageTerm
-                  input_type: input_text
-                  label: Language term
-                  attributes:
-                  - ui_value: code
-                    xmlname: type
-                    input_type: select
-                    label: Type
-                  - ui_value: iso639-2b
-                    xmlname: authority
-                    input_type: select
-                    label: Authority
-                  - xmlname: authorityURI
-                    input_type: input_text
-                    label: Authority URI
-                  - xmlname: valueURI
-                    input_type: input_text
-                    label: Value URI
-                  - xmlname: lang
-                    input_type: input_text
-                    label: Language
-                  - xmlname: script
-                    input_type: input_text
-                    label: Script
-                  - xmlname: transliteration
-                    input_type: input_text
-                    label: Transliteration
-                attributes:
-                - xmlname: objectPart
-                  input_type: input_text
-                  label: Object part
-                - xmlname: lang
-                  input_type: input_text
-                  label: Language
-                - xmlname: script
-                  input_type: input_text
-                  label: Script
-                - xmlname: transliteration
-                  input_type: input_text
-                  label: Transliteration
-                - xmlname: displayLabel
-                  input_type: input_text
-                  label: Display label
-                - xmlname: usage
-                  input_type: select
-                  label: Usage
-                - xmlname: altRepGroup
-                  input_type: input_text
-                  label: Alternative representation group
-    object_info:
-      type: object
-      properties:
-        _updated:
-          type: array
-          items:
-            type: string
-        _version_:
-          type: number
-        alternativeformats:
-          type: array
-          items:
-            type: string
-        alternativeversions:
-          type: array
-          items:
-            type: string
-        bbox:
-          type: array
-          items:
-            type: string
-        bib_published:
-          type: array
-          items:
-            type: string
-        bib_publisher:
-          type: array
-          items:
-            type: string
-        bib_publisherlocation:
-          type: array
-          items:
-            type: string
-        bib_roles_pers_aut:
-          type: array
-          items:
-            type: string
-        cmodel:
-          type: string
-        created:
-          type: string
-        datastreams:
-          type: array
-          items:
-            type: string
-        dc_creator:
-          type: array
-          items:
-            type: string
-        dc_date:
-          type: array
-          items:
-            type: string
-        dc_description:
-          type: array
-          items:
-            type: string
-        dc_description_:
-          type: array
-          items:
-            type: string
-        dc_identifier:
-          type: array
-          items:
-            type: string
-        dc_language:
-          type: array
-          items:
-            type: string
-        dc_license:
-          type: array
-          items:
-            type: string
-        dc_publisher:
-          type: array
-          items:
-            type: string
-        dc_relation:
-          type: array
-          items:
-            type: string
-        dc_rights:
-          type: array
-          items:
-            type: string
-        dc_subject:
-          type: array
-          items:
-            type: string
-        dc_subject_:
-          type: array
-          items:
-            type: string
-        dc_title:
-          type: array
-          items:
-            type: string
-        ispartof:
-          type: array
-          items:
-            type: string
-        dshash:
-          type: object
-        latlon:
-          type: string
-        metadata:
-          type: object
-          properties:
-            geo:
-              $ref: '#/components/schemas/geo'
-            mods:
-              $ref: '#/components/schemas/mods'
-        metatags:
-          type: object
-          properties:
-            DC.identifier:
-              type: string
-            DC.rights:
-              type: array
-              items:
-                type: string
     json-ld:
       type: object
       properties:
@@ -1203,24 +959,20 @@ components:
           - '@value': Last Name
         edm:rights:
         - https://rightsstatements.org/page/InC/1.0/
-    geo:
-      type: object
-      properties:
-        metadata:
-          type: object
-          properties:
-            geo:
-              type: object
-              example:
-                kml:
-                  document:
-                    placemark:
-                    - point:
-                        coordinates:
-                          longitude: '44.8112504748688'
-                          latitude: '41.6902784095934'
-                      name: Name of geo datastream
-                      description: Json example of a point geo datastream
+    members:
+      type: array
+      items:
+        type: object
+        properties:
+          pid:
+            type: string
+          pos:
+            type: string
+      example:
+      - pid: o:1
+        pos: 1
+      - pid: o:2
+        pos: 2
     container_with_members:
       type: object
       example:
@@ -1288,20 +1040,6 @@ components:
               - audio/wav
               edm:rights:
               - http://rightsstatements.org/vocab/InC/1.0/
-    members:
-      type: array
-      items:
-        type: object
-        properties:
-          pid:
-            type: string
-          pos:
-            type: string
-      example:
-      - pid: o:1
-        pos: 1
-      - pid: o:2
-        pos: 2
     rights:
       type: object
       properties:
@@ -1317,6 +1055,268 @@ components:
             example:
               value: user123
               expires: '2016-08-25T14:31:34Z'
+    object_info:
+      type: object
+      properties:
+        _updated:
+          type: array
+          items:
+            type: string
+        _version_:
+          type: number
+        alternativeformats:
+          type: array
+          items:
+            type: string
+        alternativeversions:
+          type: array
+          items:
+            type: string
+        bbox:
+          type: array
+          items:
+            type: string
+        bib_published:
+          type: array
+          items:
+            type: string
+        bib_publisher:
+          type: array
+          items:
+            type: string
+        bib_publisherlocation:
+          type: array
+          items:
+            type: string
+        bib_roles_pers_aut:
+          type: array
+          items:
+            type: string
+        cmodel:
+          type: string
+        created:
+          type: string
+        datastreams:
+          type: array
+          items:
+            type: string
+        dc_creator:
+          type: array
+          items:
+            type: string
+        dc_date:
+          type: array
+          items:
+            type: string
+        dc_description:
+          type: array
+          items:
+            type: string
+        dc_description_:
+          type: array
+          items:
+            type: string
+        dc_identifier:
+          type: array
+          items:
+            type: string
+        dc_language:
+          type: array
+          items:
+            type: string
+        dc_license:
+          type: array
+          items:
+            type: string
+        dc_publisher:
+          type: array
+          items:
+            type: string
+        dc_relation:
+          type: array
+          items:
+            type: string
+        dc_rights:
+          type: array
+          items:
+            type: string
+        dc_subject:
+          type: array
+          items:
+            type: string
+        dc_subject_:
+          type: array
+          items:
+            type: string
+        dc_title:
+          type: array
+          items:
+            type: string
+        ispartof:
+          type: array
+          items:
+            type: string
+        dshash:
+          type: object
+        latlon:
+          type: string
+        metadata:
+          type: object
+          properties:
+            geo:
+              $ref: '#/components/schemas/geo'
+            mods:
+              $ref: '#/components/schemas/mods'
+        metatags:
+          type: object
+          properties:
+            DC.identifier:
+              type: string
+            DC.rights:
+              type: array
+              items:
+                type: string
+    geo:
+      type: object
+      properties:
+        metadata:
+          type: object
+          properties:
+            geo:
+              type: object
+              example:
+                kml:
+                  document:
+                    placemark:
+                    - point:
+                        coordinates:
+                          longitude: '44.8112504748688'
+                          latitude: '41.6902784095934'
+                      name: Name of geo datastream
+                      description: Json example of a point geo datastream
+    mods:
+      type: object
+      properties:
+        metadata:
+          type: object
+          properties:
+            mods:
+              type: array
+              items:
+                type: object
+                properties:
+                  attributes:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        input_type:
+                          type: string
+                        label:
+                          type: string
+                        xmlname:
+                          type: string
+                        ui_value:
+                          type: string
+                  children:
+                    type: array
+                    items:
+                      type: object
+                  label:
+                    type: string
+                  ui_value:
+                    type: string
+                  xmlname:
+                    type: string
+                  input_type:
+                    type: string
+                  extensible:
+                    type: number
+              example:
+              - ui_value: AC04090285
+                xmlname: identifier
+                input_type: input_text
+                label: Identifier
+                attributes:
+                - ui_value: ac-number
+                  xmlname: type
+                  input_type: select
+                  label: Type
+                - xmlname: lang
+                  input_type: input_text
+                  label: Language
+                - xmlname: script
+                  input_type: input_text
+                  label: Script
+                - xmlname: transliteration
+                  input_type: input_text
+                  label: Transliteration
+                - xmlname: typeURI
+                  input_type: input_text
+                  label: Type URI
+                - xmlname: displayLabel
+                  input_type: input_text
+                  label: Display label
+                - xmlname: invalid
+                  input_type: select
+                  label: Invalid
+                - xmlname: altRepGroup
+                  input_type: input_text
+                  label: Alternative representation group
+              - xmlname: language
+                input_type: node
+                label: Language
+                children:
+                - ui_value: ger
+                  xmlname: languageTerm
+                  input_type: input_text
+                  label: Language term
+                  attributes:
+                  - ui_value: code
+                    xmlname: type
+                    input_type: select
+                    label: Type
+                  - ui_value: iso639-2b
+                    xmlname: authority
+                    input_type: select
+                    label: Authority
+                  - xmlname: authorityURI
+                    input_type: input_text
+                    label: Authority URI
+                  - xmlname: valueURI
+                    input_type: input_text
+                    label: Value URI
+                  - xmlname: lang
+                    input_type: input_text
+                    label: Language
+                  - xmlname: script
+                    input_type: input_text
+                    label: Script
+                  - xmlname: transliteration
+                    input_type: input_text
+                    label: Transliteration
+                attributes:
+                - xmlname: objectPart
+                  input_type: input_text
+                  label: Object part
+                - xmlname: lang
+                  input_type: input_text
+                  label: Language
+                - xmlname: script
+                  input_type: input_text
+                  label: Script
+                - xmlname: transliteration
+                  input_type: input_text
+                  label: Transliteration
+                - xmlname: displayLabel
+                  input_type: input_text
+                  label: Display label
+                - xmlname: usage
+                  input_type: select
+                  label: Usage
+                - xmlname: altRepGroup
+                  input_type: input_text
+                  label: Alternative representation group
   securitySchemes:
     tokenAuth:
       type: apiKey

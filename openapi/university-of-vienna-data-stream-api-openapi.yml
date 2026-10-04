@@ -887,165 +887,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    mods:
-      type: object
-      properties:
-        metadata:
-          type: object
-          properties:
-            mods:
-              type: array
-              items:
-                type: object
-                properties:
-                  attributes:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        input_type:
-                          type: string
-                        label:
-                          type: string
-                        xmlname:
-                          type: string
-                        ui_value:
-                          type: string
-                  children:
-                    type: array
-                    items:
-                      type: object
-                  label:
-                    type: string
-                  ui_value:
-                    type: string
-                  xmlname:
-                    type: string
-                  input_type:
-                    type: string
-                  extensible:
-                    type: number
-              example:
-              - ui_value: AC04090285
-                xmlname: identifier
-                input_type: input_text
-                label: Identifier
-                attributes:
-                - ui_value: ac-number
-                  xmlname: type
-                  input_type: select
-                  label: Type
-                - xmlname: lang
-                  input_type: input_text
-                  label: Language
-                - xmlname: script
-                  input_type: input_text
-                  label: Script
-                - xmlname: transliteration
-                  input_type: input_text
-                  label: Transliteration
-                - xmlname: typeURI
-                  input_type: input_text
-                  label: Type URI
-                - xmlname: displayLabel
-                  input_type: input_text
-                  label: Display label
-                - xmlname: invalid
-                  input_type: select
-                  label: Invalid
-                - xmlname: altRepGroup
-                  input_type: input_text
-                  label: Alternative representation group
-              - xmlname: language
-                input_type: node
-                label: Language
-                children:
-                - ui_value: ger
-                  xmlname: languageTerm
-                  input_type: input_text
-                  label: Language term
-                  attributes:
-                  - ui_value: code
-                    xmlname: type
-                    input_type: select
-                    label: Type
-                  - ui_value: iso639-2b
-                    xmlname: authority
-                    input_type: select
-                    label: Authority
-                  - xmlname: authorityURI
-                    input_type: input_text
-                    label: Authority URI
-                  - xmlname: valueURI
-                    input_type: input_text
-                    label: Value URI
-                  - xmlname: lang
-                    input_type: input_text
-                    label: Language
-                  - xmlname: script
-                    input_type: input_text
-                    label: Script
-                  - xmlname: transliteration
-                    input_type: input_text
-                    label: Transliteration
-                attributes:
-                - xmlname: objectPart
-                  input_type: input_text
-                  label: Object part
-                - xmlname: lang
-                  input_type: input_text
-                  label: Language
-                - xmlname: script
-                  input_type: input_text
-                  label: Script
-                - xmlname: transliteration
-                  input_type: input_text
-                  label: Transliteration
-                - xmlname: displayLabel
-                  input_type: input_text
-                  label: Display label
-                - xmlname: usage
-                  input_type: select
-                  label: Usage
-                - xmlname: altRepGroup
-                  input_type: input_text
-                  label: Alternative representation group
-    default:
-      type: object
-      properties:
-        alerts:
-          type: array
-          items:
-            type: object
-            properties:
-              msg:
-                type: string
-              type:
-                type: string
-        status:
-          type: number
-    mods_tree:
-      type: object
-      properties:
-        alerts:
-          type: array
-          items:
-            type: object
-            properties:
-              msg:
-                type: string
-              type:
-                type: string
-        languages:
-          type: object
-        status:
-          type: number
-        tree:
-          $ref: '#/components/schemas/mods'
-        vocabularies:
-          $ref: '#/components/schemas/vocabularies'
-        vocabularies_mapping:
-          $ref: '#/components/schemas/vocabularies_mapping'
     vocabularies:
       type: object
       properties:
@@ -1225,51 +1066,245 @@ components:
           type: array
           items:
             type: string
-    uwmetadata:
-      type: array
-      items:
-        type: object
-        properties:
-          cardinality:
-            type: integer
-          children:
-            type: array
-            items:
-              type: object
-          data_order:
-            type: string
-          datatype:
-            type: string
-          disabled:
-            type: integer
-          field_order:
-            type: integer
-          help_id:
-            type: string
-          hidden:
-            type: integer
-          input_regex:
-            type: string
-          input_type:
-            type: string
-          labels:
-            type: object
-          loaded:
-            type: integer
-          mandatory:
-            type: integer
-          ordered:
-            type: integer
-          ui_value:
-            type: string
-          value:
-            type: string
-          value_lang:
-            type: string
-          xmlname:
-            type: string
-          xmlns:
-            type: string
+    vocabularies_mapping:
+      type: object
+      properties:
+        abstract_shareable:
+          type: string
+        abstract_type:
+          type: string
+        accessCondition_type:
+          type: string
+        classification_authority:
+          type: string
+        classification_usage:
+          type: string
+        genre_authority:
+          type: string
+        genre_type:
+          type: string
+        genre_usage:
+          type: string
+        identifier_invalid:
+          type: string
+        identifier_type:
+          type: string
+        language_languageTerm_authority:
+          type: string
+        language_languageTerm_type:
+          type: string
+        language_scriptTerm_type:
+          type: string
+        language_usage_primary:
+          type: string
+        location_holdingSimple_copyInformation_enumerationAndChronology_unitType:
+          type: string
+        location_physicalLocation_authority:
+          type: string
+        location_physicalLocation_type:
+          type: string
+        location_url_access:
+          type: string
+        location_url_usage:
+          type: string
+        name_authority:
+          type: string
+        name_namePart_type:
+          type: string
+        name_role_roleTerm_authority:
+          type: string
+        name_role_roleTerm_type:
+          type: string
+        name_type:
+          type: string
+        name_usage:
+          type: string
+        note_type:
+          type: string
+        originInfo_copyrightDate_encoding:
+          type: string
+        originInfo_copyrightDate_keyDate:
+          type: string
+        originInfo_copyrightDate_point:
+          type: string
+        originInfo_copyrightDate_qualifier:
+          type: string
+        originInfo_dateCaptured_encoding:
+          type: string
+        originInfo_dateCaptured_keyDate:
+          type: string
+        originInfo_dateCaptured_point:
+          type: string
+        originInfo_dateCaptured_qualifier:
+          type: string
+        originInfo_dateCreated_encoding:
+          type: string
+        originInfo_dateCreated_keyDate:
+          type: string
+        originInfo_dateCreated_point:
+          type: string
+        originInfo_dateCreated_qualifier:
+          type: string
+        originInfo_dateIssued_encoding:
+          type: string
+        originInfo_dateIssued_keyDate:
+          type: string
+        originInfo_dateIssued_point:
+          type: string
+        originInfo_dateIssued_qualifier:
+          type: string
+        originInfo_dateModified_encoding:
+          type: string
+        originInfo_dateModified_keyDate:
+          type: string
+        originInfo_dateModified_point:
+          type: string
+        originInfo_dateModified_qualifier:
+          type: string
+        originInfo_dateOther_encoding:
+          type: string
+        originInfo_dateOther_keyDate:
+          type: string
+        originInfo_dateOther_point:
+          type: string
+        originInfo_dateOther_qualifier:
+          type: string
+        originInfo_dateValid_encoding:
+          type: string
+        originInfo_dateValid_keyDate:
+          type: string
+        originInfo_dateValid_point:
+          type: string
+        originInfo_dateValid_qualifier:
+          type: string
+        originInfo_edition_supplied:
+          type: string
+        originInfo_eventType:
+          type: string
+        originInfo_frequency_authority:
+          type: string
+        originInfo_issuance:
+          type: string
+        originInfo_place_placeTerm_authority:
+          type: string
+        originInfo_place_placeTerm_type:
+          type: string
+        originInfo_place_supplied:
+          type: string
+        originInfo_publisher_supplied:
+          type: string
+        part_date_encoding:
+          type: string
+        part_date_keyDate:
+          type: string
+        part_date_point:
+          type: string
+        part_date_qualifier:
+          type: string
+        part_detail_type:
+          type: string
+        part_extent_unit:
+          type: string
+        part_text_type:
+          type: string
+        part_type:
+          type: string
+        physicalDescription_digitalOrigin:
+          type: string
+        physicalDescription_extent_supplied:
+          type: string
+        physicalDescription_form_authority:
+          type: string
+        physicalDescription_form_type:
+          type: string
+        physicalDescription_note_type:
+          type: string
+        physicalDescription_reformattingQuality:
+          type: string
+        recordInfo_descriptionStandard:
+          type: string
+        recordInfo_descriptionStandard_authority:
+          type: string
+        recordInfo_languageOfCataloging_languageTerm_authority:
+          type: string
+        recordInfo_languageOfCataloging_languageTerm_type:
+          type: string
+        recordInfo_languageOfCataloging_scriptTerm_type:
+          type: string
+        recordInfo_languageOfCataloging_usage:
+          type: string
+        recordInfo_recordChangeDate_encoding:
+          type: string
+        recordInfo_recordChangeDate_keyDate:
+          type: string
+        recordInfo_recordChangeDate_point:
+          type: string
+        recordInfo_recordChangeDate_qualifier:
+          type: string
+        recordInfo_recordContentSource_authority:
+          type: string
+        recordInfo_recordCreationDate_encoding:
+          type: string
+        recordInfo_recordCreationDate_keyDate:
+          type: string
+        recordInfo_recordCreationDate_point:
+          type: string
+        recordInfo_recordCreationDate_qualifier:
+          type: string
+        recordInfo_recordIdentifier_source:
+          type: string
+        relatedItem_type:
+          type: string
+        subject_authority:
+          type: string
+        subject_geographicCode_authority:
+          type: string
+        subject_name_authority:
+          type: string
+        subject_name_namePart_type:
+          type: string
+        subject_name_role_roleTerm_authority:
+          type: string
+        subject_name_role_roleTerm_type:
+          type: string
+        subject_name_type:
+          type: string
+        subject_temporal_encoding:
+          type: string
+        subject_temporal_keyDate:
+          type: string
+        subject_temporal_point:
+          type: string
+        subject_temporal_qualifier:
+          type: string
+        subject_titleInfo_authority:
+          type: string
+        subject_titleInfo_type:
+          type: string
+        subject_usage:
+          type: string
+        tableOfContents_shareable:
+          type: string
+        tableOfContents_type:
+          type: string
+        targetAudience_authority:
+          type: string
+        titleInfo_authority:
+          type: string
+        titleInfo_supplied:
+          type: string
+        titleInfo_type:
+          type: string
+        titleInfo_usage:
+          type: string
+        typeOfResource:
+          type: string
+        typeOfResource_collection:
+          type: string
+        typeOfResource_manuscript:
+          type: string
+        typeOfResource_usage:
+          type: string
     members:
       type: array
       items:
@@ -1284,24 +1319,50 @@ components:
         pos: 1
       - pid: o:2
         pos: 2
-    geo:
+    default:
+      type: object
+      properties:
+        alerts:
+          type: array
+          items:
+            type: object
+            properties:
+              msg:
+                type: string
+              type:
+                type: string
+        status:
+          type: number
+    annotations:
       type: object
       properties:
         metadata:
           type: object
           properties:
-            geo:
+            annotations:
               type: object
               example:
-                kml:
-                  document:
-                    placemark:
-                    - point:
-                        coordinates:
-                          longitude: '44.8112504748688'
-                          latitude: '41.6902784095934'
-                      name: Name of geo datastream
-                      description: Json example of a point geo datastream
+                '1':
+                  x: 0.7
+                  y: 0.6
+                  w: 0.2
+                  h: 0.18
+                  category: place
+                  text: First example of annotation
+                '2':
+                  x: 0.1
+                  y: 0.8
+                  w: 0.15
+                  h: 0.1
+                  category: place
+                  text: Second example of annotation
+                '3':
+                  x: 0.7
+                  y: 0.4
+                  w: 0.1
+                  h: 0.1
+                  category: people
+                  text: Third example of annotation
     uwmetadata_min:
       type: array
       items:
@@ -1891,275 +1952,214 @@ components:
             example:
               value: user123
               expires: '2016-08-25T14:31:34Z'
-    vocabularies_mapping:
-      type: object
-      properties:
-        abstract_shareable:
-          type: string
-        abstract_type:
-          type: string
-        accessCondition_type:
-          type: string
-        classification_authority:
-          type: string
-        classification_usage:
-          type: string
-        genre_authority:
-          type: string
-        genre_type:
-          type: string
-        genre_usage:
-          type: string
-        identifier_invalid:
-          type: string
-        identifier_type:
-          type: string
-        language_languageTerm_authority:
-          type: string
-        language_languageTerm_type:
-          type: string
-        language_scriptTerm_type:
-          type: string
-        language_usage_primary:
-          type: string
-        location_holdingSimple_copyInformation_enumerationAndChronology_unitType:
-          type: string
-        location_physicalLocation_authority:
-          type: string
-        location_physicalLocation_type:
-          type: string
-        location_url_access:
-          type: string
-        location_url_usage:
-          type: string
-        name_authority:
-          type: string
-        name_namePart_type:
-          type: string
-        name_role_roleTerm_authority:
-          type: string
-        name_role_roleTerm_type:
-          type: string
-        name_type:
-          type: string
-        name_usage:
-          type: string
-        note_type:
-          type: string
-        originInfo_copyrightDate_encoding:
-          type: string
-        originInfo_copyrightDate_keyDate:
-          type: string
-        originInfo_copyrightDate_point:
-          type: string
-        originInfo_copyrightDate_qualifier:
-          type: string
-        originInfo_dateCaptured_encoding:
-          type: string
-        originInfo_dateCaptured_keyDate:
-          type: string
-        originInfo_dateCaptured_point:
-          type: string
-        originInfo_dateCaptured_qualifier:
-          type: string
-        originInfo_dateCreated_encoding:
-          type: string
-        originInfo_dateCreated_keyDate:
-          type: string
-        originInfo_dateCreated_point:
-          type: string
-        originInfo_dateCreated_qualifier:
-          type: string
-        originInfo_dateIssued_encoding:
-          type: string
-        originInfo_dateIssued_keyDate:
-          type: string
-        originInfo_dateIssued_point:
-          type: string
-        originInfo_dateIssued_qualifier:
-          type: string
-        originInfo_dateModified_encoding:
-          type: string
-        originInfo_dateModified_keyDate:
-          type: string
-        originInfo_dateModified_point:
-          type: string
-        originInfo_dateModified_qualifier:
-          type: string
-        originInfo_dateOther_encoding:
-          type: string
-        originInfo_dateOther_keyDate:
-          type: string
-        originInfo_dateOther_point:
-          type: string
-        originInfo_dateOther_qualifier:
-          type: string
-        originInfo_dateValid_encoding:
-          type: string
-        originInfo_dateValid_keyDate:
-          type: string
-        originInfo_dateValid_point:
-          type: string
-        originInfo_dateValid_qualifier:
-          type: string
-        originInfo_edition_supplied:
-          type: string
-        originInfo_eventType:
-          type: string
-        originInfo_frequency_authority:
-          type: string
-        originInfo_issuance:
-          type: string
-        originInfo_place_placeTerm_authority:
-          type: string
-        originInfo_place_placeTerm_type:
-          type: string
-        originInfo_place_supplied:
-          type: string
-        originInfo_publisher_supplied:
-          type: string
-        part_date_encoding:
-          type: string
-        part_date_keyDate:
-          type: string
-        part_date_point:
-          type: string
-        part_date_qualifier:
-          type: string
-        part_detail_type:
-          type: string
-        part_extent_unit:
-          type: string
-        part_text_type:
-          type: string
-        part_type:
-          type: string
-        physicalDescription_digitalOrigin:
-          type: string
-        physicalDescription_extent_supplied:
-          type: string
-        physicalDescription_form_authority:
-          type: string
-        physicalDescription_form_type:
-          type: string
-        physicalDescription_note_type:
-          type: string
-        physicalDescription_reformattingQuality:
-          type: string
-        recordInfo_descriptionStandard:
-          type: string
-        recordInfo_descriptionStandard_authority:
-          type: string
-        recordInfo_languageOfCataloging_languageTerm_authority:
-          type: string
-        recordInfo_languageOfCataloging_languageTerm_type:
-          type: string
-        recordInfo_languageOfCataloging_scriptTerm_type:
-          type: string
-        recordInfo_languageOfCataloging_usage:
-          type: string
-        recordInfo_recordChangeDate_encoding:
-          type: string
-        recordInfo_recordChangeDate_keyDate:
-          type: string
-        recordInfo_recordChangeDate_point:
-          type: string
-        recordInfo_recordChangeDate_qualifier:
-          type: string
-        recordInfo_recordContentSource_authority:
-          type: string
-        recordInfo_recordCreationDate_encoding:
-          type: string
-        recordInfo_recordCreationDate_keyDate:
-          type: string
-        recordInfo_recordCreationDate_point:
-          type: string
-        recordInfo_recordCreationDate_qualifier:
-          type: string
-        recordInfo_recordIdentifier_source:
-          type: string
-        relatedItem_type:
-          type: string
-        subject_authority:
-          type: string
-        subject_geographicCode_authority:
-          type: string
-        subject_name_authority:
-          type: string
-        subject_name_namePart_type:
-          type: string
-        subject_name_role_roleTerm_authority:
-          type: string
-        subject_name_role_roleTerm_type:
-          type: string
-        subject_name_type:
-          type: string
-        subject_temporal_encoding:
-          type: string
-        subject_temporal_keyDate:
-          type: string
-        subject_temporal_point:
-          type: string
-        subject_temporal_qualifier:
-          type: string
-        subject_titleInfo_authority:
-          type: string
-        subject_titleInfo_type:
-          type: string
-        subject_usage:
-          type: string
-        tableOfContents_shareable:
-          type: string
-        tableOfContents_type:
-          type: string
-        targetAudience_authority:
-          type: string
-        titleInfo_authority:
-          type: string
-        titleInfo_supplied:
-          type: string
-        titleInfo_type:
-          type: string
-        titleInfo_usage:
-          type: string
-        typeOfResource:
-          type: string
-        typeOfResource_collection:
-          type: string
-        typeOfResource_manuscript:
-          type: string
-        typeOfResource_usage:
-          type: string
-    annotations:
+    uwmetadata:
+      type: array
+      items:
+        type: object
+        properties:
+          cardinality:
+            type: integer
+          children:
+            type: array
+            items:
+              type: object
+          data_order:
+            type: string
+          datatype:
+            type: string
+          disabled:
+            type: integer
+          field_order:
+            type: integer
+          help_id:
+            type: string
+          hidden:
+            type: integer
+          input_regex:
+            type: string
+          input_type:
+            type: string
+          labels:
+            type: object
+          loaded:
+            type: integer
+          mandatory:
+            type: integer
+          ordered:
+            type: integer
+          ui_value:
+            type: string
+          value:
+            type: string
+          value_lang:
+            type: string
+          xmlname:
+            type: string
+          xmlns:
+            type: string
+    geo:
       type: object
       properties:
         metadata:
           type: object
           properties:
-            annotations:
+            geo:
               type: object
               example:
-                '1':
-                  x: 0.7
-                  y: 0.6
-                  w: 0.2
-                  h: 0.18
-                  category: place
-                  text: First example of annotation
-                '2':
-                  x: 0.1
-                  y: 0.8
-                  w: 0.15
-                  h: 0.1
-                  category: place
-                  text: Second example of annotation
-                '3':
-                  x: 0.7
-                  y: 0.4
-                  w: 0.1
-                  h: 0.1
-                  category: people
-                  text: Third example of annotation
+                kml:
+                  document:
+                    placemark:
+                    - point:
+                        coordinates:
+                          longitude: '44.8112504748688'
+                          latitude: '41.6902784095934'
+                      name: Name of geo datastream
+                      description: Json example of a point geo datastream
+    mods_tree:
+      type: object
+      properties:
+        alerts:
+          type: array
+          items:
+            type: object
+            properties:
+              msg:
+                type: string
+              type:
+                type: string
+        languages:
+          type: object
+        status:
+          type: number
+        tree:
+          $ref: '#/components/schemas/mods'
+        vocabularies:
+          $ref: '#/components/schemas/vocabularies'
+        vocabularies_mapping:
+          $ref: '#/components/schemas/vocabularies_mapping'
+    mods:
+      type: object
+      properties:
+        metadata:
+          type: object
+          properties:
+            mods:
+              type: array
+              items:
+                type: object
+                properties:
+                  attributes:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        input_type:
+                          type: string
+                        label:
+                          type: string
+                        xmlname:
+                          type: string
+                        ui_value:
+                          type: string
+                  children:
+                    type: array
+                    items:
+                      type: object
+                  label:
+                    type: string
+                  ui_value:
+                    type: string
+                  xmlname:
+                    type: string
+                  input_type:
+                    type: string
+                  extensible:
+                    type: number
+              example:
+              - ui_value: AC04090285
+                xmlname: identifier
+                input_type: input_text
+                label: Identifier
+                attributes:
+                - ui_value: ac-number
+                  xmlname: type
+                  input_type: select
+                  label: Type
+                - xmlname: lang
+                  input_type: input_text
+                  label: Language
+                - xmlname: script
+                  input_type: input_text
+                  label: Script
+                - xmlname: transliteration
+                  input_type: input_text
+                  label: Transliteration
+                - xmlname: typeURI
+                  input_type: input_text
+                  label: Type URI
+                - xmlname: displayLabel
+                  input_type: input_text
+                  label: Display label
+                - xmlname: invalid
+                  input_type: select
+                  label: Invalid
+                - xmlname: altRepGroup
+                  input_type: input_text
+                  label: Alternative representation group
+              - xmlname: language
+                input_type: node
+                label: Language
+                children:
+                - ui_value: ger
+                  xmlname: languageTerm
+                  input_type: input_text
+                  label: Language term
+                  attributes:
+                  - ui_value: code
+                    xmlname: type
+                    input_type: select
+                    label: Type
+                  - ui_value: iso639-2b
+                    xmlname: authority
+                    input_type: select
+                    label: Authority
+                  - xmlname: authorityURI
+                    input_type: input_text
+                    label: Authority URI
+                  - xmlname: valueURI
+                    input_type: input_text
+                    label: Value URI
+                  - xmlname: lang
+                    input_type: input_text
+                    label: Language
+                  - xmlname: script
+                    input_type: input_text
+                    label: Script
+                  - xmlname: transliteration
+                    input_type: input_text
+                    label: Transliteration
+                attributes:
+                - xmlname: objectPart
+                  input_type: input_text
+                  label: Object part
+                - xmlname: lang
+                  input_type: input_text
+                  label: Language
+                - xmlname: script
+                  input_type: input_text
+                  label: Script
+                - xmlname: transliteration
+                  input_type: input_text
+                  label: Transliteration
+                - xmlname: displayLabel
+                  input_type: input_text
+                  label: Display label
+                - xmlname: usage
+                  input_type: select
+                  label: Usage
+                - xmlname: altRepGroup
+                  input_type: input_text
+                  label: Alternative representation group
   securitySchemes:
     tokenAuth:
       type: apiKey
