@@ -87,7 +87,7 @@ tags_raw:
 - Course Catalog
 - Open-Source
 created: '2026-06-03'
-modified: '2026-08-30'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 apis:
 - aid: university-of-vienna:phaidra-oai-pmh
@@ -850,6 +850,10 @@ apis:
   - type: GitHub
     url: https://github.com/phaidra/phaidra-api/wiki/Documentation
 common:
+- url: https://zid.univie.ac.at/wartungsarbeiten/artikel/eingeschraenkter-zugriff-auf-uwiki-servicedesk-jira-bitbucket
+  type: Blog
+- url: https://zid.univie.ac.at/wartungsarbeiten/feed.xml
+  type: BlogRSS
 - type: AgenticAccess
   url: agentic-access/university-of-vienna-agentic-access.yml
 - type: DomainSecurity
