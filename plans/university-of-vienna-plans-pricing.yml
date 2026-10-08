@@ -68,3 +68,27 @@ x-provenance:
   source: >-
     No published pricing surface exists; PHAIDRA and its OAI-PMH endpoint are free to use.
   x-operator: institution
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  units:
+  - request
+  plans:
+  - name: Free / Open
+    access: free
+    model: free
+    model_how: derived
+    units:
+    - request
+    periods:
+    - per-use
+  - name: Affiliation / Credentialed
+    access: free
+    model: free
+    model_how: derived
+    units:
+    - request
+    periods:
+    - per-use
