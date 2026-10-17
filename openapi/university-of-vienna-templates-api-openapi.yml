@@ -161,83 +161,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    templates:
-      type: array
-      items:
-        type: object
-        properties:
-          created:
-            type: number
-          name:
-            type: string
-          updated:
-            type: number
-          tid:
-            type: string
-    template:
-      type: object
-      properties:
-        owner:
-          type: string
-        form:
-          type: object
-          properties:
-            sections:
-              type: array
-              items:
-                type: object
-                properties:
-                  fields:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        component:
-                          type: string
-                        definition:
-                          type: string
-                        fieldname:
-                          type: string
-                        id:
-                          type: string
-                        label:
-                          type: string
-                        predicate:
-                          type: string
-                        value:
-                          type: string
-                        vocabulary:
-                          type: string
-                        disabled:
-                          type: boolean
-                        multiplicable:
-                          type: boolean
-                        required:
-                          type: boolean
-                        skos:prefLabel:
-                          type: array
-                          items:
-                            type: object
-                            properties:
-                              '@language':
-                                type: string
-                              '@value':
-                                type: string
-        created:
-          type: number
-        name:
-          type: string
-        updated:
-          type: number
-        tid:
-          type: string
-        tag:
-          type: string
-        _id:
-          type: object
-          properties:
-            $oid:
-              type: string
     json-ld:
       type: object
       properties:
@@ -396,6 +319,83 @@ components:
           - '@value': Last Name
         edm:rights:
         - https://rightsstatements.org/page/InC/1.0/
+    template:
+      type: object
+      properties:
+        owner:
+          type: string
+        form:
+          type: object
+          properties:
+            sections:
+              type: array
+              items:
+                type: object
+                properties:
+                  fields:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        component:
+                          type: string
+                        definition:
+                          type: string
+                        fieldname:
+                          type: string
+                        id:
+                          type: string
+                        label:
+                          type: string
+                        predicate:
+                          type: string
+                        value:
+                          type: string
+                        vocabulary:
+                          type: string
+                        disabled:
+                          type: boolean
+                        multiplicable:
+                          type: boolean
+                        required:
+                          type: boolean
+                        skos:prefLabel:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              '@language':
+                                type: string
+                              '@value':
+                                type: string
+        created:
+          type: number
+        name:
+          type: string
+        updated:
+          type: number
+        tid:
+          type: string
+        tag:
+          type: string
+        _id:
+          type: object
+          properties:
+            $oid:
+              type: string
+    templates:
+      type: array
+      items:
+        type: object
+        properties:
+          created:
+            type: number
+          name:
+            type: string
+          updated:
+            type: number
+          tid:
+            type: string
   securitySchemes:
     tokenAuth:
       type: apiKey
